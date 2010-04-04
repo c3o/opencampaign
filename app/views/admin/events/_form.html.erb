@@ -1,0 +1,26 @@
+<% form_for(@event || Event.new) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :time %><br />
+    <%= f.datetime_select :time %>
+  </p>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </p>
+   <p>
+    <%= f.label :constituency %><br />
+    <%= f.select :constituency_id, Constituency.find(:all).collect {|p| [ p.full_name, p.id ] } %>
+  </p>
+  <p>
+  <%= f.submit "Speichern" %>
+  <% if @event %>
+    oder <%= link_to 'zurück', events_path %>
+  <% end %>
+  </p>
+<% end %>

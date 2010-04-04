@@ -1,0 +1,12 @@
+<li class="idea" id="idea_<%= idea.id %>">
+  <%= render :partial => 'rating', :locals => { :idea => idea } %>
+  <h3><%=link_to h(idea.title || '#'), idea_path(:id => idea.id) %></h3>
+  <p class="byline">
+    von <strong><%= userinfo(idea.author) %></strong> am <%= idea.created_at.strftime('%d.%m.') %>
+  <% if cs = idea.comments.count %>
+    <% if cs > 0 %>
+      <span class="comment-count">&ndash; <%= cs %> Kommentar<%= "e" if cs > 1 %></span>
+    <% end %>
+  <% end %>
+  </p>
+</li>

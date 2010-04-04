@@ -1,0 +1,12 @@
+<% remote_form_for(Question.new) do |f| %>
+  <%= f.error_messages %>
+  <p id="question_body">
+    <label><span>Frage</span></label><%= f.text_area :body, :cols => 45, :rows => 7 %>
+  </p>
+  <p>
+    <label>
+      <span>&nbsp;</span>
+      <%= f.submit "Frage stellen" %> oder <a href="#" class="toggle cancel-new_idea">abbrechen</a>
+    </label>
+  </p>
+<% end %>

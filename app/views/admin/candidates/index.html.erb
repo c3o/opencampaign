@@ -1,0 +1,17 @@
+<div class="navbar">
+  <a href="#" class="toggle trigger-new_event button">Kandidaten hinzufügen</a>
+  <div id="new-event" class="toggle target-new_event hidden">
+    <%= render :partial => 'form' %>
+  </div>
+</div>
+
+<div id="events">
+  <% @candidates.each do |candidate| %>
+    <%= render :partial => 'shared/candidate', :locals => {:candidate => candidate} %>
+    <div class="admin-menu">
+      <%= link_to 'Bearbeiten', edit_candidate_path(candidate) %> 
+      <%= link_to 'Löschen', candidate, :confirm => 'Bist du sicher?', :method => :delete %>
+    </div>
+  <% end %>
+</div>
+

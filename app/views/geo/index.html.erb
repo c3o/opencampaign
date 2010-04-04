@@ -1,0 +1,150 @@
+  <div class="boxrow">
+  
+    <%= map_box('Wir wählen Armin[?]') %>
+    
+    <div class="box" id="getactive">
+      <h2>Jetzt aktiv werden</h2>
+      <div class="content">
+        
+        <% if @tasks.size > 0
+          @tasks.each { |task| %>
+            <%= render :partial => 'tasks/task', :locals => { :task => task } %>
+          <% } %>
+          <%= link_to "Weitere Projekte...", task_list_path %>
+        <% else %>
+            Leider derzeit keine Tasts.
+        <% end %>                
+
+
+      </div>
+    </div>
+
+  </div>
+  
+  <div class="boxrow">
+  
+    <div class="box" id="events">
+      <h2>In deiner Nähe</h2>
+      <div class="content">  
+        <% if @events.size > 0
+          @events.each { |event| %>
+            <%= render :partial => 'shared/event', :locals => { :event => event } %>
+          <% } %>
+          <%= link_to "Weitere Veranstaltungen...", event_list_path %>
+        <% else %>
+            Leider derzeit keine Veranstaltungen.
+        <% end %>                
+      </div>
+    </div> 
+  
+    <div class="box" id="networks">
+      <h2>In deinem Netzwerk</h2>
+      <div class="content faviconlist">
+        <ul>
+          <li><a style="background-image:url(/images/networks/myspace.png)" href="http://www.myspace.com/liberalesforum">MySpace</a></li>
+          <li><a style="background-image:url(/images/networks/studivz.png)" href="http://www.studivz.net/Groups/Overview/a0f595e176470e99">StudiVZ</a></li>
+          <li><a style="background-image:url(/images/networks/netlog.png)" href="http://de.netlog.com/liberalesforum">Netlog</a></li>
+          <li><a style="background-image:url(/images/networks/sms.png)" href="http://my.sms.at/liberales_forum/">SMS.at</a></li>
+          <li><a style="background-image:url(/images/networks/planetromeo.png)" href="http://www.planetromeo.com/LIF_Anderslieben">PlanetRomeo</a></li>
+        </ul>
+        <ul>
+          <li><a style="background-image:url(/images/networks/facebook.png)" href="http://www.new.facebook.com/group.php?gid=18563377854">Facebook</a></li>
+          <li><a style="background-image:url(/images/networks/youtube.png)" href="http://www.youtube.com/user/wwwliberaleat">YouTube</a></li>
+          <!--li><a style="background-image:url(/images/networks/xing.png)" href="">Xing</a></li-->
+          <!--li><a style="background-image:url(/images/networks/twitter.png)" href="http://twitter.com/alexzach">Twitter</a></li-->
+          <li><a style="background-image:url(/images/networks/soup.png)" href="http://lif.soup.io">Soup.io</a></li>
+          <li><a style="background-image:url(/images/networks/szene1.png)" href="http://szene1.at/user/liberalesforum">Szene1</a></li>
+        </ul>
+      </div>
+    </div> 
+    
+    <div class="box" id="newsletter">
+      <h2>In deiner Inbox</h2>
+      <div class="content">
+        <a style="width: 120px; padding-top: 10px; float: left" href="http://liberale.at/content/site/newsletter/index.html">E-Mail Newsletter bestellen</a>        
+        <a style="float:right" href="http://liberale.at/content/site/newsletter/index.html"><img src="/images/email.png" /></a>
+      </div>
+    </div> 
+    
+  </div>
+    
+  <div class="boxrow">
+  
+    <div class="box box_2wide" id="refer">
+      <h2>Weitersagen</h2>
+      <div class="content tabs state-tab1">
+        <ul>
+          <li class="tab1"><a href="#" onclick="return tab_switch(this)">Per E-Mail</a></li>
+          <li class="tab2"><a href="#" onclick="return tab_switch(this)">Bloggen</a></li>
+          <li class="tab3"><a href="#" onclick="return tab_switch(this)">Auf Social Networks</a></li>
+          <li class="tab4"><a href="#" onclick="return tab_switch(this)">Bookmarken</a></li>
+        </ul>
+        <div class="tabcontent tab1">
+          <%
+            subject = "Diesmal-LIF.at"
+            message = "http://www.diesmal-lif.at"
+          
+          if logged_in? %>
+            <% form_tag '/geo/mail' do %>
+              <p>
+                <label>Absender</label>
+                <%= "#{current_user.name} &lt;#{current_user.email}>" %>
+              </p>
+              <p>
+                <label>Empfänger</label>
+                <input type="text" name="recipient" id="pass_on_recipient"/>
+              </p>
+              <p>
+                <label>Nachricht</label>
+                <textarea name="message" id="pass_on_message" rows="4">http://www.diesmal-lif.at</textarea>
+              </p>
+              <p>
+                <label>&nbsp;</label>
+                <input type="submit" value="Senden" />
+              </p>
+            <% end %>
+          <% else %>
+            <p>
+              Trag dich bitte oben auf der Karte ein, um E-Mails direkt von dieser Seite
+              versenden zu können &ndash;
+              oder <a href="mailto:?subject=<%= subject %>&body=<%= message %>">schicke einfach selbst eine E-Mail</a>.
+            </p>
+          <% end %>
+        </div>
+        <div class="tabcontent tab2">
+          <p>
+            <a href="http://feuerhaken.org/endorsement-08/" style="float: left; margin-right: 1em"><img src="/images/blogparade.png" width="81" height="64" /></a>
+            <strong>Bist du Blogger und möchtest uns unterstützen?</strong><br />
+            Nimm an der <a href="http://feuerhaken.org/endorsement-08/">Blogparade Endorsement 08</a> teil
+            und gib eine öffentliche Wahlempfehlung ab. Du kannst deinen Beitrag auch <a href="http://www.politikblogs.at/blogbeitrag">bei Politikblogs.at eintragen</a>.<br /><br />
+            <a href="mailto:dialog@lif.at">Lass uns wissen</a>, falls du weitere Informationen von uns möchtest, im Wahlkampfbüro vorbeikommen willst o.Ä.
+          </p>
+        </div>
+        <div class="tabcontent tab3">
+          <script>function fbs_click() { window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(window.location)+'&t='+encodeURIComponent('<%=message %>'),'sharer','toolbar=0,status=0,width=626,height=436');return false;}</script><a href="http://www.facebook.com/share.php?u=http://www.diesmal-lif.at" onclick="return fbs_click()" target="_blank" title="Auf Facebook versenden"><img src="/images/post/facebook.png" width="64" height="64" /></a>
+          <a href="http://www.myspace.com/Modules/PostTo/Pages/?t=Diesmal+LIF&c=%3Ca%20href%3D%22http%3A//www.diesmal-lif.at%22%20title%3D%22Diesmal%20LIF%20w%E4hlen%21%22%20style%3D%22float%3Aleft%3Bmargin-right%3A1em%22%3E%3Cimg%20src%3D%22http%3A//www.diesmal-lif.at/images/buttons/diesmal-lif-transparent.png%22%20style%3D%22border%3A0%22%20/%3E%3C/a%3E+Meine+Stimme+zur+Nationalratswahl+2008+bekommt+das+Liberale+Forum+mit+Heide+Schmidt!+Und+deine?&u=http://www.diesmal-lif.at"><img src="/images/post/myspace.png" width="64" height="64" title="Auf MySpace posten" /></a>
+          <a href="http://twitter.com/home?status=<%=message %>"><img src="/images/post/twitter.png" width="64" height="64" title="Per Twitter versenden" /></a>
+        </div>
+        <div class="tabcontent tab4">
+          <a href="http://www.scoop.at" onclick="document.location = 'http://www.scoop.at/submit?url='+encodeURIComponent(document.location)+'&title='+encodeURIComponent(document.title); return false;" title="Diesen Beitrag bei Scoop verlinken"><img src="/images/post/scoop.png" alt="Scoop" border="0" width="64" height="64" style="clear:both;"/></a>
+          <a href="http://www.yigg.de/neu?exturl=http://www.diesmal-lif.at" title="Diese Seite bei Yigg posten"><img src="/images/post/yigg.png" width="64" height="64" /></a>
+
+          <a href="http://www.addthis.com/bookmark.php" onclick="addthis_url = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="http://s9.addthis.com/button1-share.gif" width="125" height="16" border="0" alt="Bookmark and Share" /></a> <script type="text/javascript">var addthis_pub = 'lif';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+        </div>
+      </div>
+    </div> 
+    
+    <div class="box" id="buttons">
+      <h2>Für Blog, Profil und Website</h2>
+      <div class="content">
+        <div style="float:left; margin-right: 1em">
+          <a href="/buttons"><img src="/images/portrait-with-button.png" /></a><br />
+          <a href="/buttons"><img src="/images/buttons/mini-diesmal.gif" style="margin-top: 1em;" /></a>
+        </div>
+        <a href="/buttons"><img style="float:left;" src="/images/buttons/diesmal-lif-transparent.png" /></a>
+        <a href="/buttons"><img src="/images/buttons/diesmal-dreier.png" style="float:left; margin-top: .5em" /></a>
+      </div>
+    </div> 
+    
+    
+  </div>

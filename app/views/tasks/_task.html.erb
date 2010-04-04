@@ -1,0 +1,9 @@
+<li class="task" id="task_<%= task.id %>">
+  <h3><%=link_to h(task.title || '#'), task_path(:id => task.id) %></h3>
+  <p class="byline">
+    <strong>x</strong> eingetragene Helfer seit <%= task.created_at.strftime('%d.%m.') %>
+    <% #if (cs = task.comments.count && cs && cs > 0) %>
+      <span class="comment-count">Kommentare: <%#= cs %></span>
+    <% #end %>
+  </p>
+</li>

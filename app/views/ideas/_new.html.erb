@@ -1,0 +1,15 @@
+<% remote_form_for(Idea.new) do |f| %>
+  <%= f.error_messages %>
+  <p id="idea_title">
+    <label><span>Titel</span></label><%= f.text_field :title, :size => 40 %>
+  </p>
+  <p id="idea_body">
+    <label><span>Beschreibung</span></label><%= f.text_area :body, :cols => 45, :rows => 7 %>
+  </p>
+  <p>
+    <label>
+      <span>&nbsp;</span>
+      <%= f.submit "Idee vorschlagen" %> oder <a href="#" class="toggle cancel-new_idea">abbrechen</a>
+    </label>
+  </p>
+<% end %>

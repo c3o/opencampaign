@@ -1,0 +1,9 @@
+  <% @videos.each { |video| %>
+    <%= render :partial => 'flash', :locals => {
+      :flashtype => 'admin',
+      :memberid => video.user.id,
+      :recordingname => 'Warum LIF',
+      :enablejavascript => false,
+      :videosize => 2
+    } %>
+  <% } %>

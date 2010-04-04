@@ -1,0 +1,58 @@
+<div class="page" style="margin-bottom: 10px">
+  <h2 style="padding-bottom: 15px;">Wahlkreis <%= @constituency.name %> <span class="code"><%= @constituency.code %></span></h2>
+</div>
+
+<div class="boxrow">
+  <div class="box" id="candidates">
+    <h2>Kandidaten</h2>
+    <div class="content">
+      <% if @constituency.candidates.size > 0 %>
+        <%= render :partial => 'shared/candidate', :collection => @constituency.candidates.each {|e| e.constituency = nil} %>
+      <% else %>
+        <p>Daten folgen...</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="box" id="events">
+    <h2>Events</h2>
+    <div class="content">
+      <% if @events.size > 0 %>
+        <%= render :partial => 'shared/event', :collection => @events %>
+      <% else %>
+        <p>
+          Leider derzeit keine Veranstaltungen.<br />
+          <a href="mailto:dialog@lif.at?subject=Veranstaltung in Wahlkreis <%= @constituency.name %>">Unterstützertreffen organisieren</a>
+        </p>
+      <% end %>
+    </div>
+  </div> 
+  
+  <div class="box" id="events">
+    <h2>Statistiken</h2>
+    <div class="content">
+      <p>
+        Deklarierte LIF-Unterstützer: <div class="number"><%= @constituency.usercount > 3 ? @constituency.usercount : "<10" %></div>
+        <br />
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="comments">
+  <h2>Diskussion</h2>
+  <div class="content">
+    <p class="navbar">
+      <a href="#" class="toggle trigger-comment signup_required button">Kommentar abgeben</a>
+      <div class="hidden toggle target-comment">
+        <%  form_for(Comment.new) do |f| %>
+          <%= hidden_field_tag :constituency_id, @constituency.id %>
+          <%= f.text_area :body, :cols => 60, :rows => 4 %><br/>
+          <%= f.submit 'Kommentar abschicken' %>
+        <% end %>
+        <br /><br />
+      </div>
+    </p>
+    <%= render :partial => 'shared/comment', :collection => @constituency.comments %>
+  </div>
+</div>

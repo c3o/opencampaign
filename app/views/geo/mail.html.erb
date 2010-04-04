@@ -1,0 +1,17 @@
+<div class="page">
+  <%= link_to "&larr; Zurück zur Startseite", root_path, :class => 'backbutton' %>
+  <h2>E-Mail</h2>
+  <div class="content">
+    
+    <% if @failed %>
+
+      <p>Die Nachricht konnte nicht zugestellt werden. Überprüfe bitte die Angaben.</p>
+    
+    <% else %>
+    
+      <p>Deine Nachricht wurde verschickt.</p>
+    
+    <% end %>
+
+  </div>
+</div>

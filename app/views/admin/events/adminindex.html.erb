@@ -1,0 +1,33 @@
+<div class="navbar">
+  <a href="/admin/events" class="button">Events verwalten</a>
+  <a href="/admin/candidates" class="button">Kandidaten verwalten</a>
+</div>
+
+<hr />
+  
+<ul>
+  <li>User: <%=@usercount %></li>
+  <li><%= link_to "Ideen", ideas_path %>: <%=@ideacount %></li>
+  <li><%= link_to "Tasks", tasks_path %>: <%=@taskcount %></li>
+  <li><%= link_to "Fragen", questions_path %>: <%=@questioncount %></li>
+  <li><a href="/videos/admin">Videos</a>: <%=@videocount %> (<%=@videocount_unmoderated %> unmoderiert)</li>
+</ul>
+
+<hr />
+
+<strong>User "offiziell machen"</strong> - Zeige Team-Logo neben seinem Namen
+<% form_tag '/admin', :method => "POST" do %>
+  Username: <input name="username" /><input type="submit" value="Offiziell machen" />
+<% end %>
+
+<hr />
+
+<h3><%=@openquestions.size %> unbeantwortete Fragen</h3>
+<br />
+<%= render :partial => 'questions/question', :collection => @openquestions %>
+
+<hr /> 
+
+<h3><%=@commentcount %> Kommentare</h3>
+<br />
+<%= render :partial => 'shared/comment', :collection => @comments %>

@@ -1,0 +1,30 @@
+<% form_for (@candidate || Candidate.new), :html => { :multipart => true } do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :link %><br />
+    <%= f.text_field :link %>
+  </p>
+  <p>
+    <%= f.label :email %> (bekommt Benachrichtigung, wenn >3 Leute im Wahlkreis angemeldet sind)<br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :constituency %><br />
+    <%= f.select :constituency_id, Constituency.find(:all).collect {|p| [ p.full_name, p.id ] } %>
+  </p>
+  <p> 
+    <%= f.label :portrait %><br />
+    <%= f.file_field :portrait %>
+  </p>
+  <p>
+  <%= f.submit "Speichern" %>
+  <% if @event %>
+    oder <%= link_to 'zurück', candidates_path %>
+  <% end %>
+  </p>
+<% end %>
+

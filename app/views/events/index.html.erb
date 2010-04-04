@@ -1,0 +1,10 @@
+<div class="page">
+  <h2>Liberale treffen</h2>
+  <div class="content">
+    <div id="events">
+    <% @events.each { |event| %>
+      <%= render :partial => 'shared/event', :locals => { :event => event } %>
+    <% } %>
+    </div>
+  </div>
+</div>

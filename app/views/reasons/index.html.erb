@@ -1,0 +1,30 @@
+<h1>Listing reasons</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Body</th>
+    <th>Rating</th>
+  </tr>
+
+<% for reason in @reasons %>
+  <tr>
+	  <td><%= link_to '+', rate_up_reason_path(reason)%></td>
+		<td><%= link_to '-', rate_down_reason_path(reason)%></td>
+    <td><%=h reason.title %></td>
+    <td><%=h reason.body %></td>
+    <td><%=h reason.rating %></td>
+    <td><% reason.tag_list.each do |tag| %>
+		      <%=link_to h(tag), '#' + h(tag)%>
+	      <% end %>
+	  </td>
+    <td><%= link_to 'Show', reason %></td>
+    <td><%= link_to 'Edit', edit_reason_path(reason) %></td>
+    <td><%= link_to 'Destroy', reason, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New reason', new_reason_path %>

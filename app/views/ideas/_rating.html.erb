@@ -1,0 +1,11 @@
+  <div class="rating" id="idea_<%= idea.id %>_rating">
+    <div class="value"><%=h idea.score %></div>
+    <div class="vote">
+      <% if (idea.author == current_user) || idea.votes_by_users.include?(current_user) %>
+        &nbsp;
+      <% else %>
+        <%= link_to_remote '+', {:url => vote_up_idea_path(idea), :method => 'post'}, :class => 'signup_required' %>
+        <%= link_to_remote '&ndash;', {:url => vote_down_idea_path(idea), :method => 'post'}, :class => 'signup_required' %>
+      <% end %>
+    </div>
+  </div>

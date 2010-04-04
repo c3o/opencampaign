@@ -1,0 +1,25 @@
+<div class="candidate">
+  <div class="portrait">
+    <%
+    if candidate.portrait && candidate.portrait.url(:thumb) != "/portraits/thumb/missing.png"
+      imgtag = image_tag candidate.portrait.url(:thumb)
+      if !candidate.link.empty? %>
+        <%= link_to imgtag, candidate.link %>
+      <% else %>
+        <%=imgtag %>
+      <% end
+     end %>
+  </div>
+  <% if candidate.constituency %>
+    <p class="constituency">
+      Wahlkreis <%= candidate.constituency.full_name %>
+    </p>
+  <% end %>
+  <p class="name">
+    <% if !candidate.link.empty? %>
+      <%= link_to candidate.name, candidate.link %>
+    <% else %>
+      <%= candidate.name %>
+    <% end %>
+  </p>
+</div>

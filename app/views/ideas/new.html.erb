@@ -1,0 +1,19 @@
+<h1>New idea</h1>
+
+<% form_for(@idea) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title, :size => 60 %>
+  </p>
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_area :body, :cols => 45, :rows => 7 %>
+  </p>
+  <p>
+    <%= f.submit "Create" %> or go <%= link_to 'back', ideas_path %> 
+  </p>
+<% end %>
+
+

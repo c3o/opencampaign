@@ -1,0 +1,74 @@
+<%
+	#
+  # You need to set these variables to be appropriate for your site and user before including this file.  Some will be 
+	#	provided by Userplane during account setup.  If you have not received these values yet please contact Userplane at 
+	#	support@userplane.com or call (323) 938-4401
+	#	
+	#	type						  Either "recorder", "admin", or "player"
+	#	memberid					The member whose recording you want to view or record, leave blank if strType is "recorder"
+	#	recordingname			The name of the recording you are making (optional if all users have 1 recording)
+	#	enablejavascript	Whether to enable Javascript events.  See docs.
+	#	videosize					Size of the player (ideally should correspond to videoSize used during recording via 
+	#								    getMemberID).  1: 160x120, 2: 320x240, 3: 640x480.  Not used when strType is "recorder"
+	 
+	flashcomserver = "flashcom.diesmal-lif.userplane.com"  #(from Userplane)
+	domainid = "diesmal-lif.at"                            #(from Userplane)
+  sessionguid = session.session_id
+	key = ""
+	
+  flashtype ||= "player"
+  videosize ||= 2
+  memberid ||= ''
+
+  applicationname = "Webrecorder"
+  swfserver = "swf.userplane.com"
+	locale = "english"
+
+	width = 160;
+	height = 261;
+	swfname = "vrPlayer.swf"
+	
+	if (flashtype == "recorder")
+		width = 320
+		swfname = "vrRecorder.swf"
+  elsif (videosize > 1)    
+		width = (videosize == 2) ? 320 : 640
+	  height = (videosize == 2) ? 381 : 621
+	end
+%>
+
+<script type="text/javascript" src="/javascripts/flashobject.js"></script>
+
+<div id="flashcontent">
+  <strong>You need to upgrade your Flash Player by clicking <a href="http://www.macromedia.com/go/getflash/" target="_blank">this link</a>.</strong><br><br>
+  <strong>If you see this and have already upgraded we suggest you follow <a href="http://www.adobe.com/cfusion/knowledgebase/index.cfm?id=tn_14157" target="_blank">this link</a> to uninstall Flash and reinstall again.</strong>
+</div>
+
+<script type="text/javascript">
+	var fo = new FlashObject("http://<%= swfserver %>/<%= applicationname %>/<%= swfname %>", "wr", "<%= width %>", "<%= height %>", "6", "#ffffff", false, "best");
+	fo.addParam("scale", "noscale");
+	fo.addParam("menu", "false");
+	fo.addParam("salign", "LT");
+	fo.addParam("allowScriptAccess", "always");
+	fo.addVariable("server", "<%= flashcomserver || '' %>");
+	fo.addVariable("swfServer", "<%= swfserver %>");
+	fo.addVariable("applicationName", "<%= applicationname %>");
+	fo.addVariable("domainID", "<%= domainid || '' %>");
+	fo.addVariable("sessionGUID", "<%= sessionguid || '' %>");
+	fo.addVariable("key", "<%= key || '' %>");
+	fo.addVariable("locale", "<%= locale %>");
+	fo.addVariable("recordingName", "<%= recordingname || '' %>");
+	fo.addVariable("enableJavascript", "<%=(enablejavascript || false).to_s %>");
+	<% if flashtype != "recorder" %>
+  	fo.addVariable("viewingMemberID", "<%= memberid %>");
+	<% end
+	if flashtype == "admin" %>
+  	fo.addVariable("admin", "true");
+  <% end %>
+	fo.write("flashcontent");
+	
+	// COPYRIGHT Userplane 2006 (http://www.userplane.com)
+	// WR version 1.5.0
+</script>
+
+<iframe src="http://subtracts.userplane.com/mmm/bannerstorage/ch_int_textad_r.html?app=wc&zoneID=4082&clickID=a20e44fa&domainid=<%=domainid %>" name="Text_Ad" scrolling="NO" width="320" height="22" frameborder="0"></iframe>

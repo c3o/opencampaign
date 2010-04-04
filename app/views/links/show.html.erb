@@ -1,0 +1,18 @@
+<p>
+  <b>Url:</b>
+  <%=h @link.url %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%=h @link.comment %>
+</p>
+
+<p>
+  <b>Rating:</b>
+  <%=h @link.rating %>
+</p>
+
+
+<%= link_to 'Edit', edit_link_path(@link) %> |
+<%= link_to 'Back', links_path %>

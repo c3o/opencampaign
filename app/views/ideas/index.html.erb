@@ -1,0 +1,20 @@
+<div class="page">
+  <h2>Deine Ideen für den Wahlkampf</h2>
+  <div class="content">
+    <div class="navbar">
+      <a href="#" class="toggle trigger-new_idea signup_required button">Neue Idee einbringen</a>  
+      <div class="hidden toggle target-new_idea">
+        <%= render :partial => 'new' %>
+      </div>
+    </div>
+    <p class="navbar">
+      Klick auf das <span class="rating-button">+</span> Symbol, wenn du eine Idee
+      unterstützenswert findest, oder <span class="rating-button">&ndash;</span> wenn
+      sie weniger wichtig ist.<br />
+      Zu jeder Idee kann auch diskutiert werden.
+    </p>
+    <ul class="itemlist">
+      <%=  render :partial => "idea", :collection => @ideas %>
+    </ul>
+  </div>
+</div>

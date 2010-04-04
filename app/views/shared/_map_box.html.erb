@@ -1,0 +1,17 @@
+  <div class="box" id="map-container">
+    <h2>
+      <% if !logged_in?  %>
+        <div class="right"><a href="#" onclick="Map.login();">Login</a></div>
+      <% end %>
+      <%= title %>
+    </h2>
+    <div class="content">
+      <iframe id="map"<% if !postpone_loading %>src="/map?<%= Time.now.to_i %>"<%end%>></iframe>
+    </div>
+    <div class="content" style="height: 37px">
+      <div id="progress">
+        <div class="bar" style="width:<%= @current_user_percent %>%"></div>
+        <%= @current_user_percent %>%
+      </div>
+  </div>
+  </div>

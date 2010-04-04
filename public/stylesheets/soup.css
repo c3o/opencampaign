@@ -1,0 +1,67 @@
+body {
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 12px;
+  margin: 0; padding: 0;
+  margin-right: 7px;
+  padding-top: 20px;
+}
+
+#headercontainer2,
+.post .meta {
+  display: none
+}
+
+.post h3 {
+  margin: 0 0 .3em 0;
+}
+
+.post {
+  margin-bottom: 1.2em;  
+}
+
+a { color: #01478d; }
+
+/* Twitter */
+
+#posts .twitter {
+  position: relative;  
+}
+#posts .twitter .body {
+  color: #000;
+  line-height: 1.3em;
+}
+#posts .twitter .body a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid #bbb;
+}
+#posts .twitter .body {
+  margin-left: 6px;
+}
+#posts .twitter .body {
+  border: 1px solid #777;
+  background: #fff;
+}
+#posts .twitter .body div {
+  padding: .6em .9em;
+}
+#posts .twitter .extra {
+  background-repeat: no-repeat;
+  background-position: right top;
+  position: absolute;
+  left: 0;
+  top: 5px;
+}
+#posts .twitter .extra {
+  background-image: url('http://soup.io/images/twitter_l.gif');
+  width: 7px;
+  height: 13px;
+}
+#posts .twitter .body a.user {
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: 0;
+}
+#posts .twitter .body a:hover {
+  border-bottom: 1px solid #000;
+}

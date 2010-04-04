@@ -1,0 +1,26 @@
+<h1>Listing wisdoms</h1>
+
+<table>
+  <tr>
+    <th>Type</th>
+    <th>Title</th>
+    <th>Body</th>
+    <th>Rating</th>
+  </tr>
+
+<% for wisdom in @wisdoms %>
+  <tr>
+    <td><%=h wisdom.type %></td>
+    <td><%=h wisdom.title %></td>
+    <td><%=h wisdom.body %></td>
+    <td><%=h wisdom.rating %></td>
+    <td><%= link_to 'Show', wisdom %></td>
+    <td><%= link_to 'Edit', edit_wisdom_path(wisdom) %></td>
+    <td><%= link_to 'Destroy', wisdom, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New wisdom', new_wisdom_path %>

@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <%= GMap.header %>
+    <script src="/javascripts/wahlkreise.js" type="text/javascript"></script>
+    <script src="/javascripts/map_overlays.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/2.5.2/build/reset/reset-min.css" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" type="text/css" />
+  </head>
+  <body>
+  
+    <div id="header">
+      <h1><%= link_to "Diesmal LIF", root_path %></h1>
+      
+      <ul id="menu">
+        <li><%= link_to "Übersicht", root_path %></li>
+        <li><%= link_to "Ideen einbringen", url_for(:controller => 'ideas', :action => 'index') %></li>
+      </ul>
+    </div>
+      
+    <div id="content">  
+      <%= yield %>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<p>
+  <b>Type:</b>
+  <%=h @wisdom.type %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%=h @wisdom.title %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%=h @wisdom.body %>
+</p>
+
+<p>
+  <b>Rating:</b>
+  <%=h @wisdom.rating %>
+</p>
+
+
+<%= link_to 'Edit', edit_wisdom_path(@wisdom) %> |
+<%= link_to 'Back', wisdoms_path %>

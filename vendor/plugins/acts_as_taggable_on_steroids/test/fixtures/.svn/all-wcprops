@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/things/!svn/ver/337/rails/plugins/acts_as_taggable_on_steroids/test/fixtures
+END
+user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/things/!svn/ver/295/rails/plugins/acts_as_taggable_on_steroids/test/fixtures/user.rb
+END
+users.yml
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/things/!svn/ver/295/rails/plugins/acts_as_taggable_on_steroids/test/fixtures/users.yml
+END
+taggings.yml
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/things/!svn/ver/337/rails/plugins/acts_as_taggable_on_steroids/test/fixtures/taggings.yml
+END
+subscription.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/things/!svn/ver/295/rails/plugins/acts_as_taggable_on_steroids/test/fixtures/subscription.rb
+END
+post.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/things/!svn/ver/295/rails/plugins/acts_as_taggable_on_steroids/test/fixtures/post.rb
+END
+special_post.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/things/!svn/ver/295/rails/plugins/acts_as_taggable_on_steroids/test/fixtures/special_post.rb
+END
+subscriptions.yml
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/things/!svn/ver/295/rails/plugins/acts_as_taggable_on_steroids/test/fixtures/subscriptions.yml
+END
+posts.yml
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/things/!svn/ver/337/rails/plugins/acts_as_taggable_on_steroids/test/fixtures/posts.yml
+END
+photo.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/things/!svn/ver/295/rails/plugins/acts_as_taggable_on_steroids/test/fixtures/photo.rb
+END
+photos.yml
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/things/!svn/ver/295/rails/plugins/acts_as_taggable_on_steroids/test/fixtures/photos.yml
+END
+magazine.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/things/!svn/ver/295/rails/plugins/acts_as_taggable_on_steroids/test/fixtures/magazine.rb
+END
+magazines.yml
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/things/!svn/ver/295/rails/plugins/acts_as_taggable_on_steroids/test/fixtures/magazines.yml
+END
+tags.yml
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/things/!svn/ver/295/rails/plugins/acts_as_taggable_on_steroids/test/fixtures/tags.yml
+END

@@ -1,0 +1,17 @@
+<% content_for :javascript do %>
+  <%= javascript_include_tag :defaults %>
+<% end %>
+
+<%= error_messages_for :user %>
+<% form_for :user, :url => users_path do |f| -%>
+<p><label for="name">Name</label><br/>
+<%= f.text_field :name %></p>
+
+<p><label for="email">Email</label><br/>
+<%= f.text_field :email %></p>
+
+<p><label for="email">Gemeinde</label><br/>
+<%= text_field_with_auto_complete :user, :township %></p>
+
+<p><%= submit_tag 'Sign up' %></p>
+<% end -%>

@@ -1,0 +1,22 @@
+<div class="page">
+  <%= link_to "&larr; Zurück zur Startseite", root_path, :class => 'backbutton' %>
+  <h2>Diesmal LIF</h2>
+  <div class="content">
+  
+    <% if @path %>
+    
+      <img src="<%=@path %>" style="margin-right: 1em" />
+      
+      Mit einem Rechtsklick auf das Bild kannst du es speichern.
+    
+    <% else %>
+    
+      <% form_tag '/geo/image_overlay', :multipart => true do %>
+        <%= file_field_tag "image" %>
+        <%= submit_tag  "Button einfügen" %>
+      <% end %>
+    
+    <% end %>
+  
+  </div>
+</div>

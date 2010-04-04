@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+	<name>constituency_styles.kml</name>
+<% consts = Constituency.all_with_count
+   biggest = consts.max {|a, b| a.user_count <=> b.user_count}.user_count + 0.1
+   consts.each do |c| %>
+	<Style id="<%= c.code %>">
+		<PolyStyle>     
+		  <% alpha = (c.alpha(biggest)).to_s(16).rjust(2, '0') %>                
+			<color><%= alpha %>00D3FF</color>       
+		  <colorMode>normal</colorMode> 
+		  <fill>1</fill>                
+		  <outline>1</outline>          
+		</PolyStyle>
+		<LineStyle>
+		  <color><%= alpha %>00D3FF</color> 
+  		<width>1</width>
+		</LineStyle>
+	</Style>
+<% end %>
+</Document>
+</kml>

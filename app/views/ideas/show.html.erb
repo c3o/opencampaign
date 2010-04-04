@@ -1,0 +1,55 @@
+<div class="page" id="page_idea">
+  <%= link_to "&larr; Zurück zur Ideen-Übersicht", ideas_path, :class => 'backbutton' %>
+  
+  <h2><%= h(@idea.title) %></h2>
+  
+  <div class="content">
+    <div class="toggle hide-edit_idea">
+      
+      <!-- following div gets updated/highlighted on update --->
+      <div class="idea" id="idea_<%= @idea.id %>">
+        <%= render :partial => 'rating', :locals => { :idea => @idea } %>
+    
+        <div class="byline">
+          von <strong><%= userinfo(@idea.author) %></strong> am <%= @idea.created_at.strftime('%d.%m.') %>
+          <% if @idea.author && @idea.author == current_user %>
+            <a href="#" class="toggle trigger-edit_idea">bearbeiten</a>
+          <% end %>
+        </div>
+        <div class="body"><%= simple_format auto_link(h(@idea.body)) %></div>
+      </div>
+      
+      <!-- comment -->
+      <div class="comments">
+        <% if cs = @idea.comments.count %>
+          <% if cs > 0 %>
+            <h4 class="comment-count"><%= cs %> Kommentar<%= "e" if cs > 1 %></h4>
+          <% end %>
+        <% end %>
+        <%= render :partial => 'shared/comment', :collection => @idea.comments %>
+  
+        <div class="navbar">
+        
+          <a href="#" class="toggle trigger-comment signup_required button">Kommentar abgeben</a>
+          <div class="hidden toggle target-comment">
+            <% form_for(Comment.new) do |f| %>
+              <%= hidden_field_tag :idea_id, @idea.id %>
+              <%= f.text_area :body, :cols => 45, :rows => 7 %><br/>
+              <%= f.submit 'Kommentar abschicken' %>
+            <% end %>
+          </div>
+        
+        </div>
+  
+      </div>   
+  
+    </div>
+    <div class="hidden toggle target-edit_idea">
+        <% form_for(@idea) do |f| %>
+          <p><%= f.text_area :body, :cols => 45, :rows => 7 %></p>
+          <p><%= f.submit 'Speichern' %> oder <a href="#" class="toggle cancel-edit_idea">abbrechen</a>
+        <% end %>
+        </div>
+  </div>
+  
+</div>

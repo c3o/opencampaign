@@ -1,0 +1,20 @@
+<div class="page">
+  
+  <div class="navbar">
+    <a href="#" class="toggle trigger-new_event button">Event hinzufügen</a>
+    <div id="new-event" class="toggle target-new_event hidden">
+      <%= render :partial => 'form' %>
+    </div>
+  </div>
+
+  <div id="events">
+    <% @events.each do |event| %>
+      <%= render :partial => 'shared/event', :locals => {:event => event} %>
+      <div class="admin-menu">
+        <%= link_to 'Bearbeiten', edit_event_path(event) %> 
+        <%= link_to 'Löschen', event, :confirm => 'Bist du sicher?', :method => :delete %>
+      </div>
+    <% end %>
+  </div>
+
+</div>

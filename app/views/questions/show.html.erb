@@ -1,0 +1,67 @@
+<div class="page" id="page_question">
+  <%= link_to "&larr; Zurück zur Fragen-Übersicht", questions_path, :class => 'backbutton' %>
+  
+  <!--h2><%= h(@question.body) %></h2-->
+  
+  <div class="content">
+
+    <div class="toggle hide-edit_question">
+      <!-- following div gets updated/highlighted on update --->
+      <div class="question" id="question_<%= @question.id %>">
+        <div class="body">
+          <%= simple_format '&raquo;'+auto_link(h(@question.body))+'&laquo;' %>
+        </div>
+        <div class="byline">
+          von <strong><%= userinfo(@question.author) %></strong> am <%= @question.created_at.strftime('%d.%m.') %>
+        </div>
+      </div>
+    </div>
+
+    <div class="hidden toggle target-edit_question">
+      <% form_for(@question) do |f| %>
+        <p><%= f.text_area :body, :cols => 45, :rows => 7 %></p>
+        <p><%= f.submit 'Speichern' %> oder <a href="#" class="toggle cancel-edit_question">abbrechen</a>
+      <% end %>
+    </div>
+
+    <% if @question.reply %>
+      <!-- reply -->
+      <div class="reply">
+        <div class="byline">
+          am <%= @question.reply_created.strftime('%d.%m.') %>
+        </div>
+        <div class="body"><%= simple_format auto_link(h(@question.reply)) %></div>      
+      </div>
+    <% else %>
+      <% if current_user.is_admin %>
+        <%= render :partial => 'reply' %>
+      <% else %>
+        Noch keine Antwort... bitte etwas Geduld!
+      <% end %>
+    <% end %>
+    
+    <!-- comment -->
+    <div class="comments">
+      <% if cs = @question.comments.count %>
+        <% if cs > 0 %>
+          <h4 class="comment-count"><%= cs %> Kommentar<%= "e" if cs > 1 %></h4>
+        <% end %>
+      <% end %>
+      <%= render :partial => 'shared/comment', :collection => @question.comments %>
+
+      <div class="navbar">
+        <a href="#" class="toggle trigger-comment signup_required button">Kommentar abgeben</a>
+        <div class="hidden toggle target-comment">
+          <% form_for(Comment.new) do |f| %>
+            <%= hidden_field_tag :question_id, @question.id %>
+            <%= f.text_area :body, :cols => 45, :rows => 7 %><br/>
+            <%= f.submit 'Kommentar abschicken' %>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  
+</div>

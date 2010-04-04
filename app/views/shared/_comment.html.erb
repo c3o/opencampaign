@@ -1,0 +1,31 @@
+<div class="comment" id="comment_<%= comment.id %>">
+  <p class="byline">
+    <% if comment.author %>
+      <strong><%= userinfo comment.author %></strong>
+    <% end %>
+    <% if comment.created_at %>
+      &ndash; <%= comment.created_at.strftime('%d.%m.') %> 
+    <% end %>
+    <% if comment.author == current_user %>
+      <a href="#" class="toggle trigger-comment_<%= comment.id %>">bearbeiten</a>
+    <% end %>
+    <% if logged_in? && current_user.is_admin %>
+    <%= link_to "löschen", comment_path(comment), :method => 'delete' %> 
+    <% end %>
+  </p>
+  <div class="body toggle hide-comment_<%= comment.id%>">
+    <%= simple_format auto_link(h(comment.body)) %>
+  </div>
+  <div class="edit hidden toggle target-comment_<%= comment.id %>">
+    <% form_for(comment) do |f| %>
+      <% if comment.idea_id %>
+        <%= hidden_field_tag :idea_id, comment.idea_id %>
+      <% end %>
+      <% if comment.constituency_id %>
+        <%= hidden_field_tag :constituency_id, comment.constituency_id %>
+      <% end %>
+      <%= f.text_area :body, :cols => 45, :rows => 3 %><br/>
+      <%= f.submit 'Speichern' %> oder <a href="#" class="toggle cancel-comment_<%= comment.id %>">abbrechen</a>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="page">
+  <%= link_to "&larr; Zurück zur Startseite", root_path, :class => 'backbutton' %>
+  <h2>Benutzerlöschung</h2>
+  <div class="content">
+
+    <% if @deleted %>
+    
+      <p>Deine Daten wurden gelöscht.</p>
+    
+    <% elsif logged_in? %>
+      
+      <p>
+        Hiermit löschst du deinen Account auf Diesmal-LIF.at unwiederbringlich.<br />
+        Dein Karteneintrag sowie alle Kommentare und Videos werden restlos entfernt.<br />
+        Bist du sicher, dass du das tun willst?<br /><br />
+      </p>
+      <form action="#" method="POST">
+        <input type="submit" value="Ja, Benutzerdaten löschen" />
+      </form>
+    
+    <% else %>
+    
+      <script type="text/javascript">Event.observe(window, 'load', function() { Signup.show() });</script>
+    
+    <% end %>
+    
+  </div>
+</div>

@@ -1,0 +1,12 @@
+== INSTALL
+
+Pull fresh copy via git, then fetch some plugins:
+
+$ git submodule init
+$ git submodule update
+
+Create database and fill with data
+
+$ rake db:migrate
+$ ruby db/data/load.rb
+
