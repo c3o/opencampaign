@@ -15,8 +15,8 @@ class ApplicationController < ActionController::Base
   
   include AuthenticatedSystem
   
-  # redirect all aliases to www.diesmal-if.at
-  HOSTNAME = 'www.diesmal-lif.at'
+  # redirect all aliases to test.arminsoyka.at
+  HOSTNAME = 'test.arminsoyka.at'
   before_filter :ensure_right_hostname
   def ensure_right_hostname
     redirect_to(request.protocol + HOSTNAME + request.request_uri) if (RAILS_ENV=='production') && (request.host.downcase != HOSTNAME)
