@@ -1,5 +1,12 @@
 # Be sure to restart your server when you modify this file
 
+CONFIG = {
+  :title => "Team Armin Soyka",
+  :sharing_title => "Ich unterstütze das Team Armin Soyka",
+  :sharing_body => "Armin tritt bei der Wien Wahl 2010 an. Wär doch cool, wenn er es schaffen würde."
+}
+
+
 # Uncomment below to force Rails into production mode when
 # you don't control web/app server and can't set it the proper way
 # ENV['RAILS_ENV'] ||= 'production'

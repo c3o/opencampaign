@@ -3,6 +3,7 @@ body {
   font-size: 87%;
   line-height: 1.4em;
   margin: 20px 0 0 10px;
+  background: #fff url(/images/bg.jpg) top right no-repeat;
 }
 
 h1, h2, h3, h4, .number {
@@ -46,6 +47,8 @@ a.backbutton {
   color: #000;
 }
 
+#container { width: 800px; }
+
 #header {
   margin: 10px;
   width: 950px;
@@ -73,10 +76,30 @@ a.backbutton {
   float: left;
 }
 
-#menucontainer {
+ul#topmenu { 
+  list-style: none; 
+  overflow: hidden;
   margin-bottom: 1em;
+}
+
+ul#topmenu li {
   float: left;
-  width: 160px;
+}
+
+ul#topmenu li a {
+  display: block;
+  padding: .5em 1em;
+  font-size: 1.2em;
+  font-weight: bold;
+  border-radius: .5em;
+}
+
+ul#topmenu li.active a {
+  text-decoration: none;
+}  
+
+#menucontainer {
+  margin-bottom: 6em;
   margin-left: 10px;  
 }
 .menu {
@@ -256,7 +279,7 @@ p.body {
 /* COLORS */
 
 body {
-  background-color: #eee;
+  /*background-color: #eee;*/
   color: #555;
 }
 
@@ -266,6 +289,11 @@ body {
 
 #getactive .content a {
   color: #000;  
+}
+
+ul#topmenu li.active a {
+  background: #3a3;
+  color: #fff;
 }
 
 a {
@@ -283,7 +311,7 @@ a {
 .page { width: 800px; }
 
 .page h2, .menu {
-  background-color: #fff;
+  /* background-color: #fff; */
 }
 
 .menu li.active a, .box h2, .rating, a.button, .rating-button, .myconstituency, .user_official {

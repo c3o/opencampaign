@@ -14,10 +14,11 @@ set :deploy_via, :copy
 role :app, "test.arminsoyka.at"
 role :web, "test.arminsoyka.at"
 
-after  "deploy:finalize_update" do
+##after  "deploy:finalize_update" do
 ##  run "ln -nfs #{shared_path}/uploads #{current_path}/public/images/uploads"
 ##  run "ln -nfs #{shared_path}/portraits #{current_path}/public/portraits"
-end
+##end
+after "deploy:finalize_update", "deploy:set_rails_env"
 
 # mod_rails (phusion_passenger) stuff
 namespace :deploy do
@@ -32,4 +33,24 @@ namespace :deploy do
       # nothing
     end
   end
+  
+  desc "set ENV['RAILS_ENV'] for mod_rails (phusion passenger)"
+  task :set_rails_env do
+    tmp = "#{current_release}/tmp/environment.rb"
+    final = "#{current_release}/config/environment.rb"
+    run <<-CMD
+      echo 'RAILS_ENV = "production"' > #{tmp};
+      cat #{final} >> #{tmp} && mv #{tmp} #{final};
+    CMD
+  end
+end
+
+# Symlink everything from shared/config to release/config
+task :symlink_config, :except => { :no_release => true }  do
+  run <<-CMD 
+    cd #{shared_path}/config ;
+    for i in $( ls *.yml); do 
+      ln -fs #{shared_path}/config/$i #{current_path}/config/$i;
+    done
+  CMD
 end
