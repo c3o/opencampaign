@@ -2,14 +2,14 @@
   <div class="box box_2wide" id="blogs">
     <h2>Blogs, Twitter & YouTube</h2>
     <div class="content">
-      <iframe src="http://lif2.soup.io/mini/430/30?css=http://<%=request.env['HTTP_HOST'] %>/stylesheets/soup.css" width="510" height="850"></iframe>
-      <a class="attribution" href="http://lif2.soup.io">Powered by Soup.io</a>
+      <iframe src="<%= CONFIG[:elsewhere_iframe_url] %>" width="510" height="850"></iframe>
+      <a class="attribution" href="<%= CONFIG[:elsewhere_link_url] %>">Powered by Soup.io</a>
     </div>
   </div>
 
   <div>
     <div class="box" id="elsewhere">
-      <h2>Das LIF im Netz</h2>
+      <h2><%= CONFIG[:title] %> im Netz</h2>
       <div class="content faviconlist">
         <ul>
           <li><a style="background-image:url(/favicon.ico)" href="http://www.heide-schmidt-blog.at/">Heide Schmidt Blog</a></li>
@@ -43,13 +43,6 @@
       </div>
     </div>
     
-    <div class="box" id="wahltotal">
-      <h2><a href="http://www.wahltotal.at">Wahltotal.at</a></h2>
-      <div class="content">
-        <iframe src="http://lif-wahltotal.soup.io/mini/215/20?css=http://<%=request.env['HTTP_HOST'] %>/stylesheets/soup.css" width="240" height="400"></iframe>
-        <a class="attribution" href="http://www.soup.io">Powered by Soup.io</a>
-      </div>
-    </div> 
   </div>  
    
 </div>

@@ -3,7 +3,9 @@
 CONFIG = {
   :title => "Team Armin Soyka",
   :sharing_title => "Ich unterstütze das Team Armin Soyka",
-  :sharing_body => "Armin tritt bei der Wien Wahl 2010 an. Wär doch cool, wenn er es schaffen würde."
+  :sharing_body => "Armin tritt bei der Wien Wahl 2010 an. Wär doch cool, wenn er es schaffen würde.",
+  :elsewhere_link_url => "http://pressearminsoyka.soup.io",
+  :elsewhere_iframe_url => "http://pressearminsoyka.soup.io/mini/430/30?css=http://<%=request.env['HTTP_HOST'] %>/stylesheets/soup.css"
 }
 
 
