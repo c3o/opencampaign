@@ -121,50 +121,6 @@
   <body> 
   <!-- <%= current_user %> -->
     <% if !logged_in? %>
-
-      <% remote_form_for :user, :url => users_path, :html => { :id => 'map_overlay_signup', :class => "map_overlay" } do |f| -%>
-        <p id="signup_name">
-          <label for="name">Name</label>
-          <%= f.text_field :name, :value => "(oder Pseudonym)", :onclick => "if(this.value == '(oder Pseudonym)') this.value = '';" %>
-        </p>
-        <p id="signup_email">
-          <label for="email">Email</label>
-          <%= f.text_field :email %>
-        </p>
-        <p id="signup_town">
-          <label for="town">Ort</label>
-          <span id="town_district">
-            <span id="town">
-              <%= text_field_with_auto_complete(:user, :town, {}, {:after_update_element => "function(e,v) { Map.place_marker(e.value); }", :url => autocomplete_town_users_path, :frequency => 0.5}) %>
-            </span>
-            <span id="district">
-              <select id="user_district" name="user[district]" autocomplete="off" onchange="if(this.options[this.selectedIndex].value=='other') { Map.toggle_vienna_dropdown(false); }">
-                <option value="wien">Wien...</option>
-                <% for district in Town.vienna_districts %>
-                  <option value="<%= district.id %>"><%= district.name %></option>
-                <% end %>
-                <option value="other">Außerhalb...</option>
-              </select>
-            </span>
-          </span>
-        </p>
-        <p>
-          <%= submit_tag 'Farbe bekennen' %>
-          <a class="disclaimer" href="/datenschutz" target="_top">Datenschutz-Erklärung</a>
-        </p>
-      <% end %>
-      <% form_remote_tag :url => session_path, :method => 'post', :html => { :class => "map_overlay", :id => "map_overlay_login" } do %>
-        <p id="signup_mailaddr">
-          <label for="email">Email</label>
-          <%= text_field_tag :email %>
-        </p>
-        <p id="signup_password">
-          <label for="password">Passwort</label>
-          <%= password_field_tag :password %>
-          <br /><small>(wurde dir bei der Anmeldung per E-Mail geschickt)</small>
-        </p>
-        <p><%= submit_tag 'Einloggen' %></p>
-      <% end %>
       <script type="text/javascript">
         Event.observe(window, 'load', function() {
           if (google.loader.ClientLocation) {
@@ -183,17 +139,14 @@
           }
         });
       </script>
-      
-      <% elsif current_user.town #logged in and has town
-        c = current_user.town.constituency
-      %>
-
+    <% elsif current_user.town #logged in and has town
+      c = current_user.town.constituency
+    %>
       <script type="text/javascript">
         Event.observe(window, 'load', function() {
           Map.place_marker('<%= current_user.town.full_name %>', '<strong><big><%=c.full_name %></big></strong><br /><%= link_to 'Veranstaltungen &amp; Diskussion in meiner Nähe', url_for(:controller => 'geo', :action => 'local', :name => c.url_friendly_name), :target => '_top' %>', '<%= c.full_name %>');
         });
-      </script>    
-
+      </script>
     <% end %>
     
     <%= @map.to_html %>

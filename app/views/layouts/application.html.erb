@@ -11,6 +11,55 @@
     <meta name="title" content="<%= CONFIG[:sharing_title] %>" />
     <meta name="description" content="<%= CONFIG[:sharing_body] %>" />
     <link rel="image_src" href="<%= image_path "sharing_image.png" %>" />
+
+    <script src="http://connect.facebook.net/de_DE/all.js"></script>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId: '120956097919751',
+          status: true, // check login status
+          cookie: true, // enable cookies to allow the server to access the session
+          xfbml: true  // parse XFBML
+          //apiKey: 'ca1fb858a2abcd760a8d924b9a4bd8c0'
+        });
+        FB.Event.subscribe('auth.sessionChange', function(response) {
+          if (response.session) {
+            // A user has logged in, and a new cookie has been saved
+            // if we have a session, query for the user's profile picture and name
+            FB.api(
+              {
+                method: 'fql.query',
+                query: 'SELECT name, pic FROM profile WHERE id=' + FB.getSession().uid
+              },
+              function(response) {
+                var user = response[0];
+                var userInfo = document.getElementById('fb-userinfo');
+                userInfo.innerHTML = '<img src="' + user.pic + '">' + user.name;
+              }
+            );
+          } else {
+            // The user has logged out, and the cookie has been cleared
+            clearDisplay();
+            return;
+         }
+        });
+        //FB.getLoginStatus(handleSessionResponse); // fetch the status on load
+        //Event.observe($('fb-login'), 'click', function() {
+        //  FB.login(handleSessionResponse);
+        //});
+        //Event.observe($('fb-logout'), 'click', function() {
+        //  FB.logout(handleSessionResponse);
+        //});
+        //$('disconnect').observe('click', function() {
+        //  FB.api({ method: 'Auth.revokeAuthorization' }, function(response) {
+        //    clearDisplay();
+        //  });
+        //});
+        function clearDisplay() { // no user, clear display
+          document.getElementById('fb-userinfo').innerHTML = '';
+        }
+      }
+    </script>
   </head>
 
   <body>
@@ -20,7 +69,7 @@
         <ul id="topmenu">
           <li><a href="">Wer?</a></li>
           <li><a href="">Was?</a></li>
-            <li<%= " class=\"active\"" if @controller.controller_name == 'geo' %>>
+            <li<%= " class=\"active\"" unless ['static', 'questions'].include?(@controller.controller_name) %>>
               <%= link_to "Mitmachen", root_path %>
             </li>
           <li<%= " class=\"active\"" if @controller.controller_name == 'questions' %>>
@@ -35,7 +84,7 @@
 
           <ul class="menu">
 
-            <% if @controller.controller_name == 'geo' %>
+            <% unless ['static', 'questions'].include?(@controller.controller_name) %>
               <li<%= " class=\"active\"" if @controller.controller_name == 'geo' %>>
                 <%= link_to "Unterstützer werden", root_path %>
               </li>
