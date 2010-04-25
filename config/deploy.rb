@@ -43,14 +43,16 @@ namespace :deploy do
       cat #{final} >> #{tmp} && mv #{tmp} #{final};
     CMD
   end
+
+  desc "Symlink everything from shared/config to release/config"
+  task :symlink_config, :except => { :no_release => true }  do
+    run <<-CMD 
+      cd #{shared_path}/config ;
+      for i in $( ls *.yml); do 
+        ln -fs #{shared_path}/config/$i #{current_path}/config/$i;
+      done
+    CMD
+  end
+
 end
 
-# Symlink everything from shared/config to release/config
-task :symlink_config, :except => { :no_release => true }  do
-  run <<-CMD 
-    cd #{shared_path}/config ;
-    for i in $( ls *.yml); do 
-      ln -fs #{shared_path}/config/$i #{current_path}/config/$i;
-    done
-  CMD
-end
