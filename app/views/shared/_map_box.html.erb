@@ -30,7 +30,7 @@
               <label for="town">Ort</label>
               <span id="town_district">
                 <span id="town">
-                  <%= text_field_with_auto_complete(:user, :town, {}, {:after_update_element => "function(e,v) { Map.place_marker(e.value); }", :url => autocomplete_town_users_path, :frequency => 0.5}) %>
+                  <%= f.text_field :town, {:after_update_element => "function(e,v) { Map.place_marker(e.value); }", :url => autocomplete_town_users_path, :frequency => 0.5} %>
                 </span>
                 <span id="district">
                   <select id="user_district" name="user[district]" autocomplete="off" onchange="if(this.options[this.selectedIndex].value=='other') { Map.toggle_vienna_dropdown(false); }">
