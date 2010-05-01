@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   belongs_to :town
   has_one :video, :dependent => :destroy
   has_many :comments, :dependent => :destroy
+  has_many :projects
   has_and_belongs_to_many :task
 
   validates_presence_of     :town, :message => 'ist nicht in der Datenbank'
