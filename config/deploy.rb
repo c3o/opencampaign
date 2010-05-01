@@ -18,7 +18,7 @@ role :web, "test.arminsoyka.at"
 ##  run "ln -nfs #{shared_path}/uploads #{current_path}/public/images/uploads"
 ##  run "ln -nfs #{shared_path}/portraits #{current_path}/public/portraits"
 ##end
-after "deploy:finalize_update", "deploy:set_rails_env"
+after "deploy:finalize_update", "symlink_config" #deploy:set_rails_env"
 
 # mod_rails (phusion_passenger) stuff
 namespace :deploy do
@@ -44,15 +44,15 @@ namespace :deploy do
     CMD
   end
 
-  desc "Symlink everything from shared/config to release/config"
-  task :symlink_config, :except => { :no_release => true }  do
-    run <<-CMD 
-      cd #{shared_path}/config ;
-      for i in $( ls *.yml); do 
-        ln -fs #{shared_path}/config/$i #{current_path}/config/$i;
-      done
-    CMD
-  end
+end
 
+desc "Symlink everything from shared/config to release/config"
+task :symlink_config, :except => { :no_release => true }  do
+  run <<-CMD 
+    cd #{shared_path}/config ;
+    for i in $( ls *.yml); do 
+      ln -fs #{shared_path}/config/$i #{current_path}/config/$i;
+    done
+  CMD
 end
 
