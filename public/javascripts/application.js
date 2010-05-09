@@ -1,3 +1,56 @@
+
+OC = {
+  
+  'userdata': {},
+    
+  'userdata_save': function() {
+    console.log('userdata save!');
+    console.log(OC.userdata);
+    new Ajax.Request('/users/create', { 'parameters': OC.userdata });
+  },
+  
+  'facebook_signup': function(response) {
+    console.log('login!');
+    var handler = new AsyncHandler();
+    FB.api('/me', function(response) {  // TODO should do fql with SELECT name, email, pic_big, hometown_location, birthday_date FROM user WHERE uid = ?
+      OC.userdata = response;
+      var userInfo = document.getElementById('fb-userinfo');
+      userInfo.innerHTML = 'Hallo ' + response.name;
+      handler.cb();
+    });
+    FB.api('/me/friends', function(response) {
+      OC.userdata.friends_num = response.data.length;
+      handler.cb();
+    });
+    handler.whenDone(function() {
+      $('login_step1').hide();
+      OC.userdata_save();
+    });
+  },
+  
+  'location2map': function() {
+    if (google.loader.ClientLocation) {
+      if (!Signup.map_loaded) {
+        window.setTimeout(OC.location2map, 1000);
+      } else {
+        var point = new GLatLng(google.loader.ClientLocation.latitude, google.loader.ClientLocation.longitude);
+        var marker = new GMarker(point);
+        map.addOverlay(marker);
+        Map.last_added_marker = marker;
+        if ($('town_district')) {
+          var city = google.loader.ClientLocation.address.city.replace('Vienna', 'Wien');
+          if(city == 'Wien') { //Township.find(:all, :conditions => "name LIKE 'Wien%'")
+            $('town_district').toggleClassName('state_district');
+          } else {
+            $('user_town').value = city;
+          }
+        }
+      }
+    }
+  }
+  
+};
+
 last_added_marker = null;
 
 function init_toggling() {

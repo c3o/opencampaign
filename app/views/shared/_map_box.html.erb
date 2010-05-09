@@ -16,7 +16,7 @@
 
       <% if !logged_in? %>
   
-        <div id="step1" class="switchbox">       
+        <div id="login_step1" class="switchbox">       
           <% remote_form_for :user, :url => users_path, :html => { :id => 'map_overlay_signup', :class => "map_overlay" } do |f| -%>
             <!--p id="signup_name">
               <label for="name">Name</label>
@@ -50,6 +50,29 @@
           <% end %>
           oder
           
+          <script type="text/javascript">
+            window.fbAsyncInit = function() {
+              FB.init({
+                appId: '<%= CONFIG[:Facebook]['appid'] %>', //120956097919751
+                status: true, // check login status
+                cookie: true, // enable cookies to allow the server to access the session
+                xfbml: true  // parse XFBML
+                //apiKey: 'ca1fb858a2abcd760a8d924b9a4bd8c0'
+              });
+              FB.Event.subscribe('auth.login', OC.facebook_signup);
+              FB.Event.subscribe('auth.sessionChange', function(response) {
+                console.log('sessionchange!');
+                if (!response.session) {
+                  // The user has logged out, and the cookie has been cleared
+                  clearDisplay();
+                  return;
+                }
+              });
+              function clearDisplay() { // no user, clear display
+                document.getElementById('fb-userinfo').innerHTML = '';
+              }
+            }
+          </script>
           <!--fb:login-button show-faces="true" width="200" max-rows="1" /-->
           <fb:login-button perms="email"></fb:login-button>
 
