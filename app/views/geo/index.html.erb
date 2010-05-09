@@ -75,8 +75,8 @@
         </ul>
         <div class="tabcontent tab1">
           <%
-            subject = "Diesmal-LIF.at"
-            message = "http://www.diesmal-lif.at"
+            subject = CONFIG["title"]
+            message = request.protocol+request.host
           
           if logged_in? %>
             <% form_tag '/geo/mail' do %>
@@ -90,7 +90,7 @@
               </p>
               <p>
                 <label>Nachricht</label>
-                <textarea name="message" id="pass_on_message" rows="4">http://www.diesmal-lif.at</textarea>
+                <textarea name="message" id="pass_on_message" rows="4"><%= message %></textarea>
               </p>
               <p>
                 <label>&nbsp;</label>

@@ -1,14 +1,5 @@
 # Be sure to restart your server when you modify this file
 
-CONFIG = {
-  :title => "Team Armin Soyka",
-  :sharing_title => "Ich unterstütze das Team Armin Soyka",
-  :sharing_body => "Armin tritt bei der Wien Wahl 2010 an. Wär doch cool, wenn er es schaffen würde.",
-  :elsewhere_link_url => "http://pressearminsoyka.soup.io",
-  :elsewhere_iframe_url => "http://pressearminsoyka.soup.io/mini/430/30?css=http://<%=request.env['HTTP_HOST'] %>/stylesheets/soup.css"
-}
-
-
 # Uncomment below to force Rails into production mode when
 # you don't control web/app server and can't set it the proper way
 # ENV['RAILS_ENV'] ||= 'production'
@@ -83,3 +74,10 @@ require 'jcode'
 $KCODE = 'u'
 
 require 'support'
+
+# Load OpenCampaign config
+CONFIG = YAML.load(ERB.new(File.read(File.join('config', 'opencampaign.yml'))).result)
+raw_fb = YAML.load(ERB.new(File.read(File.join('config', 'facebook.yml'))).result)
+raw_fb = raw_fb[RAILS_ENV] if defined? RAILS_ENV
+CONFIG[:Facebook] = raw_fb
+
