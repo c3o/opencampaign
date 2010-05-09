@@ -1,0 +1,7 @@
+development:
+  appid: 000
+  secret: 000
+
+production:
+  appid: 000
+  secret: 000

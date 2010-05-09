@@ -1,0 +1,16 @@
+
+title: My campaign website
+org_title: My organization
+
+name: John Doe
+shortname: Johnny
+
+privacy_officer_email: <a href="mailto:user@example.com">Jane Doe</a>
+
+sharing_title: I support this campaign!
+sharing_body: Why don't you too?
+
+elsewhere_link_url: http://example.com
+elsewhere_iframe_url: http://example.com
+
+progress_required_users: 1000
