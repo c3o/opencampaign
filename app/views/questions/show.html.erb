@@ -33,7 +33,7 @@
         <div class="body"><%= simple_format auto_link(h(@question.reply)) %></div>      
       </div>
     <% else %>
-      <% if current_user.is_admin %>
+      <% if logged_in? && current_user.is_admin %>
         <%= render :partial => 'reply' %>
       <% else %>
         Noch keine Antwort... bitte etwas Geduld!

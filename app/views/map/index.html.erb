@@ -122,22 +122,7 @@
   <!-- <%= current_user %> -->
     <% if !logged_in? %>
       <script type="text/javascript">
-        Event.observe(window, 'load', function() {
-          if (google.loader.ClientLocation) {
-            var point = new GLatLng(google.loader.ClientLocation.latitude, google.loader.ClientLocation.longitude);
-            var marker = new GMarker(point);
-            map.addOverlay(marker);
-            Map.last_added_marker = marker;
-            if ($('town_district')) {
-              var city = google.loader.ClientLocation.address.city.replace('Vienna', 'Wien');
-              if(city == 'Wien') { //Township.find(:all, :conditions => "name LIKE 'Wien%'")
-                $('town_district').toggleClassName('state_district');
-              } else {
-                $('user_town').value = city;
-              }
-            }
-          }
-        });
+        Event.observe(window, 'load', OC.location2map);
       </script>
     <% elsif current_user.town #logged in and has town
       c = current_user.town.constituency

@@ -18,7 +18,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   # GET /tasks/new.xml
   def new
-    @task = Idea.new
+    @task = Task.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -49,10 +49,10 @@ class TasksController < ApplicationController
   # PUT /tasks/1
   # PUT /tasks/1.xml
   def update
-    @idea = Task.find(params[:id])
+    @task = Task.find(params[:id])
     # check authorization
     respond_to do |format|
-      if @task.update_attributes(params[:idea])
+      if @task.update_attributes(params[:task])
         flash[:notice] = 'Task was successfully updated.'
         format.html { redirect_to(@task) }
         format.xml  { head :ok }

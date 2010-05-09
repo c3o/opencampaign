@@ -1,7 +1,7 @@
 body {
   font-family: Lucida, 'Lucida Sans', 'Lucida Grande', Arial, Helvetica, sans-serif;
   font-size: 87%;
-  line-height: 1.4em;
+  line-height: 1.5em;
   margin: 20px 0 0 80px;
   /* background: #fff url(/images/bg.jpg) top right no-repeat; */  
   background: #fff url(/images/bgpattern1.jpg) top left no-repeat fixed;
@@ -83,6 +83,7 @@ ul#topmenu {
   margin: 0 0 1em 1em;
   padding: .4em;
   -webkit-border-radius: .5em;
+  -moz-border-radius: .5em;
   border-radius: .5em;
 }
 
@@ -97,6 +98,7 @@ ul#topmenu li a {
   font-weight: bold;
   border-radius: .5em;
   -webkit-border-radius: .5em;
+  -moz-border-radius: .5em;
   border-radius: .5em;
 }
 
@@ -105,7 +107,7 @@ ul#topmenu li.active a {
 }  
 
 #menucontainer {
-  margin-bottom: 6em;
+  margin-bottom: 3em;
   margin-left: 10px;  
 }
 .menu {
@@ -143,6 +145,7 @@ ul#topmenu li.active a {
   background-color: #fff;
   font-weight: bold;
   -webkit-border-radius: .5em;
+  -moz-border-radius: .5em;
 }
 
 
@@ -155,6 +158,7 @@ ul#topmenu li.active a {
   overflow: hidden;
   padding: 10px;
   -webkit-border-radius: .5em;
+  -moz-border-radius: .5em;
   border-radius: .5em;
   -moz-border-radius-topleft: 0;
   -webkit-border-top-left-radius: 0;
@@ -178,8 +182,8 @@ ul#topmenu li.active a {
 .page h2 {
   font-weight: normal;
   font-size: 2em;
-  margin: 0px 0 0 0px;
-  padding: 20px 20px 0 20px;
+  margin: 0;
+  padding: 25px 20px 0 20px;
   -moz-border-radius-topleft: .5em;
   -webkit-border-top-left-radius: .5em;
   -moz-border-radius-topright: .5em;
@@ -310,7 +314,7 @@ p.body {
 
 body {
   /*background-color: #eee;*/
-  color: #555;
+  color: #333;
 }
 
 .rating, .rating .vote a {
@@ -611,8 +615,8 @@ a.button {
 .state-tab4 li.tab4 a,
 .state-tab5 li.tab5 a { color: #000; }
 
-.footer { margin-top: 2em; font-size: .9em; color: #666; }
-.footer a { color: #666; }
+.footer { margin: 0 2em 0 1.5em; font-size: .9em; color: #888; }
+.footer a { color: #888; }
 
 a.attribution {
   display: block;
