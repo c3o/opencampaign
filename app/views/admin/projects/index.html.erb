@@ -1,0 +1,17 @@
+<div class="navbar">
+  <a href="#" class="toggle trigger-new_event button">Projekt hinzufügen</a>
+  <div id="new-event" class="toggle target-new_event hidden">
+    <%= render :partial => 'form' %>
+  </div>
+</div>
+
+<div id="projects">
+  <% @projects.each do |project| %>
+    <%= render :partial => 'shared/project', :locals => {:project => project} %>
+    <div class="admin-menu">
+      <%= link_to 'Bearbeiten', edit_adminproject_path(project) %> 
+      <%= link_to 'Löschen', project, :confirm => 'Bist du sicher?', :method => :delete %>
+    </div>
+  <% end %>
+</div>
+

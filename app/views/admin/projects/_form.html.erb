@@ -1,0 +1,22 @@
+<% remote_form_for (@project || Project.new), :html => { :multipart => true } do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :teaser %><br />
+    <%= f.text_area :teaser %>
+  </p>
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </p>
+  <p>
+  <%= f.submit "Speichern" %>
+  <% if @project %>
+    oder <%= link_to 'zurück', adminprojects_path %>
+  <% end %>
+  </p>
+<% end %>
+

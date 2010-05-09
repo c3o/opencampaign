@@ -720,3 +720,28 @@ li.question span {
   padding-left: 3em;
   margin-top: 1em;
 }
+
+#admin .page {
+  background: #fff;
+  padding: 1em;
+}
+
+#projectlist .project {
+  margin: 0 0 1em 0;
+  line-height: 1.5em;
+}
+#projectlist .teaser {
+  margin: .5em 0 1em 0;
+}
+#projectlist .body {
+  display: none;
+}
+#projectlist .open .body {
+  display: block;
+}
+
+#about ul {
+  list-style: disc;
+  margin: 0 0 1em 0;
+  padding-left: 1.5em;  
+}

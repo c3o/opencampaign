@@ -1,0 +1,14 @@
+<div class="project" id="project_<%= project.id %>">
+  <h3><a href="javascript:void(0)" onclick="$(this.up('.project')).toggleClassName('open')"><%=h project.title %></a></h3>
+  <p class="byline">
+    <div class="teaser"><%= project.teaser %></div>
+    <div class="body"><%= project.body %></div>
+    <% if (ts = project.tasks.count && ts && ts > 0) %>
+      <span class="comment-count"><%= ts %></span>
+      <h4>Tasks</h4>
+      <ul>
+        <%= render :partial => 'tasks/task', :collection => project.tasks %>
+      </ul>
+    <% end %>
+  </p>
+</div>

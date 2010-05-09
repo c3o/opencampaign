@@ -14,18 +14,22 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :comments
 
-  map.resources :tasks, :as => 'projekte', :member => {:contribute => :post} do |tasks|
+  map.resources :projects, :as => 'projekte', :member => {:contribute => :post} do |projects|
+    projects.resources :comments
+  end
+  map.resources :tasks, :as => 'tasks', :member => {:contribute => :post} do |tasks|
     tasks.resources :comments
   end
 
   # ADMIN
   map.admin '/admin', :controller => 'admin/events', :action => 'adminindex'
   map.resources :events, :controller => 'admin/events', :path_prefix => "/admin"
+  map.resources :adminprojects, :controller => 'admin/projects', :path_prefix => "/admin"
   map.resources :candidates, :controller => 'admin/candidates', :path_prefix => "/admin"
   #map.administer_events '/events', :controller => 'admin/events', :path_prefix => "/admin", :action => 'index'
   
   map.event_list '/treffen', :controller => 'events', :action => 'index'
-  map.task_list '/projekte', :controller => 'tasks', :action => 'index'
+  map.task_list '/tasks', :controller => 'tasks', :action => 'index'
   map.question_list '/fragen', :controller => 'questions', :action => 'index'
 
   map.video '/warum', :controller => 'videos', :action => 'index'
