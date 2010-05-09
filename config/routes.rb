@@ -43,7 +43,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.deleteme '/deleteme', :controller => 'users', :action => 'deleteme'
   
-  map.about '/ueber', :controller => 'static', :action => 'about'
+  map.about '/armin', :controller => 'static', :action => 'about'
   
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'
