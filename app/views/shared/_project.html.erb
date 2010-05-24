@@ -1,5 +1,5 @@
-<div class="project" id="project_<%= project.id %>">
-  <h3><a href="javascript:void(0)" onclick="$(this.up('.project')).toggleClassName('open')"><%=h project.title %></a></h3>
+<li class="project" id="project_<%= project.id %>">
+  <h3><a href="#<%= project.slug %>" onclick="$(this.up('.project')).toggleClassName('open')"><span class="icon"></span> <span class="label"><%=h project.title %></span></a></h3>
   <p class="byline">
     <div class="teaser"><%= project.teaser %></div>
     <div class="body"><%= project.body %></div>
@@ -11,4 +11,4 @@
       </ul>
     <% end %>
   </p>
-</div>
+</li>
