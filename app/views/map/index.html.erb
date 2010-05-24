@@ -42,8 +42,8 @@
         },
         // Show login form instead of signup
         login: function() {
-          $('map_overlay_signup').style.display = 'none';
-          $('map_overlay_login').style.display = 'block';
+          parent.$('map_overlay_signup').style.display = 'none';
+          parent.$('map_overlay_login').style.display = 'block';
         },
         toggle_vienna_dropdown: function(show) {
           if (show) { 
@@ -136,9 +136,9 @@
     
     <%= @map.to_html %>
     <script type="text/javascript">
-      window.onload = addCodeToFunction(window.onload,function() {
-          Map.init_overlays(map,"http://localhost:3000/constituencies.kml");
-      });
+      //window.onload = addCodeToFunction(window.onload,function() {
+      //    Map.init_overlays(map,"http://localhost:3000/constituencies.kml");
+      //});
     </script>
     <div class="map_container">
       <%= @map.div(:width => '100%', :height => '100%') %>

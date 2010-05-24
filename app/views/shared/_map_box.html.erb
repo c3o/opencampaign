@@ -1,22 +1,25 @@
   <div class="box" id="map-container">
+
     <h2>
       <% if !logged_in?  %>
         <div class="right"><a href="#" onclick="Map.login();">Login</a></div>
       <% end %>
       <%= title %>
     </h2>
+
+    <div id="progress">
+      <div class="bar" style="width:<%= @current_user_percent %>%"></div>
+      <%= @current_user_percent %>%
+    </div>
+
     <div class="content mapcontent">
       <iframe id="map"<% if !postpone_loading %>src="/map?<%= Time.now.to_i %>"<%end%>></iframe>
     </div>
     <div class="content switchbox_step1" style="height: 237px">
-      <div id="progress">
-        <div class="bar" style="width:<%= @current_user_percent %>%"></div>
-        <%= @current_user_percent %>%
-      </div>
 
       <% if !logged_in? %>
   
-        <div id="login_step1" class="switchbox">       
+        <div id="login_signup">
           <% remote_form_for :user, :url => users_path, :html => { :id => 'map_overlay_signup', :class => "map_overlay" } do |f| -%>
             <!--p id="signup_name">
               <label for="name">Name</label>
