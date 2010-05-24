@@ -20,10 +20,10 @@
       <div id="container">
         
         <ul id="topmenu">
-          <li<%= " class=\"active\"" if @controller.action_name == 'about' %>><%= link_to "Über mich", about_path %></li>
+          <li<%= " class=\"active\"" if @controller.action_name == 'about' || @controller.controller_name == 'elsewhere' %>><%= link_to "Über mich", root_path %></li>
           <li<%= " class=\"active\"" if @controller.controller_name == 'projects' %>><%= link_to "Projekte", projects_path %></li>
-            <li<%= " class=\"active\"" unless ['static', 'questions', 'projects'].include?(@controller.controller_name) %>>
-              <%= link_to "Mitmachen", root_path %>
+            <li<%= " class=\"active\"" unless ['static', 'questions', 'projects', 'elsewhere'].include?(@controller.controller_name) %>>
+              <%= link_to "Mitmachen", participate_path %>
             </li>
           <li<%= " class=\"active\"" if @controller.controller_name == 'questions' %>>
             <%= link_to "Fragen &amp; Antworten", question_list_path %>
@@ -37,22 +37,26 @@
 
           <ul class="menu">
 
-            <% unless ['static', 'questions', 'projects'].include?(@controller.controller_name) %>
+            <% if (@controller.controller_name == 'static' && @controller.action_name == 'about') || @controller.controller_name == 'elsewhere' %>
+              <li<%= " class=\"active\"" if @controller.action_name == 'about' %>>
+                <%= link_to "Armin Soyka", about_path %>
+              </li>
+              <li<%= " class=\"active\"" if @controller.controller_name == 'elsewhere' %>>
+                <%= link_to "Was andere sagen", elsewhere_path %>
+              </li>
+            <% elsif !['static', 'questions', 'projects'].include?(@controller.controller_name) %>
               <li<%= " class=\"active\"" if @controller.controller_name == 'geo' %>>
                 <%= link_to "Unterstützer werden", root_path %>
               </li>
               <!--li<%= " class=\"active\"" if @controller.controller_name == 'videos' %>>
                 <%= link_to "Video-Statements", video_path %>
               </li-->
-              <li<%= " class=\"active\"" if @controller.controller_name == 'events' %>>
+              <!--li<%= " class=\"active\"" if @controller.controller_name == 'events' %>>
                 <%= link_to "Treffen", event_list_path %>
               </li>
               <li<%= " class=\"active\"" if @controller.controller_name == 'ideas' %>>
                 <%= link_to "Ideen einbringen", ideas_path %>
-              </li>
-              <li<%= " class=\"active\"" if @controller.controller_name == 'elsewhere' %>>
-                <%= link_to "Armin im Web", elsewhere_path %>
-              </li>
+              </li-->
               <!--li<%= " class=\"active\"" if 1==0 %>>
                 <%= link_to "Über diese Seite", '/about' %>
               </li-->

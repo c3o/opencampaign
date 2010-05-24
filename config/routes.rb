@@ -37,7 +37,9 @@ ActionController::Routing::Routes.draw do |map|
   map.video_show '/warum/:id', :controller => 'videos', :action => 'play'
 
   map.connect '/in/:name', :controller => 'geo', :action => 'local'
-  map.root :controller => "geo"
+  map.participate '/mitmachen', :controller => 'geo', :action => 'index'
+  
+  map.root :controller => 'static', :action => 'about'
 
   map.elsewhere '/web', :controller => 'elsewhere', :action => 'index'
   
