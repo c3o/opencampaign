@@ -21,4 +21,8 @@ class ApplicationController < ActionController::Base
   def ensure_right_hostname
     redirect_to(request.protocol + HOSTNAME + request.request_uri) if (RAILS_ENV=='production') && (request.host.downcase != HOSTNAME)
   end
+  
+  def check_authorization(obj)
+    current_user && (obj.user == current_user || obj.creator == current_user || current_user.is_admin)
+  end
 end
