@@ -1,7 +1,7 @@
 Hallo <%= @user.name %>,
 
-Danke, dass du dich bei "Diesmal LIF" registriert hast. 
+Danke, dass du dich bei "<%= CONFIG[:title] %>" registriert hast. 
 Dein Passwort ist <%= @password %>
 
 -- 
-Diesmal LIF - http://www.diesmal-lif.at
+<%= CONFIG['title'] %> - http://<%= request.host %>

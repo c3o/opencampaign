@@ -1,5 +1,5 @@
 <%= @message %>
 
 -- 
-Diese Nachricht wurde über http://www.diesmal-lif.at verschickt.
-Rückfragen oder Beschwerden: dialog@lif.at
+<%= CONFIG['title'] %> - http://<%= request.host %>
+Rückfragen oder Beschwerden: <%= CONFIG['contact_email'] %>
