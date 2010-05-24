@@ -1,7 +1,7 @@
 body {
   font-family: Lucida, 'Lucida Sans', 'Lucida Grande', Arial, Helvetica, sans-serif;
   font-size: 87%;
-  line-height: 1.5em;
+  line-height: 1.6em;
   margin: 20px 0 0 80px;
   /* background: #fff url(/images/bg.jpg) top right no-repeat; */  
   background: #fff url(/images/bgpattern1.jpg) top left no-repeat fixed;
@@ -486,6 +486,8 @@ a.button {
 #progress {
   border: 2px solid #ccc;
   padding: 2px;
+  background-color: #fff;
+  margin: .5em 0;
 }
 #progress .bar {
   height: 19px;
@@ -731,14 +733,30 @@ li.question span {
 }
 
 #projectlist .project {
-  margin: 0 0 1em 0;
+  padding: 1em 0 0 0; 
   line-height: 1.5em;
+}
+#projectlist .project h3 a {
+  text-decoration: none;
+}
+#projectlist .project h3 a .icon:before {
+  content: "▸ ";
+}
+#projectlist .project.open h3 a .icon:before {
+  content: "▾ ";
+}
+#projectlist .project h3 a .label {
+  text-decoration: underline;
 }
 #projectlist .teaser {
   margin: .5em 0 1em 0;
 }
+#projectlist .project.open .teaser {
+  font-weight: bold;
+}
 #projectlist .body {
   display: none;
+  padding: 0 0 1em 0;
 }
 #projectlist .open .body {
   display: block;
@@ -748,4 +766,13 @@ li.question span {
   list-style: disc;
   margin: 0 0 1em 0;
   padding-left: 1.5em;  
+}
+
+.col2 {
+  -webkit-column-count: 2;
+	-webkit-column-gap: 4em;
+}
+
+#map_overlay_login {
+  display: none;
 }
