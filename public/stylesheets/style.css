@@ -2,9 +2,9 @@ body {
   font-family: Lucida, 'Lucida Sans', 'Lucida Grande', Arial, Helvetica, sans-serif;
   font-size: 87%;
   line-height: 1.6em;
-  margin: 20px 0 0 80px;
+  margin: 20px 0 0 20px;
   /* background: #fff url(/images/bg.jpg) top right no-repeat; */  
-  background: #fff url(/images/bgpattern1.jpg) top left no-repeat fixed;
+  background: #fff url(/images/bg2.jpg) top right no-repeat;
 }
 
 h1, h2, h3, h4, .number {
@@ -80,7 +80,7 @@ a.backbutton {
 ul#topmenu { 
   list-style: none; 
   overflow: hidden;
-  margin: 0 0 1em 1em;
+  margin: 0 0 1em .7em;
   padding: .4em;
   -webkit-border-radius: .5em;
   -moz-border-radius: .5em;
@@ -337,21 +337,23 @@ ul#topmenu {
 }
 
 ul#topmenu li.active a, .menu li.active a {
-  background: #ab3857;
+  background: #260;
   color: #fff;
 }
 
 .box .content, .page .content {
   background-color: #fff;
+  opacity: .9;
 }
 .page h2 {
   background-color: #fff;
-  color: #697b3c; /* beige green ccbe39 */
+  color: #260; /* beige green ccbe39 */
 }
 
 a {
-  color: #4c5520;
+  color: #260;
 }
+.box h2 a { color: #fff; }
 
 .menu .active a, .box h2, .user_official {
   color: #fff;
@@ -368,10 +370,10 @@ a {
 }
 
 .rating, a.button, .rating-button, .myconstituency, .user_official, #progress .bar {
-  background-color: #697b3c; /*ccbe39;*/
+  background-color: #260; /*ccbe39;*/
 }
 .box h2 {
-  background-color: #697b3c;
+  background-color: #260;
 }
 
 a.button {
@@ -445,6 +447,10 @@ a.button {
   margin: 10px 0 0 10px;  
 }
 
+#map-container .disclaimer {
+  font-size: .8em;
+}
+
 #signup #cancel {
   position: absolute;
   right: 30px;
@@ -488,11 +494,24 @@ a.button {
   padding: 2px;
   background-color: #fff;
   margin: .5em 0;
+  height: 30px;
+  font-size: 1.5em;
+  overflow: hidden;
 }
 #progress .bar {
-  height: 19px;
+  height: 30px;
   float: left;
   margin-right: .4em;
+}
+#progress .max {
+  float: right;
+  color: #bbb;
+}
+#progress .max div {
+  float: right;
+  font-size: .5em;
+  line-height: 1em;
+  padding-left: 3px;
 }
 
 #networks ul {
