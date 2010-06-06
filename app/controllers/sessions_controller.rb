@@ -20,6 +20,7 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
+    cookies.delete :fb_user_id if cookies[:fb_user_id]
     redirect_back_or_default('/')
   end
   

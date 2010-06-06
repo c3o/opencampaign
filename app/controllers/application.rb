@@ -22,6 +22,16 @@ class ApplicationController < ActionController::Base
     redirect_to(request.protocol + HOSTNAME + request.request_uri) if (RAILS_ENV=='production') && (request.host.downcase != HOSTNAME)
   end
   
+  before_filter :check_fb_connect
+  def check_fb_connect
+    #cookie_id = ('fbs_'+CONFIG[:Facebook]['appid'].to_s).to_sym
+    #puts '*******'+cookies[cookie_id] if cookie_id     cookies[:fb_user_id] &&
+    if cookies[:fb_user_id] && u = User.find_by_facebook_id(cookies[:fb_user_id])
+      puts '%%%%%%%%%%'+u.id.to_s
+      session[:user_id] = u.id
+    end
+  end
+  
   def check_authorization(obj)
     current_user && (obj.user == current_user || obj.creator == current_user || current_user.is_admin)
   end

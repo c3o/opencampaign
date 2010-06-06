@@ -4,6 +4,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :session
   map.logout    '/logout', :controller => 'sessions', :action => 'destroy'
 
+  map.connect '/check_fb_user', :controller => 'users', :action => 'check_fb_user'
+
   map.resources :ideas, :as => 'ideen', :member => {:vote_up => :post, :vote_down => :post } do |ideas|
     ideas.resources :comments
   end

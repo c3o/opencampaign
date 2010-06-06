@@ -1,31 +1,52 @@
 
 OC = {
-  
-  'userdata': {},
+        
+  'facebook': {
     
-  'userdata_save': function() {
-    console.log('userdata save!');
-    console.log(OC.userdata);
-    new Ajax.Request('/users/create', { 'parameters': OC.userdata });
-  },
+    'statuschange': function(fb) {
+      console.log('statuschange');
+      if (fb.session) {
+        console.log(fb);
+        if (fb.status == 'connected') {
+          new Ajax.Request('/check_fb_user', { // Is this FB user ID already connected to an OC user?
+            method: 'get',
+            parameters: { 'fb_user_id': fb.session.uid },
+            onSuccess: function(r) {
+              if(r.responseText == 'true') { // yes
+                OC.cookie.set('fb_user_id', fb.session.uid);
+                window.location.reload();
+              } else {
+                OC.facebook.signup();
+              }
+            }
+          });
+        }
+      } else {
+        // The user has logged out, and the cookie has been cleared
+        document.getElementById('fb-userinfo').innerHTML = '';
+      }
+    },
   
-  'facebook_signup': function(response) {
-    console.log('login!');
-    var handler = new AsyncHandler();
-    FB.api('/me', function(response) {  // TODO should do fql with SELECT name, email, pic_big, hometown_location, birthday_date FROM user WHERE uid = ?
-      OC.userdata = response;
-      var userInfo = document.getElementById('fb-userinfo');
-      userInfo.innerHTML = 'Hallo ' + response.name;
-      handler.cb();
-    });
-    FB.api('/me/friends', function(response) {
-      OC.userdata.friends_num = response.data.length;
-      handler.cb();
-    });
-    handler.whenDone(function() {
-      $('login_step1').hide();
-      OC.userdata_save();
-    });
+    'signup': function() {
+      console.log('signup!');
+      FB.api('/me', function(fb_response) {  // TODO should do fql with SELECT name, email, pic_big, hometown_location, birthday_date FROM user WHERE uid = ?
+        var userInfo = document.getElementById('fb-userinfo');
+        userInfo.innerHTML = 'Hallo ' + fb_response.name;
+        //$('login_step1').hide();
+        //FB.api('/me/friends', function(response) { maybe later
+        //  OC.userdata.friends_num = response.data.length;
+        //});
+        console.log(fb_response);
+        new Ajax.Request('/users/create', { 'parameters': {
+          'user[name]': fb_response.name,
+          'user[facebook_id]': fb_response.id,
+          'user[email]': fb_response.email,
+          'user[hometown]': fb_response.hometown.name
+          //'birthday': TODO
+        } });
+      });
+    }
+    
   },
   
   'location2map': function() {
@@ -46,6 +67,41 @@ OC = {
           }
         }
       }
+    }
+  },
+
+  // cookie helpers ///////////////////////////////////
+  'cookie': {
+    'set': function(name, value, expires, path, domain, secure) {
+      //if(!domain) domain = document.location.href.match(/http:\/\/([^\/:]*)/)[1];
+      if(expires == '') expires = new Date(new Date().getTime()+3*24*60*60*1000); //default: 3 days
+      document.cookie = name + '=' + escape(value) +
+        ((expires) ? '; expires=' + expires.toGMTString() : '') +
+        ((path) ? '; path=' + path : '') +
+        ((domain) ? '; domain=' + domain : '') +
+        ((secure) ? '; secure' : '');
+      return false;
+    },
+    
+    'del': function(name) {
+      SOUP.Public.cookie.set(name, '', new Date(new Date().getTime()-1000));
+    },
+  
+    'get': function(name) {
+      var dc = document.cookie;
+      var prefix = name + "=";
+      var begin = dc.indexOf("; " + prefix);
+      if (begin == -1) {
+        begin = dc.indexOf(prefix);
+        if (begin != 0) return null;
+      } else {
+        begin += 2;
+      }
+      var end = document.cookie.indexOf(";", begin);
+      if (end == -1) {
+        end = dc.length;
+      }
+      return unescape(dc.substring(begin + prefix.length, end));
     }
   }
   

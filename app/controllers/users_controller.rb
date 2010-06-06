@@ -13,6 +13,10 @@ class UsersController < ApplicationController
     if !params[:user][:district].blank? && params[:user][:district] != 'other'
       @user.town_id = params[:user][:district]
     end
+    if !params[:user][:hometown].blank? # Facebook
+      #TODO need to convert to town_id
+    end
+    
     @user.save
     if @user.errors.empty?
       self.current_user = @user
@@ -29,7 +33,7 @@ class UsersController < ApplicationController
       # convert errors into json that we'll parse on the client side
       render :update do |page|
         errs = @user.errors.to_hash
-        if params[:user][:district] == 'wien' || (params[:user][:district].blank? && (params[:user][:town].downcase.strip == 'wien'))
+        if params[:user][:district] == 'wien' || (params[:user][:district].blank? && (!params[:user][:town].blank? && params[:user][:town].downcase.strip == 'wien'))
           errs[:town] = "- Bezirk auswählen"
           page << "Map.toggle_vienna_dropdown(true);"
         end
@@ -68,4 +72,9 @@ class UsersController < ApplicationController
     
     render :inline => "<%= auto_complete_result @items, 'name' %>"
   end
+  
+  def check_fb_user
+    render :text => !!(User.find_by_facebook_id(params[:fb_user_id]))
+  end
+  
 end

@@ -6,16 +6,20 @@ class User < ActiveRecord::Base
   has_many :projects
   has_and_belongs_to_many :task
 
-  validates_presence_of     :town, :message => 'ist nicht in der Datenbank'
-  validates_presence_of     :name, :email, :message => 'darf nicht leer sein'
-  validates_uniqueness_of   :email, :case_sensitive => false, :message => 'ist bereits vorhanden'
+  #validates_presence_of     :town, :message => 'ist nicht in der Datenbank'
+  validates_presence_of      :email, :message => 'darf nicht leer sein'
+  #validates_uniqueness_of   :email, :case_sensitive => false, :message => 'ist bereits vorhanden'
   
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :name, :email, :town
+  attr_accessible :name, :email, :town, :facebook_id
   attr_accessor :password
   
   before_save :encrypt_password
+  
+  def name
+    super || self.email.split('@')[0]
+  end
   
   def town=(name)
     if !name.blank?
