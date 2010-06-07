@@ -8,6 +8,7 @@ OC = {
       if (fb.session) {
         console.log(fb);
         if (fb.status == 'connected') {
+          // TODO ADD LOADING INDICATOR!!!!!
           new Ajax.Request('/check_fb_user', { // Is this FB user ID already connected to an OC user?
             method: 'get',
             parameters: { 'fb_user_id': fb.session.uid },
