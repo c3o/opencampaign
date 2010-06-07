@@ -50,23 +50,27 @@
     
   <div class="boxrow">
   
-    <div class="box box_2wide" id="refer">
-      <h2>Weitersagen</h2>
-      <iframe src="http://www.facebook.com/widgets/like.php?href=<%= request.protocol+request.host %>"
-        scrolling="no" frameborder="0"
-        style="border:none; width:450px; height:80px"></iframe>
-
-      <div class="content tabs state-tab1">
+    <div class="box box_2wide tabs state-tab1" id="refer">
+      <h2>
+        Weitersagen
         <ul>
-          <li class="tab1"><a href="#" onclick="return tab_switch(this)">Per E-Mail</a></li>
-          <li class="tab2"><a href="#" onclick="return tab_switch(this)">Bloggen</a></li>
-          <li class="tab3"><a href="#" onclick="return tab_switch(this)">Auf Social Networks</a></li>
-          <li class="tab4"><a href="#" onclick="return tab_switch(this)">Bookmarken</a></li>
+          <li class="tab1"><a href="#" onclick="return tab_switch(this)">Facebook</a></li>
+          <li class="tab2"><a href="#" onclick="return tab_switch(this)">Twitter</a></li>
+          <li class="tab3"><a href="#" onclick="return tab_switch(this)">E-Mail</a></li>
+          <li class="tab4"><a href="#" onclick="return tab_switch(this)">Bloggen</a></li>
         </ul>
+      </h2>
+      <div class="content">
         <div class="tabcontent tab1">
+          <iframe src="http://www.facebook.com/widgets/like.php?href=<%= request.protocol+request.host %>"
+            scrolling="no" frameborder="0"
+            style="border:none; width:450px; height:80px"></iframe>
+        </div>
+        <div class="tabcontent tab3">
           <%
-            subject = CONFIG["title"]
-            message = request.protocol+request.host
+            subject = CONFIG["sharing_title"]
+            message = CONFIG["sharing_body"]
+            link = request.protocol+request.host
           
           if logged_in? %>
             <% form_tag '/geo/mail' do %>
@@ -89,31 +93,19 @@
             <% end %>
           <% else %>
             <p>
-              Trag dich bitte oben auf der Karte ein, um E-Mails direkt von dieser Seite
+              Melde dich bitte oben an, um E-Mails direkt von dieser Seite
               versenden zu können &ndash;
-              oder <a href="mailto:?subject=<%= subject %>&body=<%= message %>">schicke einfach selbst eine E-Mail</a>.
+              oder <a href="mailto:?subject=<%= subject %>&body=<%= message %>+<%= link %>">schicke einfach selbst eine E-Mail</a>.
             </p>
           <% end %>
         </div>
-        <div class="tabcontent tab2">
+        <div class="tabcontent tab4">
           <p>
-            <a href="http://feuerhaken.org/endorsement-08/" style="float: left; margin-right: 1em"><img src="/images/blogparade.png" width="81" height="64" /></a>
-            <strong>Bist du Blogger und möchtest uns unterstützen?</strong><br />
-            Nimm an der <a href="http://feuerhaken.org/endorsement-08/">Blogparade Endorsement 08</a> teil
-            und gib eine öffentliche Wahlempfehlung ab. Du kannst deinen Beitrag auch <a href="http://www.politikblogs.at/blogbeitrag">bei Politikblogs.at eintragen</a>.<br /><br />
-            <a href="mailto:dialog@lif.at">Lass uns wissen</a>, falls du weitere Informationen von uns möchtest, im Wahlkampfbüro vorbeikommen willst o.Ä.
+            <a href="mailto:<%= CONFIG['contact_email'] %>">Lass uns wissen</a>, falls du Informationen von uns möchtest...
           </p>
         </div>
-        <div class="tabcontent tab3">
-          <script>function fbs_click() { window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(window.location)+'&t='+encodeURIComponent('<%=message %>'),'sharer','toolbar=0,status=0,width=626,height=436');return false;}</script><a href="http://www.facebook.com/share.php?u=http://www.diesmal-lif.at" onclick="return fbs_click()" target="_blank" title="Auf Facebook versenden"><img src="/images/post/facebook.png" width="64" height="64" /></a>
-          <a href="http://www.myspace.com/Modules/PostTo/Pages/?t=Diesmal+LIF&c=%3Ca%20href%3D%22http%3A//www.diesmal-lif.at%22%20title%3D%22Diesmal%20LIF%20w%E4hlen%21%22%20style%3D%22float%3Aleft%3Bmargin-right%3A1em%22%3E%3Cimg%20src%3D%22http%3A//www.diesmal-lif.at/images/buttons/diesmal-lif-transparent.png%22%20style%3D%22border%3A0%22%20/%3E%3C/a%3E+Meine+Stimme+zur+Nationalratswahl+2008+bekommt+das+Liberale+Forum+mit+Heide+Schmidt!+Und+deine?&u=http://www.diesmal-lif.at"><img src="/images/post/myspace.png" width="64" height="64" title="Auf MySpace posten" /></a>
-          <a href="http://twitter.com/home?status=<%=message %>"><img src="/images/post/twitter.png" width="64" height="64" title="Per Twitter versenden" /></a>
-        </div>
-        <div class="tabcontent tab4">
-          <a href="http://www.scoop.at" onclick="document.location = 'http://www.scoop.at/submit?url='+encodeURIComponent(document.location)+'&title='+encodeURIComponent(document.title); return false;" title="Diesen Beitrag bei Scoop verlinken"><img src="/images/post/scoop.png" alt="Scoop" border="0" width="64" height="64" style="clear:both;"/></a>
-          <a href="http://www.yigg.de/neu?exturl=http://www.diesmal-lif.at" title="Diese Seite bei Yigg posten"><img src="/images/post/yigg.png" width="64" height="64" /></a>
-
-          <a href="http://www.addthis.com/bookmark.php" onclick="addthis_url = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="http://s9.addthis.com/button1-share.gif" width="125" height="16" border="0" alt="Bookmark and Share" /></a> <script type="text/javascript">var addthis_pub = 'lif';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>
+        <div class="tabcontent tab2">
+          <a href="http://twitter.com/home?status=<%=subject %> <%=link %>"><img src="/images/post/twitter.png" width="64" height="64" title="Per Twitter versenden" /></a>
         </div>
       </div>
     </div>

@@ -599,13 +599,12 @@ a.button {
 
 .tabs ul { 
   overflow: hidden;
-  border-bottom: 1px solid #aaa;
+  float: right;
+  margin-top: 1px;
 }
 .tabs ul li {
   float: left;
   background-color: #ddd;
-  border: 1px solid #aaa;
-  border-bottom: 0;
   margin-right: 2px;
   position: relative;
   top: 2px;
@@ -615,6 +614,7 @@ a.button {
   color: #666;
   text-decoration: none;
   padding: .3em .5em;
+  font-weight: normal;
 }
 .tabs .tabcontent {
   display: none;
@@ -640,6 +640,7 @@ a.button {
 
 .footer { margin: 0 2em 0 1.5em; font-size: .9em; color: #888; }
 .footer a { color: #888; }
+.footer .credits, .footer .credits a { font-size: .9em; color: #bbb; }
 
 a.attribution {
   display: block;
