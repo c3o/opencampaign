@@ -31,9 +31,6 @@
         </ul>
             
         <div id="menucontainer">
-          <% if logged_in? %>
-            <div id="loggedin">Hallo <strong><%= current_user.name %></strong>!</div>
-          <% end %>
 
           <ul class="menu">
 
@@ -46,15 +43,15 @@
               </li>
             <% elsif !['static', 'questions', 'projects'].include?(@controller.controller_name) %>
               <li<%= " class=\"active\"" if @controller.controller_name == 'geo' %>>
-                <%= link_to "Unterstützer werden", root_path %>
+                <%= link_to "Unterstützer werden", participate_path %>
               </li>
               <!--li<%= " class=\"active\"" if @controller.controller_name == 'videos' %>>
                 <%= link_to "Video-Statements", video_path %>
               </li-->
-              <!--li<%= " class=\"active\"" if @controller.controller_name == 'events' %>>
+              <li<%= " class=\"active\"" if @controller.controller_name == 'events' %>>
                 <%= link_to "Treffen", event_list_path %>
               </li>
-              <li<%= " class=\"active\"" if @controller.controller_name == 'ideas' %>>
+              <!--li<%= " class=\"active\"" if @controller.controller_name == 'ideas' %>>
                 <%= link_to "Ideen einbringen", ideas_path %>
               </li-->
               <!--li<%= " class=\"active\"" if 1==0 %>>
@@ -63,6 +60,11 @@
             <% end %>
             
           </ul>
+
+          <% if logged_in? %>
+            <div id="loggedin">Hallo <strong><%= current_user.name %></strong>!</div>
+          <% end %>
+
         </div>
     <% end %>  
       <div id="content">  
@@ -73,7 +75,7 @@
           <a href="/impressum">Impressum</a> &nbsp;
           <a href="/datenschutz">Datenschutz</a> &nbsp;
           <a href="mailto:<%= CONFIG['contact_email'] %>">Anfragen</a>
-          &nbsp; &ndash; &nbsp; (cc) openCampaign 0.1a by <a href="mailto:opencampaign@c3o.org">Christopher Clay</a>
+          <span class="credits">&nbsp; &ndash; &nbsp; (cc) <a href="http://wiki.github.com/c3o/opencampaign/">openCampaign</a> by <a href="http://soup.c3o.org">Christopher Clay</a></span>
         </div><br /><br />
       </div>
 

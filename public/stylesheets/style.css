@@ -355,7 +355,7 @@ a {
 }
 .box h2 a { color: #fff; }
 
-.menu .active a, .box h2, .user_official {
+.menu .active a, .box h2, .user_official, .calendar .m {
   color: #fff;
 }
 
@@ -369,7 +369,8 @@ a {
   /* background-color: #fff; */
 }
 
-.rating, a.button, .rating-button, .myconstituency, .user_official, #progress .bar {
+.rating, a.button, .rating-button, .myconstituency, .user_official, #progress .bar,
+.calendar .m {
   background-color: #260; /*ccbe39;*/
 }
 .box h2 {
@@ -540,7 +541,7 @@ a.button {
 }
 
 #events .calendar {
-  width: 49px;
+  width: 51px;
   height: 59px;
   background: url(/images/calendar.gif) left top no-repeat;  
   color: #000;
@@ -552,15 +553,16 @@ a.button {
   font-size: 1.8em;
   font-weight: bold;
   letter-spacing: -.02em;
-  padding: .6em 0 .2em 0;
-  width: 46px;
+  padding: .5em 0 .25em 0;
+  width: 48px;
   text-align: center;
 }
 #events .m {
-  width: 46px;
+  width: 48px;
   font-size: .8em;
   text-align: center;
   text-transform: uppercase;  
+  line-height: 1.9em;
 }
 
 #events h3 {
