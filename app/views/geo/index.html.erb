@@ -1,8 +1,12 @@
   <div class="boxrow">
   
-    <%= map_box('Wir wählen Armin[?]') %>
+    <%= map_box('Armin Soyka ins Rathaus') %>
     
-    <div class="box" id="tasks">
+    <div class="box">
+      <iframe src="http://www.facebook.com/plugins/likebox.php?id=<%= CONFIG["facebook_page_id"] %>&amp;width=260&amp;connections=10&amp;stream=false&amp;header=false&amp;height=255" scrolling="no" frameborder="0" style="background: #fff; border:none; overflow:hidden; width:260px; height:255px;" allowTransparency="true"></iframe>
+    </div>
+    
+    <!--div class="box" id="tasks">
       <h2>Jetzt aktiv werden</h2>
       <div class="content">
         
@@ -17,16 +21,15 @@
             Leider derzeit keine Tasks.
         <% end %>                
 
-
       </div>
-    </div>
+    </div-->
 
   </div>
   
   <div class="boxrow">
   
     <div class="box" id="events">
-      <h2>In deiner Nähe</h2>
+      <h2>Termine</h2>
       <div class="content">  
         <% if @events.size > 0
           @events.each { |event| %>
@@ -40,8 +43,8 @@
     </div> 
   
     <div class="box" id="networks">
-      <h2>In deinem Netzwerk</h2>
-      <div class="content faviconlist">
+      <h2>Vernetze dich</h2>
+      <div class="content">
         <%= render :partial => 'shared/networks' %>
       </div>
     </div> 
@@ -50,13 +53,13 @@
     
   <div class="boxrow">
   
-    <div class="box box_2wide tabs state-tab1" id="refer">
+    <!--div class="box box_2wide tabs state-tab1" id="refer">
       <h2>
         Weitersagen
         <ul>
           <li class="tab1"><a href="#" onclick="return tab_switch(this)">Facebook</a></li>
+          <li class="tab2"><a href="#" onclick="return tab_switch(this)">E-Mail</a></li>
           <li class="tab2"><a href="#" onclick="return tab_switch(this)">Twitter</a></li>
-          <li class="tab3"><a href="#" onclick="return tab_switch(this)">E-Mail</a></li>
           <li class="tab4"><a href="#" onclick="return tab_switch(this)">Bloggen</a></li>
         </ul>
       </h2>
@@ -66,7 +69,7 @@
             scrolling="no" frameborder="0"
             style="border:none; width:450px; height:80px"></iframe>
         </div>
-        <div class="tabcontent tab3">
+        <div class="tabcontent tab2">
           <%
             subject = CONFIG["sharing_title"]
             message = CONFIG["sharing_body"]
@@ -108,7 +111,7 @@
           <a href="http://twitter.com/home?status=<%=subject %> <%=link %>"><img src="/images/post/twitter.png" width="64" height="64" title="Per Twitter versenden" /></a>
         </div>
       </div>
-    </div>
+    </div-->
     
     <!--div class="box" id="buttons">
       <h2>Für Blog, Profil und Website</h2>
