@@ -33,6 +33,11 @@ class ApplicationController < ActionController::Base
   end
   
   def check_authorization(obj)
-    current_user && (obj.user == current_user || obj.creator == current_user || current_user.is_admin)
+    if current_user
+      return true if current_user.is_admin
+      return true if obj.user == current_user rescue nil
+      return true if obj.creator == current_user rescue nil
+    end
+    return false
   end
 end
