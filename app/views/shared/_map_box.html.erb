@@ -21,19 +21,45 @@
       </script>
     <% end %>
 
-    <div id="progress">
-      <div class="bar" style="width:<%= @current_user_percent %>%"></div>
-      <div class="bar bar2"></div>
-      <div class="current"><%= @current_user_count %></div>
-      <div class="max"><%= CONFIG['progress_required_users'] %><div>Stimmen<br />nötig</div></div>
+    <div id="progresscontainer">
+    
+      <p>
+        Um ins Rathaus zu kommen, braucht <%= CONFIG['shortname'] %> <%= CONFIG['progress_required_users'] %> Vorzugsstimmen.<br />
+        So viele Leute haben wir schon erreicht:
+      </p>
+          
+      <div id="progress">
+        <div class="bar" style="width:<%= @current_user_percent %>%"></div>
+        <div class="bar bar2"></div>
+        <div class="current"><%= @current_user_count %></div>
+        <div class="max"><%= CONFIG['progress_required_users'] %><div>Stimmen<br />nötig</div></div>
+      </div>
+      
+      <p>
+        <% if logged_in? %>
+          Danke, dass du dabei bist!
+        <% else %>
+          Sei Teil davon und unterstütze uns!
+        <% end %>
+      </p>
+      
     </div>
 
     <!--div class="content mapcontent">
       <iframe id="map"<% if !postpone_loading %>src="/map?<%= Time.now.to_i %>"<%end%>></iframe>
     </div-->
-    <div class="content switchbox_step1">
+    <div class="content switchbox_step1" style="padding-bottom: 1em">
 
       <% if !logged_in? %>
+ 
+         <div style="width:265px; float: right; padding: 1em 0 1em 1em; border-left: 1px solid #ccc">
+          <small>oder</small>
+          <fb:login-button perms="email">Unterstütze <%= CONFIG['shortname'] %> via Facebook</fb:login-button>
+          <script type="text/javascript">
+            FB.Event.subscribe('auth.sessionChange', OC.facebook.statuschange);
+          </script>
+          <div id="fb-userinfo"></div>    
+        </div>
   
         <div id="login_signup">
           <% remote_form_for :user, :url => users_path, :html => { :id => 'map_overlay_signup', :class => "map_overlay" } do |f| -%>
@@ -82,28 +108,7 @@
             </p>
             <p><%= submit_tag 'Einloggen' %></p>
           <% end %>
-        </div>
-        
-        <div>
-          oder
-          
-          <script type="text/javascript">
-            window.fbAsyncInit = function() {
-              FB.init({
-                appId: '<%= CONFIG[:Facebook]['appid'] %>',
-                apiKey: '<%= CONFIG[:Facebook]['apikey'] %>',
-                status: true, // check login status
-                cookie: true, // enable cookies to allow the server to access the session
-                xfbml: true // parse XFBML
-              });
-              //FB.Event.subscribe('auth.login', OC.facebook.statuschange);
-              FB.Event.subscribe('auth.sessionChange', OC.facebook.statuschange);
-            }
-          </script>
-          <fb:login-button perms="email"></fb:login-button>
-          <div id="fb-root"></div>
-          <div id="fb-userinfo"></div>    
-        </div>
+        </div>       
       
       <% else %>
       

@@ -463,8 +463,9 @@ a.button {
   margin: 10px 0 0 10px;  
 }
 
-#map-container .disclaimer {
+#map-container a.disclaimer {
   font-size: .8em;
+  color: #999;
 }
 
 #signup #cancel {
@@ -486,8 +487,11 @@ a.button {
 }
 
 #map-container .content {
-  float: left;
   position: relative;
+}
+#map-container .content,
+#map-container #progresscontainer {
+  background: #eee;
 }
 
 #map {
@@ -503,11 +507,21 @@ a.button {
   z-index: 9;
 }
 
+#progresscontainer {
+  padding: .5em;
+}
+
+#progresscontainer p {
+  font-size: .9em;
+  padding: .3em .5em .5em .5em;
+  line-height: 1.4em;
+}
+
 #progress {
   border: 2px solid #ccc;
   padding: 2px;
   background-color: #fff;
-  margin: .5em 0;
+  margin: 0 0 .3em 0;
   height: 30px;
   font-size: 1.5em;
   overflow: hidden;
@@ -550,6 +564,11 @@ a.button {
 #events .event {
   overflow: hidden;
   margin-bottom: .5em;  
+}
+
+.event .desc h3 a { 
+  padding-right: 20px;
+  background: url(/images/networks/facebook.png) right center no-repeat;
 }
 
 #events .calendar {
@@ -650,7 +669,13 @@ a.button {
 .state-tab4 li.tab4 a,
 .state-tab5 li.tab5 a { color: #000; }
 
-.footer { margin: 0 2em 0 1.5em; font-size: .9em; color: #888; }
+.footer {
+  border-top: 1px solid #ddd;
+  margin: 2em 2em 0 0;
+  padding: .5em 0 0 ;
+  font-size: .9em;
+  color: #888;
+}
 .footer a { color: #888; }
 .footer .credits, .footer .credits a { font-size: .9em; color: #bbb; }
 

@@ -16,17 +16,31 @@
   </head>
 
   <body>
+
+    <div id="fb-root"></div>
+    <script type="text/javascript">
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId: '<%= CONFIG[:Facebook]['appid'] %>',
+          apiKey: '<%= CONFIG[:Facebook]['apikey'] %>',
+          status: true, // check login status
+          cookie: true, // enable cookies to allow the server to access the session
+          xfbml: true // parse XFBML
+        });
+      }
+    </script>
+
+
   <% unless @hide_header %>
       <div id="container">
         
         <%= link_to '<img id="logo" src="/images/logo.png" />', root_url %>
         
         <div id="header">
-        
           <ul id="topmenu">
-            <li<%= " class=\"active\"" if @controller.action_name == 'about' || @controller.controller_name == 'elsewhere' %>><%= link_to "Über mich", root_path %></li>
+            <li<%= " class=\"active\"" if (@controller.controller_name == 'static' && ['', 'about', 'ziel', 'team'].include?(params[:path].to_s)) || @controller.controller_name == 'elsewhere' %>><%= link_to "Über mich", root_path %></li>
             <li<%= " class=\"active\"" if @controller.controller_name == 'projects' ||  @controller.controller_name == 'ideas' %>><%= link_to "Projekte", projects_path %></li>
-              <li<%= " class=\"active\"" unless ['static', 'questions', 'projects', 'elsewhere', 'ideas'].include?(@controller.controller_name) %>>
+              <li<%= " class=\"active\"" if (@controller.controller_name == 'static' && params[:path].to_s == 'bisher') || !['static', 'questions', 'projects', 'elsewhere', 'ideas'].include?(@controller.controller_name) %>>
                 <%= link_to "Mitmachen", participate_path %>
               </li>
             <li<%= " class=\"active\"" if @controller.controller_name == 'questions' %>>
@@ -37,28 +51,30 @@
           <div id="menucontainer">
   
             <ul class="menu">
-  
-              <% if (@controller.controller_name == 'static' && @controller.action_name == 'about') || @controller.controller_name == 'elsewhere' %>
+              <% if (@controller.controller_name == 'static' && ['', 'about', 'ziel', 'team'].include?(params[:path].to_s)) || @controller.controller_name == 'elsewhere' %>
+                <li<%= " class=\"active\"" if @controller.controller_name == 'static' && params[:path].to_s == 'ziel' %>>
+                  <%= link_to "Das Ziel", '/ziel' %>
+                </li>
                 <li<%= " class=\"active\"" if @controller.action_name == 'about' %>>
                   <%= link_to "Armin Soyka", about_path %>
                 </li>
-                <li<%= " class=\"active\"" if @controller.action_name == 'team' %>>
-                  <%= link_to "Team Armin Soyka", profile_list_path %>
+                <li<%= " class=\"active\"" if @controller.controller_name == 'static' && params[:path].to_s == 'team' %>>
+                  <%= link_to "Team Armin Soyka", '/team' %>
                 </li>
                 <li<%= " class=\"active\"" if @controller.controller_name == 'elsewhere' %>>
                   <%= link_to "Wir in den Medien", elsewhere_path %>
                 </li>
               <% elsif @controller.controller_name == 'projects' || @controller.controller_name == 'ideas' %>
-                <li<%= " class=\"active\"" if @controller.controller_name == 'projects' %>>
-                  <%= link_to "Aktive Projekte", projects_path %>
+                <li<%= " class=\"active\"" if @controller.controller_name == 'projects' && params[:is_active] != false %>>
+                  <%= link_to "Projekte", projects_path %>
                 </li>
                 <li<%= " class=\"active\"" if @controller.controller_name == 'ideas' %>>
                   <%= link_to "Ideen einbringen", ideas_path %>
                 </li>
-                <li<%= " class=\"active\"" if @controller.action_name == 'sonstnoch' %>>
-                  <%= link_to "Was wir sonst noch so wollen", elsewhere_path %>
+                <li<%= " class=\"active\"" if @controller.controller_name == 'projects' && params[:is_active] == false %>>
+                  <%= link_to "Forderungen", projects_more_path %>
                 </li>
-              <% elsif !['static', 'questions', 'projects', 'ideas'].include?(@controller.controller_name) %>
+              <% elsif (@controller.controller_name == 'static' && params[:path].to_s == 'bisher') || !['static', 'questions', 'projects', 'elsewhere', 'ideas'].include?(@controller.controller_name) %>
                 <li<%= " class=\"active\"" if @controller.controller_name == 'geo' %>>
                   <%= link_to "Unterstützer werden", participate_path %>
                 </li>
@@ -68,9 +84,9 @@
                 <li<%= " class=\"active\"" if @controller.controller_name == 'events' %>>
                   <%= link_to "Treffen", event_list_path %>
                 </li>
-                <!--li<%= " class=\"active\"" if 1==0 %>>
-                  <%= link_to "Über diese Seite", '/about' %>
-                </li-->
+                <li<%= " class=\"active\"" if @controller.controller_name == 'static' && params[:path].to_s == 'bisher' %>>
+                  <%= link_to "Was bisher geschah", '/bisher' %>
+                </li>
               <% end %>
               
             </ul>
@@ -90,8 +106,9 @@
         <div class="footer boxrow">
           <a href="/impressum">Impressum</a> &nbsp;
           <a href="/datenschutz">Datenschutz</a> &nbsp;
-          <a href="/presse">Presse</a>
-          <span class="credits">&nbsp; &ndash; &nbsp; (cc) <a href="http://wiki.github.com/c3o/opencampaign/">openCampaign</a> by <a href="http://soup.c3o.org">Christopher Clay</a></span>
+          <a href="/presse">Presse</a> &nbsp;
+          <%= link_to('Admin', admin_path) if logged_in? && current_user.is_admin %>
+          <span class="credits">&ndash; &nbsp; (cc) <a href="http://wiki.github.com/c3o/opencampaign/">openCampaign</a> by <a href="http://soup.c3o.org">Christopher Clay</a></span>
         </div><br /><br />
       </div>
 
@@ -102,5 +119,6 @@
     <% if !logged_in? && @render_signup_overlay %>
       <%= render :partial => 'shared/signup' %>
     <% end %>
+
   </body>
 </html>

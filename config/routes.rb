@@ -34,8 +34,8 @@ ActionController::Routing::Routes.draw do |map|
   map.event_list '/treffen', :controller => 'events', :action => 'index'
   map.task_list '/tasks', :controller => 'tasks', :action => 'index'
   map.question_list '/fragen', :controller => 'questions', :action => 'index'
+  #map.profile_list '/users', :controller => 'users', :action => 'index'
   map.projects_more '/forderungen', :controller => 'projects', :action => 'index', :is_active => false
-  map.profile_list '/team', :controller => 'users', :action => 'index'
 
   map.video '/warum', :controller => 'videos', :action => 'index'
   map.video_record '/warum/ich', :controller => 'videos', :action => 'record'
