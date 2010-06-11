@@ -1,48 +1,46 @@
 <div class="page">
   <%= link_to "&larr; Zurück zur Video-Übersicht", video_path, :class => 'backbutton' %>
-  <h2>Warum ich diesmal LIF wähle</h2>
+  <h2>Warum ich <%= CONFIG["org_title"] %> unterstütze</h2>
   <div class="content">
   
   <% if logged_in? %>
   
     <div style="float: left">
-      <%= render :partial => 'flash', :locals => {
-        :flashtype => 'recorder',
-        :recordingname => 'Warum LIF',
-        :enablejavascript => false,
-        :videosize => 3
-      } %>
+      <object type="application/x-shockwave-flash" data="http://www.tokbox.com/vr/1n83qowc76" width="330" height="295">      	<param name="movie" value="http://www.tokbox.com/vr/1n83qowc76" />      	<param name="allowFullScreen" value="true" />      	<param name="allowScriptAccess" value="always" />
+      	<param name="flashVars" value="saveTo=<%= CONFIG["video_tokbox_user_id"] %>&showGreetings=false&timeLimit=<%= CONFIG["video_max_seconds"] %>" />      </object>
     </div>
+    
+    <script type="text/javascript">
+      function vmailSent(vmailID) {
+        new Ajax.Request('<%= url_for :controller => 'videos', :action => 'recorded' %>', {
+          'parameters': { 'video_url': vmailID }
+        });
+      }
+    </script>
   
     <div id="instructions">
           
       <p>
         <strong>Du benötigst:</strong>
-        <ul>
-          <li>Eine Webcam und ein Mikrofon</li>
-          <li><a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Das aktuelle Flash-Plugin</a></li>
-        </ul>
       </p>
+      <ul>
+        <li>Eine Webcam und ein Mikrofon</li>
+        <li><a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Das aktuelle Flash-Plugin</a></li>
+      </ul>
       
       <p>
         <strong>So geht's:</strong>
-        <ol>
-          <li>Erlaube zuerst mit einem Klick auf "Allow" der Aufnahme-Applikation, auf deine Cam zuzugreifen.</li>
-          <li>Klicke in der linken Hälfte der Applikation auf den "Rec"-Knopf, um die Aufnahme zu starten.</li>
-          <li>Erzähl uns kurz, wieso du diesmal das LIF unterstützt &ndash; du hast max. 2 Minuten Zeit.</li>
-          <li>Klicke danach auf die "S"-Taste in der linken Hälfte, um die Aufnahme zu beenden.</li>
-          <li>Du kannst dein Video jetzt abspielen. Gefällt es dir nicht, kannst du mit dem "X"-Knopf verwerfen.</li>
-          <li>Bist du zufrieden, dann klick den blinkenden "Save recording"-Knopf am unteren Rand an.</li>
-          <li>Fertig! Dein Video muss nun nur noch von der LIF-Redaktion freigeschalten werden ("pending approval"). Wir wollen hier nicht zensieren, müssen aber die Einhaltung der guten Sitten überprüfen ;)</li>
-          <li>Du kannst dein Video jederzeit löschen oder durch ein neues ersetzen (das dann natürlich nochmals freigeschalten werden muss.)</li>
-        </ol>
       </p>
+      <ol>
+        <li>Erlaube zuerst mit einem Klick auf "Allow" der Aufnahme-Applikation, auf deine Cam zuzugreifen.</li>
+        <li>Erzähl uns kurz, wieso du <%= CONFIG["org_title"] %> unterstützt &ndash; du hast max. 30 Sekunden Zeit.</li>
+      </ol>
       
       <p>
         <br />
         <small style="font-size: .8em; line-height: 1.3em; color: #888">
-          Dieser Service wird von <a href="http://www.userplane.com">Userplane</a> in den USA zur Verfügung gestellt &ndash;
-          es gelten die dortigen <a href="http://www.userplane.com/index.cfm?fuseaction=main.tos">Terms of Service</a>.
+          Dieser Service wird von <a href="http://www.tokbox.com">Tokbox</a> in den USA zur Verfügung gestellt &ndash;
+          es gelten die dortigen <a href="http://www.tokbox.com/view/terms">Terms of Service</a>.
           An diesen Dienst werden keinerlei personenbezogene Daten weitergegeben, sondern lediglich eine anonymisierte Nutzerkennung.
         </small>
       </p>

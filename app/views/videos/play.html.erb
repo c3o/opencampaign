@@ -1,13 +1,10 @@
 <div class="page">
   <%= link_to "&larr; Zurück zur Video-Übersicht", video_path, :class => 'backbutton' %>
-  <h2>Warum ich diesmal LIF wähle: <%= @video.user.name || '' %></h2>
-  <div class="content">
+  <h2>Warum ich <%= CONFIG["org_name"] %> unterstütze: <%= @video.user.name || '' %></h2>
+org_title  <div class="content">
   
   <% if @video && ((logged_in? && current_user.is_admin) || @video.is_approved) %>
-    <object data="http://www.diesmal-lif.at/swf/flvplayer.swf?video=<%=@video.url %>&startvolume=100&autoplay=false" type="application/x-shockwave-flash" width="320" height="240" >
-      <param name="movie" value="http://www.diesmal-lif.at/swf/flvplayer.swf?video=<%=@video.url %>&startvolume=100&autoplay=false" />
-      <param name="allowfullscreen" value="true"/>
-    </object>
+     <%= render :partial=>'embed', :locals => { :video => video } %>
   <% else %>
     <p>Video nicht gefunden.</p>
   <% end %>

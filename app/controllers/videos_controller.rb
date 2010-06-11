@@ -1,4 +1,6 @@
 class VideosController < ApplicationController
+  skip_before_filter :verify_authenticity_token, :only => 'recorded'
+
   def index
     @render_signup_overlay = true
     @videos = Video.find(:all, :conditions => ['is_approved = ?', true], :order => 'updated_at DESC')
@@ -16,44 +18,11 @@ class VideosController < ApplicationController
     @render_signup_overlay = true
   end
   
-  def WRXML
-  
-    @function = params[:function] || request.env["QUERY_STRING"][/action=([^&]*)&/, 1] || ''
-            
-    case @function
-    
-      when 'getMemberID'
-        @user = find_user_by_session(params[:sessionGUID])  # User.find(params[:sessionGUID])
-              
-      when 'notifyRecordingChange'
-        user = User.find(params[:memberID])
-        status = params[:status]
-        exists = ["true", "1"].include?(params[:exists])
-        name = params[:recordingName]
-        url = params[:webAccessibleURL] #.flv
-        if user && status
-          if status == 'new' && exists # Has recorded an unapproved video
-            if video = user.video
-              video.title = name
-              video.url = url
-              video.is_approved = false
-            else
-              video = Video.new(:title => name, :url => url)
-              video.user = user
-            end            
-            video.save()
-          elsif status == 'approved' # Has had his video (dis)approved
-            if video = user.video
-              video.is_approved = exists
-              video.save()
-            end
-          end
-        end    
-
-    end
-  
-    headers["Content-Type"] = "application/xml"
-    render :action => 'WRXML.xml.builder', :layout => false
+  def recorded
+    video = Video.new(:url => params[:video_url], :is_approved => false)
+    video.user = current_user
+    video.save
+    render :text => '' and return
   end
   
   private
