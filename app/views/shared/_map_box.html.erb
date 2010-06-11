@@ -1,22 +1,35 @@
   <div class="box" id="map-container">
 
     <h2>
+      <div class="right">
       <% if !logged_in?  %>
-        <div class="right"><a href="#" onclick="Map.login();">Login</a></div>
+        <a href="#" onclick="OC.login();">Login</a>
+      <% else %>
+        <%= link_to "Logout", logout_path %>
       <% end %>
+      </div>
       <%= title %>
     </h2>
+  
+    <script type="text/javascript">
+    FB.api('/<%= CONFIG["facebook_page_id"] %>', function(response) {
+      var w = response.fan_count / (<%= CONFIG["progress_required_users"] %>/100);
+      $('progress').down('.bar2').setStyle({ 'width': w+'%' });
+      $('progress').down('.current').update(parseInt($('progress').down('.current').innerHTML, 10)+response.fan_count);
+    });
+    </script>
 
     <div id="progress">
       <div class="bar" style="width:<%= @current_user_percent %>%"></div>
-      <%= @current_user_percent %>%
+      <div class="bar bar2"></div>
+      <div class="current"><%= @current_user_count %></div>
       <div class="max"><%= CONFIG['progress_required_users'] %><div>Stimmen<br />nötig</div></div>
     </div>
 
     <!--div class="content mapcontent">
       <iframe id="map"<% if !postpone_loading %>src="/map?<%= Time.now.to_i %>"<%end%>></iframe>
     </div-->
-    <div class="content switchbox_step1" style="height: 237px">
+    <div class="content switchbox_step1">
 
       <% if !logged_in? %>
   
@@ -51,28 +64,6 @@
               <%= submit_tag 'Ich unterstütze Armin!' %>
             </p>
           <% end %>
-          oder
-          
-          <script type="text/javascript">
-            window.fbAsyncInit = function() {
-              FB.init({
-                appId: '<%= CONFIG[:Facebook]['appid'] %>',
-                apiKey: '<%= CONFIG[:Facebook]['apikey'] %>',
-                status: true, // check login status
-                cookie: true, // enable cookies to allow the server to access the session
-                xfbml: true // parse XFBML
-              });
-              //FB.Event.subscribe('auth.login', OC.facebook.statuschange);
-              FB.Event.subscribe('auth.sessionChange', OC.facebook.statuschange);
-            }
-          </script>
-          <!--fb:login-button show-faces="true" width="200" max-rows="1" /-->
-          <fb:login-button perms="email"></fb:login-button>
-
-          <div id="fb-root"></div>
-
-          <div id="fb-userinfo"></div>          
-
           <a class="disclaimer" href="/datenschutz" target="_top">Datenschutz-Erklärung</a>
         </div>
 
@@ -90,7 +81,37 @@
             <p><%= submit_tag 'Einloggen' %></p>
           <% end %>
         </div>
+        
+        <div>
+          oder
+          
+          <script type="text/javascript">
+            window.fbAsyncInit = function() {
+              FB.init({
+                appId: '<%= CONFIG[:Facebook]['appid'] %>',
+                apiKey: '<%= CONFIG[:Facebook]['apikey'] %>',
+                status: true, // check login status
+                cookie: true, // enable cookies to allow the server to access the session
+                xfbml: true // parse XFBML
+              });
+              //FB.Event.subscribe('auth.login', OC.facebook.statuschange);
+              FB.Event.subscribe('auth.sessionChange', OC.facebook.statuschange);
+            }
+          </script>
+          <fb:login-button perms="email"></fb:login-button>
+          <div id="fb-root"></div>
+          <div id="fb-userinfo"></div>    
+        </div>
       
+      <% else %>
+      
+        <p>
+          Hier kommt noch jede Menge buntes anklickbares Zeug!
+          Bis dahin suchen wir noch Unterstützung durch Programmierer. Kennst du wen? Bist du wer?
+          <a href="mailto:technik@arminsoyka.at">technik@arminsoyka.at</a>
+          <br /><br />
+        </p>
+        
       <% end %>
       
     </div>
