@@ -10,13 +10,20 @@
     <% elsif logged_in? %>
       
       <p>
-        Hiermit löschst du deinen Account auf Diesmal-LIF.at unwiederbringlich.<br />
-        Dein Karteneintrag sowie alle Kommentare und Videos werden restlos entfernt.<br />
+        Hiermit löschst du deinen Account auf <%= CONFIG["title"] %> unwiederbringlich.<br />
+        Deine Nutzerdaten sowie alle Beiträge und Kommentare werden restlos entfernt.<br />
         Bist du sicher, dass du das tun willst?<br /><br />
       </p>
       <form action="#" method="POST">
         <input type="submit" value="Ja, Benutzerdaten löschen" />
+        <br /><br />
       </form>
+      
+      <p>
+        Solltest du zur Anmeldung <strong>Facebook Connect</strong> verwendet haben, kannst du
+        <%= CONFIG["title"] %> jegliche Rechte, auf deine Daten zuzugreifen und dir Nachrichten zu schicken,
+        entziehen: <a href="http://www.facebook.com/editapps.php">Anwendungseinstellungen</a>
+      </p>
     
     <% else %>
     
