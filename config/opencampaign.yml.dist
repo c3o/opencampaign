@@ -1,11 +1,13 @@
 
 title: My campaign website
 org_title: My organization
+url: http://www.example.com
 
 name: John Doe
 shortname: Johnny
 
-privacy_officer_email: <a href="mailto:user@example.com">Jane Doe</a>
+contact_email: user@example.com
+privacy_officer_email: <a href="mailto:privacy@example.com">Jane Doe</a>
 
 sharing_title: I support this campaign!
 sharing_body: Why don't you too?
@@ -14,3 +16,16 @@ elsewhere_link_url: http://example.com
 elsewhere_iframe_url: http://example.com
 
 progress_required_users: 1000
+progress_start_at: 0
+
+imprint: John Doe, Doe Lane 1, Timbuktu
+
+facebook_page_id: 0
+facebook_page_urlname: Page-name-from-URL
+
+email_signup_subject: Welcome to this campaign site!
+email_refer_subject: Support this campaign!
+
+video_tokbox_user_id: 0
+video_max_seconds: 30
+
