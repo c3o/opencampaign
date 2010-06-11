@@ -1,14 +1,26 @@
-<div class="event<%= " nearme" if @constituency && @constituency == event.constituency %>">
+<div id="event<%=event.id %>" class="event<%= " nearme" if @constituency && @constituency == event.constituency %>">
   <div class="calendar">
     <div class="d"><%= event.day %></div>
     <div class="m"><%= event.month %></div>
   </div>
   <%= "<div class=\"myconstituency\">Dein Wahlkreis</div>" if @constituency && @constituency == event.constituency %>
   <div class="desc">
-    <h3><%= event.title %></h3>
+    <h3><%= event.facebook_id ? link_to(event.title, 'http://www.facebook.com/event.php?eid='+event.facebook_id.to_s) : event.title %></h3>
     <% if c = event.constituency %>
       <p>Wahlkreis <%= link_to c.full_name, url_for(:controller => 'geo', :action => 'local', :name => c.url_friendly_name) %></p>
     <% end %>
     <%= event.time.strftime('%H:%M') %> <%= event.location %> 
   </div>
+  <% if event.facebook_id %>
+    <script type="text/javascript">
+    Event.observe(window, 'load', function() {
+     FB.api('/<%= event.facebook_id %>/attending', function(r) {
+       var attendees = r.data.length;
+       if (attendees > CONFIG["event_attendees_secret_if_less_than"]) {
+         $('event<%=event.id %>').insert(new Element('div', { 'class': 'attendees' }).update(r.data.length));
+       }
+      });
+    });
+    </script>
+  <% end %>
 </div>

@@ -13,10 +13,18 @@
     <%= f.label :location %><br />
     <%= f.text_field :location %>
   </p>
-   <p>
+  <p>
+    <%= f.label :facebook_id %><br />
+    <%= f.text_field :facebook_id %>
+  </p>
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </p>
+  <!--p>
     <%= f.label :constituency %><br />
     <%= f.select :constituency_id, Constituency.find(:all).collect {|p| [ p.full_name, p.id ] } %>
-  </p>
+  </p-->
   <p>
   <%= f.submit "Speichern" %>
   <% if @event %>
