@@ -4,7 +4,9 @@ class ProjectsController < ApplicationController
   # GET /tasks
   # GET /tasks.xml
   def index
-    @projects = Project.find(:all, :order => 'created_at ASC')
+    is_active = (params[:is_active] == false) ? false : true
+    @projects = Project.find(:all, :order => 'created_at ASC', :conditions => ['is_active = ?', is_active])
+    render :template => "projects/index_#{ is_active ? 'active' : 'inactive' }"
   end
 
   # GET /tasks/1

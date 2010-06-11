@@ -1,0 +1,7 @@
+<div class="page">
+  <%= render :partial => 'shared' %>
+  <h2>Projekte</h2>
+  <ul id="projectlist" class="itemlist content">
+    <%= render :partial => "shared/project", :collection => @projects %>
+  </ul>
+</div>
