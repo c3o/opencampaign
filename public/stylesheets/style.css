@@ -51,12 +51,10 @@ a.backbutton {
 #container { width: 800px; }
 
 #header {
-  margin: 10px;
-  width: 950px;
-  height: 140px;
-  background: url(/images/header.jpg);
+  float: left;
 }
 #content {
+  clear: both;
   width: 810px;
   padding: 0 0 10px 10px;
   overflow: hidden;
@@ -67,6 +65,8 @@ a.backbutton {
 }
 
 #header h1 a { text-decoration: none; }
+
+#logo { float: left; margin-right: 2em; }
 
 #headermenu {
   float: right;
@@ -80,7 +80,7 @@ a.backbutton {
 ul#topmenu { 
   list-style: none; 
   overflow: hidden;
-  margin: 0 0 1em .7em;
+  margin: 0 0 0 .7em;
   padding: .4em;
   -webkit-border-radius: .5em;
   -moz-border-radius: .5em;
@@ -107,7 +107,7 @@ ul#topmenu li.active a {
 }  
 
 #menucontainer {
-  margin-bottom: 3em;
+  margin-bottom: 1em;
   margin-left: 10px;  
 }
 .menu {
@@ -115,17 +115,17 @@ ul#topmenu li.active a {
   overflow: hidden;
   padding: 10px 0;
 }
-.menu_secondary {
-  margin-top: 5px;
-  padding: 5px 0;
-}
 
 #loggedin {
+  clear: both;
   font-size: .9em;
   color: #000;
-  margin-bottom: 5px;
-  padding: 5px 10px;
+  margin: 0px 0 5px 5px;
+  padding: 5px 10px 5px 13px;
   line-height: 1.2em;
+  -webkit-border-radius: .5em;
+  -moz-border-radius: .5em;
+  border-radius: .5em;
 }
 
 .menu li {
@@ -182,7 +182,7 @@ ul#topmenu li.active a {
   font-weight: normal;
   font-size: 2em;
   margin: 0;
-  padding: 25px 20px 0 20px;
+  padding: 25px 20px 10px 20px;
   -moz-border-radius-topleft: .5em;
   -webkit-border-top-left-radius: .5em;
   -moz-border-radius-topright: .5em;
@@ -197,8 +197,7 @@ ul#topmenu li.active a {
 }
 
 .page .content {
-  padding: 20px;
-  padding-bottom: 2em;
+  padding: 10px 20px  2em 20px;
 }
 
 .itemlist { border-bottom: 1px solid #999; }
@@ -335,7 +334,7 @@ ul#topmenu {
   background-color: rgba(255, 255, 255, .9); 
 }
 
-ul#topmenu li.active a, .menu li.active a {
+ul#topmenu li.active a, .menu li.active a, ul.buttonbar li a {
   background: #260;
   color: #fff;
 }
@@ -347,6 +346,7 @@ ul#topmenu li.active a, .menu li.active a {
 .page h2 {
   background-color: #fff;
   color: #260; /* beige green ccbe39 */
+  opacity: .9;
 }
 
 a {
@@ -362,10 +362,16 @@ a {
   text-decoration: none;  
 }
 
-.page { width: 800px; }
+.page {
+  width: 800px;
+}
 
 .page h2, .menu {
   /* background-color: #fff; */
+}
+
+.page h5 {
+  margin: .5em 0;
 }
 
 .rating, a.button, .rating-button, .myconstituency, .user_official, #progress .bar,
@@ -374,6 +380,16 @@ a {
 }
 .box h2 {
   background-color: #260;
+}
+
+#progress .bar2 {
+  border-left: 1px solid #fff;
+  background: #829ACD url(/images/fblike.png) 8px 7px no-repeat;
+}
+
+#progress .current {
+  float: left;
+  margin-left: .5em;
 }
 
 a.button {
@@ -447,8 +463,9 @@ a.button {
   margin: 10px 0 0 10px;  
 }
 
-#map-container .disclaimer {
+#map-container a.disclaimer {
   font-size: .8em;
+  color: #999;
 }
 
 #signup #cancel {
@@ -470,10 +487,11 @@ a.button {
 }
 
 #map-container .content {
-  width: 225px;
-  float: left;
-  height: 180px;
   position: relative;
+}
+#map-container .content,
+#map-container #progresscontainer {
+  background: #eee;
 }
 
 #map {
@@ -489,11 +507,21 @@ a.button {
   z-index: 9;
 }
 
+#progresscontainer {
+  padding: .5em;
+}
+
+#progresscontainer p {
+  font-size: .9em;
+  padding: .3em .5em .5em .5em;
+  line-height: 1.4em;
+}
+
 #progress {
   border: 2px solid #ccc;
   padding: 2px;
   background-color: #fff;
-  margin: .5em 0;
+  margin: 0 0 .3em 0;
   height: 30px;
   font-size: 1.5em;
   overflow: hidden;
@@ -501,7 +529,6 @@ a.button {
 #progress .bar {
   height: 30px;
   float: left;
-  margin-right: .4em;
 }
 #progress .max {
   float: right;
@@ -537,6 +564,11 @@ a.button {
 #events .event {
   overflow: hidden;
   margin-bottom: .5em;  
+}
+
+.event .desc h3 a { 
+  padding-right: 20px;
+  background: url(/images/networks/facebook.png) right center no-repeat;
 }
 
 #events .calendar {
@@ -637,7 +669,13 @@ a.button {
 .state-tab4 li.tab4 a,
 .state-tab5 li.tab5 a { color: #000; }
 
-.footer { margin: 0 2em 0 1.5em; font-size: .9em; color: #888; }
+.footer {
+  border-top: 1px solid #ddd;
+  margin: 2em 2em 0 0;
+  padding: .5em 0 0 ;
+  font-size: .9em;
+  color: #888;
+}
 .footer a { color: #888; }
 .footer .credits, .footer .credits a { font-size: .9em; color: #bbb; }
 
@@ -794,6 +832,13 @@ li.question span {
 	-webkit-column-gap: 4em;
 }
 
-#map_overlay_login {
-  display: none;
+div.gallery img { border: 1px solid #999; }
+div.gallery .credit { color: #999; font-size: .8em }
+
+#login { display: none; }
+
+ul.buttonbar {
+  font-size: .9em;
+  list-style: none !important;
+  margin: 0 !important; padding: 0 !important;
 }

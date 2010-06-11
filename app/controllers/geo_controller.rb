@@ -12,9 +12,6 @@ class GeoController < ApplicationController
     unless @events && !@events.empty?
       @events = Event.find(:all, :conditions => ['time > ?', date], :order => 'time ASC', :limit => 1)
     end
-    
-    current_user_count = User.count_by_sql("SELECT count(id) FROM users")
-    @current_user_percent = current_user_count / (CONFIG["progress_required_users"]/100)
   end
   
   def local

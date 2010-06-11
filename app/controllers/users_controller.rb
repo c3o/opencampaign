@@ -3,6 +3,10 @@ class UsersController < ApplicationController
   include AuthenticatedSystem
   skip_before_filter :verify_authenticity_token
   
+  def index
+    @users = User.find(:all, :conditions => ['is_official = ? OR is_admin = ?', true, true])
+  end
+  
   def create
     cookies.delete :auth_token
     # protects against session fixation attacks, wreaks havoc with 

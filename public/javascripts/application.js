@@ -1,12 +1,21 @@
 
 OC = {
+  
+  'login': function() {
+    var d = $('login').style.display;
+    if (d == 'block') {
+      $('login_signup').show();
+      $('login').style.display = 'none';
+    } else {
+      $('login_signup').hide();
+      $('login').style.display = 'block';
+    }
+  },
         
   'facebook': {
     
     'statuschange': function(fb) {
-      console.log('statuschange');
       if (fb.session) {
-        console.log(fb);
         if (fb.status == 'connected') {
           // TODO ADD LOADING INDICATOR!!!!!
           new Ajax.Request('/check_fb_user', { // Is this FB user ID already connected to an OC user?
@@ -29,7 +38,6 @@ OC = {
     },
   
     'signup': function() {
-      console.log('signup!');
       FB.api('/me', function(fb_response) {  // TODO should do fql with SELECT name, email, pic_big, hometown_location, birthday_date FROM user WHERE uid = ?
         var userInfo = document.getElementById('fb-userinfo');
         userInfo.innerHTML = 'Hallo ' + fb_response.name;
@@ -37,7 +45,6 @@ OC = {
         //FB.api('/me/friends', function(response) { maybe later
         //  OC.userdata.friends_num = response.data.length;
         //});
-        console.log(fb_response);
         new Ajax.Request('/users/create', { 'parameters': {
           'user[name]': fb_response.name,
           'user[facebook_id]': fb_response.id,
@@ -208,8 +215,10 @@ Signup = {
     $('signup').style.display = 'block';
     if (!Signup.map_loaded) {
       var map = $('map');
-      map.src = '/map';
-      Signup.map_loaded = true;
+      if (map) {
+        map.src = '/map';
+        Signup.map_loaded = true;
+      }
     }
   }
 };

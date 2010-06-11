@@ -1,15 +1,12 @@
 <div class="page">
-  <h2>Warum wir diesmal LIF wählen</h2>
+  <h2>Warum wir <%= CONFIG["org_title"] %> unterstützen</h2>
   <div class="content" id="videos">
     <div class="navbar">
       <%= link_to "Deine eigene Begründung aufnehmen", video_record_path, :class => 'signup_required button' %>
     </div>
     <% @videos.each { |video| %>
       <div class="video">
-        <object data="http://www.diesmal-lif.at/swf/flvplayer.swf?video=<%=video.url %>&startvolume=100&autoplay=false" type="application/x-shockwave-flash" width="250" height="188" >
-          <param name="movie" value="http://www.diesmal-lif.at/swf/flvplayer.swf?video=<%=video.url %>&startvolume=100&autoplay=false" />
-          <param name="allowfullscreen" value="true"/>
-        </object>
+        <%= render :partial=>'embed', :locals => { :video => video } %>
         <strong><%= link_to video.user.name, video_show_path(:id => video.id) %></strong>
       </div>
     <% } %>

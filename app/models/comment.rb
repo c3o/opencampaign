@@ -3,6 +3,8 @@ class Comment < ActiveRecord::Base
   
   belongs_to :idea # -------XOR 
   belongs_to :constituency # |
+  belongs_to :task # |
+  belongs_to :question # |
   
   attr_accessible :body
 end
