@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
     #cookie_id = ('fbs_'+CONFIG[:Facebook]['appid'].to_s).to_sym
     #puts '*******'+cookies[cookie_id] if cookie_id     cookies[:fb_user_id] &&
     if cookies[:fb_user_id] && u = User.find_by_facebook_id(cookies[:fb_user_id])
-      puts '%%%%%%%%%%'+u.id.to_s
+      ##puts '%%%%%%%%%%'+u.id.to_s
       session[:user_id] = u.id
     end
   end
