@@ -1,4 +1,15 @@
 <div class="page">
+  <script type="text/javascript">
+    Event.observe(window, 'load', function() {
+      if(document.location.hash) {
+        var pid = 'project_'+document.location.hash.substring(1);
+        console.log(pid);
+        if ($(pid)) {
+          $(pid).addClassName('open');
+        }
+      }
+    });
+  </script>
   <h2>Projekte für Wien</h2>
   <p>Hallo</p>
   <ul id="projectlist" class="itemlist content">
