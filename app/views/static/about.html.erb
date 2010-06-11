@@ -26,25 +26,26 @@
       Wien gehört uns allen und Wien braucht uns alle. Deswegen kandidiere ich – ich möchte,
       dass die Jugendlichen dieser Stadt die Politik dieser Stadt (mit)bestimmen.
     </p>
+    
+    <ul class="menu buttonbar">
+      <li><a href="#" onclick="window.open('http://www.arminsoyka.at/joomla/templates/armin_template/feedback.htm','popup','width=300,height=480'); return false">Gib mir Feedback</a></li>
+      <li><%= link_to "Stell mir eine Frage", question_list_path %></li>
+      <li><a href="http://www.facebook.com/arminsoyka">Werde mein Facebook-Freund</a></li>
+      <li><a href="http://www.facebook.com/pages/<%= CONFIG["facebook_page_urlname"] %>/<%= CONFIG["facebook_page_id"] %>"><img src="images/fblike.png" /> Armin Soyka ins Rathaus</a></li>
+    </ul>
+    <br />
     <h5>Wenn du mehr über mich wissen willst:</h5>
+        
     <div class="col2">
       <ul>
-        <li><a href="http://arminsoyka.at/joomla">Klick dich einfach durch meine (alte) Webseite.</a></li>
-        <li><a href="">schau meine Rede von der Landesversammlung an (Popup Landesversammlung)</a></li>
-        <li><a href="">geh mit mir spazieren (Popup: Video Spaziergang mit Armin)</a></li>
-        <li><%= link_to "stell mir eine Frage", questions_path %></li>
-        <li><a href="mailto:as@arminsoyka.at">schreib mir eine Mail</a></li>
-      </ul>
-      <h5>Gefällt dir?</h5>
-      <ul>
-        <li><a href="">Wähl mich am 10. Oktober (was bringt das?) (wie geht das?)</a></li>
-        <li><a href="">Mach im Wahlkampf mit (das wird gebraucht!)</a></li>
-      </ul>
-      <h5>Gefällt dir nicht?</h5>
-      <ul>
-        <li><a href="">Gib mir Feedback (Link, Popup), damit ich von dir lernen kann.</a></li>
-        <li><a href="">Erzähl vielen Leuten von der Sache, damit sie sich ein eigenes Bild machen können</a></li>
-      </ul>
+        <li><a href="http://www.youtube.com/watch?v=G_pEGyi1VO4">Schau dir die Kandidatenrede an</a></li>
+        <li><a href="http://www.arminsoyka.at/joomla">Lies meine alte Website</a></li>
+        <li><a href="http://www.youtube.com/watch?v=cL2ydpZe9Wo">Geh mit mir spazieren</a></li>
+        <li><%= link_to "Triff mich", event_list_path %></li>
+        <br />
+      </ul>    
+      <%= render :partial => 'shared/networks' %>
+        
     </div>
   </div>
 </div>
