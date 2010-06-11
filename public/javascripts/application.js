@@ -215,8 +215,10 @@ Signup = {
     $('signup').style.display = 'block';
     if (!Signup.map_loaded) {
       var map = $('map');
-      map.src = '/map';
-      Signup.map_loaded = true;
+      if (map) {
+        map.src = '/map';
+        Signup.map_loaded = true;
+      }
     }
   }
 };
