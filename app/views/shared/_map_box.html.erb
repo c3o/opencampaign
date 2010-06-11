@@ -11,13 +11,15 @@
       <%= title %>
     </h2>
   
-    <script type="text/javascript">
-    FB.api('/<%= CONFIG["facebook_page_id"] %>', function(response) {
-      var w = response.fan_count / (<%= CONFIG["progress_required_users"] %>/100);
-      $('progress').down('.bar2').setStyle({ 'width': w+'%' });
-      $('progress').down('.current').update(parseInt($('progress').down('.current').innerHTML, 10)+response.fan_count);
-    });
-    </script>
+    <% if CONFIG["facebook_page_id"] %>
+      <script type="text/javascript">
+      FB.api('/<%= CONFIG["facebook_page_id"] %>', function(response) {
+        var w = response.fan_count / (<%= CONFIG["progress_required_users"] %>/100);
+        $('progress').down('.bar2').setStyle({ 'width': w+'%' });
+        $('progress').down('.current').update(parseInt($('progress').down('.current').innerHTML, 10)+response.fan_count);
+      });
+      </script>
+    <% end %>
 
     <div id="progress">
       <div class="bar" style="width:<%= @current_user_percent %>%"></div>

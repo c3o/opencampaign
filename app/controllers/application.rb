@@ -22,6 +22,12 @@ class ApplicationController < ActionController::Base
     redirect_to(request.protocol + HOSTNAME + request.request_uri) if (RAILS_ENV=='production') && (request.host.downcase != HOSTNAME)
   end
   
+  before_filter :load_userwidget_data
+  def load_userwidget_data
+    @current_user_count = User.count_by_sql("SELECT count(id) FROM users") + (CONFIG["progress_start_at"] || 0)
+    @current_user_percent = @current_user_count / (CONFIG["progress_required_users"]/100)
+  end
+  
   before_filter :check_fb_connect
   def check_fb_connect
     #cookie_id = ('fbs_'+CONFIG[:Facebook]['appid'].to_s).to_sym
