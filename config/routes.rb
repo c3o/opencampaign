@@ -24,6 +24,8 @@ ActionController::Routing::Routes.draw do |map|
     tasks.resources :comments
   end
 
+  #####map.resources :events, :as => 'events2'
+
   # ADMIN
   map.admin '/admin', :controller => 'admin/events', :action => 'adminindex'
   map.resources :events, :controller => 'admin/events', :path_prefix => "/admin"
@@ -55,6 +57,9 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
+
+  # Armin Soyka legacy
+  map.connect '/:legacy', :requirements => { :legacy => /(blog|wiki|joomla|cv).*/ }, :controller => 'redirect', :action => 'index'
 
   map.connect '*path', :controller => 'static'
 end
