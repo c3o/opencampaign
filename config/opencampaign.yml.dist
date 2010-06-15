@@ -1,7 +1,9 @@
 
 title: My campaign website
 org_title: My organization
+
 url: http://www.example.com
+hostname: example.com
 
 name: John Doe
 shortname: Johnny

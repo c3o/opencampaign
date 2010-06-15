@@ -16,10 +16,10 @@ class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   
   # redirect all aliases to canonical domain
-  HOSTNAME = CONFIG['hostname']
+  #HOSTNAME = CONFIG['hostname']
   before_filter :ensure_right_hostname
   def ensure_right_hostname
-    redirect_to(request.protocol + HOSTNAME + request.request_uri) if (RAILS_ENV=='production') && (request.host.downcase != HOSTNAME)
+    redirect_to(request.protocol + CONFIG['hostname'] + request.request_uri) if (RAILS_ENV=='production') && (request.host.downcase != CONFIG['hostname'])
   end
   
   before_filter :load_userwidget_data
