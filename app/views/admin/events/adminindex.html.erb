@@ -2,6 +2,7 @@
   <a href="/admin/projects" class="button">Projekte verwalten</a>
   <a href="/admin/events" class="button">Events verwalten</a>
   <a href="/admin/candidates" class="button">Kandidaten verwalten</a>
+  <a href="/admin/adminquestions" class="button">Fragen verwalten</a>
 </div>
 
 <hr />
@@ -25,7 +26,7 @@
 
 <h3><%=@openquestions.size %> unbeantwortete Fragen</h3>
 <br />
-<%= render :partial => 'questions/question', :collection => @openquestions %>
+<%= render :partial => 'shared/question', :collection => @openquestions %>
 
 <hr /> 
 

@@ -1,0 +1,67 @@
+<% question = inline unless question %>
+    <div class="question" id="question_<%= question.id %>">
+
+      <div class="body">
+        <%= simple_format '&raquo;'+auto_link(h(question.body))+'&laquo;' %>
+      </div>
+      <div class="byline">
+        von <strong><%= userinfo(question.author) %></strong> am <%= question.created_at.strftime('%d.%m.') %>
+      </div>
+    
+      <div class="reply">
+        <% if question.reply && question.reply_created %>
+        
+          <div class="byline">
+            Antwort: <!--<%= question.reply_created.strftime('%d.%m.') %>-->
+          </div>
+          <div class="body"><%= simple_format auto_link(h(question.reply)) %></div>      
+      
+        <% else %>
+
+          <% if logged_in? && current_user.is_admin %>
+            <%= render :partial => 'reply', :locals => { :question => question } %>
+          <% else %>
+            Noch keine Antwort... bitte etwas Geduld!
+          <% end %>
+
+        <% end %>
+
+        <%
+          cs = question.comments.count
+          comment_header = "#{cs} Kommentar#{"e" unless cs == 1}"
+          comment_link = cs > 0 ? comment_header : "Kommentieren"
+          comment_hash = cs > 0 ? '#comments' : '#comment'
+
+          if @show_comments
+        %>
+          <div id="comments" class="comments">
+            <h3><%= comment_header %></h3>
+    
+            <%= render :partial => 'shared/comment', :collection => @question.comments %>
+            
+            <div id="comment" class="navbar">
+              <a href="#" class="toggle trigger-comment signup_required button">Kommentar abgeben</a>
+              <div class="hidden toggle target-comment">
+                <% form_for(Comment.new) do |f| %>
+                  <%= hidden_field_tag :question_id, @question.id %>
+                  <%= f.text_area :body, :cols => 45, :rows => 7 %><br/>
+                  <%= f.submit 'Kommentar abschicken' %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <script type="text/javascript">
+            if (document.location.hash.substring(1) == 'comment') {
+              $('comment').down('.trigger-comment').style.display = 'none';
+              $('comment').down('.target-comment').removeClassName('hidden');
+            }
+          </script>
+        <% else %>
+        
+          <div class="comment"><%= link_to comment_link, question_path(:id => question.id)+comment_hash %></div>
+
+        <% end %>
+
+      </div>
+
+    </div>

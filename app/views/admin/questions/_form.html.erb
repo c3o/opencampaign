@@ -1,0 +1,19 @@
+<% form_for(@question || Question.new) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.label :reply %><br />
+    <%= f.text_area :reply %>
+  </p>
+  
+  <p>
+  <%= f.submit "Speichern" %>
+  <% if @question %>
+    oder <%= link_to 'zurück', adminquestions_path %>
+  <% end %>
+  </p>
+<% end %>

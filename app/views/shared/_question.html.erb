@@ -1,0 +1,3 @@
+<li class="question" id="question_<%= question.id %>">
+  <h3><%=link_to h(question.body || '#'), question_path(:id => question.id) %></h3>
+</li>

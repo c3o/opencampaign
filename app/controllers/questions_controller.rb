@@ -14,6 +14,7 @@ class QuestionsController < ApplicationController
     question.reply_created = Time.now
     question.reply_updated = Time.now
     question.save
+    Notifier.deliver_notification(question.author, question) if question.author 
     redirect_to question
   end
 
@@ -31,16 +32,20 @@ class QuestionsController < ApplicationController
     end
   end
 
-#  def edit
-#    @question = Question.find(params[:id])
-#  end
+  def edit
+    @question = Question.find(params[:id])
+  end
 
   def create
     # TODO: sanitize params (safe attr)
-    @question = Question.new(params[:question].merge(:author => current_user))
+    if params[:author] == 'true'
+      params[:question] = params[:question].merge(:author => current_user)
+    end
+    @question = Question.new(params[:question])
     @question.save
     render :update do |page|
       if @question.errors.empty?
+        flash[:notice] = "Danke für deine Frage! Wir werden sie so bald wie möglich beantworten!"
         page.redirect_to questions_path
       else
         page << "handle_form_errors('question',['body'],#{@question.errors.to_hash.to_json})"
@@ -48,16 +53,15 @@ class QuestionsController < ApplicationController
     end
   end
 
-#  def update
-#    @question = Question.find(params[:id])
-#    @question.update_attributes(params[:idea]) if @question.author == current_user
-#    redirect_to(@question)
-#  end
+  def update
+    @question = Question.find(params[:id])
+    @question.update_attributes(params[:question]) if check_authorization(@question)
+    redirect_to(@question)
+  end
 
   def destroy
     @question = Question.find(params[:id])
-    check_authorization @question
-    @question.destroy
+    @question.destroy if check_authorization(@question)
 
     respond_to do |format|
       format.html { redirect_to(questions_url) }

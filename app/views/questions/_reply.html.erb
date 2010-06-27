@@ -3,7 +3,7 @@
     <%= text_area_tag :reply, '', :cols => 45, :rows => 7 %>
   </p>
   <p>
-    <%= hidden_field_tag :question_id, @question.id %>
+    <%= hidden_field_tag :question_id, question.id %>
     <%= submit_tag "Antwort speichern" %>
   </p>
 </form>

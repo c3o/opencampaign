@@ -1,6 +1,9 @@
 <div class="page">
   <h2>Deine Fragen an Armin</h2>
   <div class="content">
+    <% if flash[:notice] %>
+      <div class="notice"><%= flash[:notice] %><br /></div>
+    <% end %>
     <div class="navbar">
       <a href="#" class="toggle trigger-new_question button">Neue Frage stellen</a>  
       <div class="hidden toggle target-new_question">
@@ -11,7 +14,8 @@
       Fragen können auch anonym gestellt werden!
     </p>
     <ul class="itemlist">
-      <%=  render :partial => "question", :collection => @questions %>
+      <% @show_comments = false %>
+      <%= render :partial => "inline", :collection => @questions, :as => :question %>
     </ul>
   </div>
 </div>

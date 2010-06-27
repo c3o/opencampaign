@@ -7,6 +7,14 @@ class Notifier < ActionMailer::Base
     body :user => user, :password => password
   end
 
+  def notification(user, question)
+    @link = question_path(:id => question.id)
+    recipients user.email
+    from CONFIG['org_title']+' <'+CONFIG['contact_email']+'>'
+    subject CONFIG['email_notification_subject']
+    body :user => user, :question => question
+  end
+
   def pass_on(to, sender, message)
     from "#{sender.name} <#{sender.email}>"
     subject CONFIG['email_refer_subject']

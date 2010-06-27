@@ -1,0 +1,20 @@
+<div class="page">
+  
+  <div class="navbar">
+    <a href="#" class="toggle trigger-new_question button">Frage hinzufügen</a>
+    <div id="new-question" class="toggle target-new_question hidden">
+      <%= render :partial => 'form' %>
+    </div>
+  </div>
+
+  <div id="questions">
+    <% @questions.each do |question| %>
+      <%= render :partial => 'shared/question', :locals => {:question => question} %>
+      <div class="admin-menu">
+        <%= link_to 'Bearbeiten', edit_adminquestion_path(question) %> 
+        <%= link_to 'Löschen', question, :confirm => 'Bist du sicher?', :method => :delete %>
+      </div>
+    <% end %>
+  </div>
+
+</div>
