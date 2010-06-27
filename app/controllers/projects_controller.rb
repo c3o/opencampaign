@@ -12,7 +12,8 @@ class ProjectsController < ApplicationController
   # GET /tasks/1
   def show
     (redirect_to :controller => 'ideas' and return) if params[:id] == 'ideen'  #HACK!
-    @project = Project.find(params[:id])
+    index
+    #@project = Project.find(params[:id])
   end
 
   # GET /tasks/new

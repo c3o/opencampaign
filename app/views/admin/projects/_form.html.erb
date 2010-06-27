@@ -1,4 +1,4 @@
-<% remote_form_for (@project || Project.new), :html => { :multipart => true } do |f| %>
+<% form_for (@project || Project.new), :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
   <p>
     <%= f.label :title %><br />
