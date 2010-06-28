@@ -13,9 +13,9 @@
     <p class="navbar">
       Fragen können auch anonym gestellt werden!
     </p>
-    <ul class="itemlist">
+    <div class="itemlist">
       <% @show_comments = false %>
       <%= render :partial => "inline", :collection => @questions, :as => :question %>
-    </ul>
+    </div>
   </div>
 </div>
