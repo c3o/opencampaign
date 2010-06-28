@@ -1,0 +1,6 @@
+ 
+  <ol id="users">
+    <% @users.each do |user| %>
+      <%= render :partial => 'shared/user', :locals => {:user => user} %>
+    <% end %>
+  </ol>

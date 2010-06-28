@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
     super || self.email.split('@')[0]
   end
   
+  def facebook_url
+    "http://www.facebook.com/profile.php?id=#{facebook_id}" if facebook_id
+  end
+  
   def town=(name)
     if !name.blank?
       # Take only the part before parenthesis (containing wahlkreis)
