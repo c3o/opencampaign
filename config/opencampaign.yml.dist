@@ -27,6 +27,7 @@ facebook_page_urlname: Page-name-from-URL
 
 email_signup_subject: Welcome to this campaign site!
 email_refer_subject: Support this campaign!
+email_notification_subject: Your question was answered!
 
 video_tokbox_user_id: 0
 video_max_seconds: 30
