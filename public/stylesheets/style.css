@@ -790,6 +790,10 @@ a.attribution {
   margin-top: 1em;
 }
 
+.question {
+  border-bottom: 1px solid #ccc;
+}
+
 li.question h3 {
   font-weight: normal;
   font-size: 1em;
@@ -802,6 +806,8 @@ li.question h3 {
 .question .comments h3 {
   margin: 1em 0;
 }
+
+
 
 .itemlist .comment {
   padding-top: .5em;
