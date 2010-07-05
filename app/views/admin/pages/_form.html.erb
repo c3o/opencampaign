@@ -1,0 +1,22 @@
+<% form_for (@page || Page.new), :html => { :multipart => true } do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :path %><br />
+    <%= f.text_field :path %>
+  </p>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </p>
+  <p>
+  <%= f.submit "Speichern" %>
+  <% if @page %>
+    oder <%= link_to 'zurück', pages_path %>
+  <% end %>
+  </p>
+<% end %>
+

@@ -818,6 +818,18 @@ li.question h3 {
   padding: 1em;
 }
 
+#admin table {
+  border-collapse: collapse;
+  width: 100%;
+}
+#admin table td {
+  border-bottom: 1px solid #ccc;
+}
+#admin table thead td {
+  font-weight: bold;
+  border-bottom: 1px solid #000;
+}
+
 #projectlist .project {
   padding: 1em 0 0 0; 
   line-height: 1.5em;

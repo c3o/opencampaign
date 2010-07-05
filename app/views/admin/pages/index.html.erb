@@ -1,0 +1,27 @@
+<div class="navbar">
+  <a href="#" class="toggle trigger-new_event button">Seite hinzufügen</a>
+  <div id="new-event" class="toggle target-new_event hidden">
+    <%= render :partial => 'form' %>
+  </div>
+</div>
+
+<div id="pages">
+  <table>
+    <thead>
+      <tr><td>Pfad</td><td>Titel</td><td></td></tr>
+    </thead>
+    <tbody>
+      <% @pages.each do |page| %>
+        <tr>
+          <td><%= page.path %></td>
+          <td><%= page.title %></td>
+          <td class="admin-menu">
+            <%= link_to 'Bearbeiten', edit_page_path(page) %> 
+            <%= link_to 'Löschen', page, :confirm => 'Bist du sicher?', :method => :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

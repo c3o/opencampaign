@@ -5,8 +5,8 @@ class StaticController < ApplicationController
       render :template => path
     elsif template_exists? path += '/index'
       render :template => path
-    elsif p = Page.find_by_path(request.path)
-      render :text => p.body, :layout => true
+    elsif @page = Page.find_by_path(request.path)
+      render :template => 'static/page'
     else
       raise ::ActionController::RoutingError,
             "Recognition failed for #{request.path.inspect}"
