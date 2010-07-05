@@ -1,0 +1,12 @@
+<div class="page">
+  <h2><%= h @project.title %></h2>
+  <div class="content">
+
+    <div class="body"><%=h @project.body %></div>
+       
+    <%= render(:partial => 'shared/tasks', :locals => { :project => @project }) if @project.tasks %>
+    
+    <%= render(:partial => 'shared/comments', :locals => { :object => @project }) if @project.comments %>
+
+  </div>
+</div>

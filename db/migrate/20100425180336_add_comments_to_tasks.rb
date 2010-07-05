@@ -4,6 +4,6 @@ class AddCommentsToTasks < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :comments, :task_id6
+    remove_column :comments, :task_id
   end
 end

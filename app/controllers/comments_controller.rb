@@ -19,6 +19,9 @@ class CommentsController < ApplicationController
     elsif params[:task_id]
       comment.task_id = params[:task_id]
       @parent = comment.task
+    elsif params[:project_id]
+      comment.project_id = params[:project_id]
+      @parent = comment.project
     end
     comment.save!
     redirect_to(request.referer || @parent)

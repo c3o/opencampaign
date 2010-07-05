@@ -5,6 +5,7 @@ class Comment < ActiveRecord::Base
   belongs_to :constituency # |
   belongs_to :task # |
   belongs_to :question # |
+  belongs_to :project # |
   
   attr_accessible :body
 end

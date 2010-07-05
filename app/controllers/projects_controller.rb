@@ -9,11 +9,9 @@ class ProjectsController < ApplicationController
     render :template => "projects/index_#{ is_active ? 'active' : 'inactive' }"
   end
 
-  # GET /tasks/1
   def show
     (redirect_to :controller => 'ideas' and return) if params[:id] == 'ideen'  #HACK!
-    index
-    #@project = Project.find(params[:id])
+    @project = Project.find_by_slug(params[:slug])
   end
 
   # GET /tasks/new
