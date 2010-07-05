@@ -37,7 +37,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :adminusers, :controller => 'admin/users', :path_prefix => "/admin"
   #map.administer_events '/events', :controller => 'admin/events', :path_prefix => "/admin", :action => 'index'
   
-  map.event_list '/treffen', :controller => 'events', :action => 'index'
+  map.event_list '/termine', :controller => 'events', :action => 'index'
   map.task_list '/tasks', :controller => 'tasks', :action => 'index'
   map.question_list '/fragen', :controller => 'questions', :action => 'index'
   #map.profile_list '/users', :controller => 'users', :action => 'index'
