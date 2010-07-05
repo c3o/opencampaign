@@ -3,7 +3,9 @@
   <div class="content">
 
     <div class="body"><%=h @project.body %></div>
-       
+
+    <p><br /><fb:like></fb:like></p>
+           
     <%= render(:partial => 'shared/tasks', :locals => { :project => @project }) if @project.tasks %>
     
     <%= render(:partial => 'shared/comments', :locals => { :object => @project }) if @project.comments %>

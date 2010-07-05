@@ -12,6 +12,10 @@
       <%= link_to 'Bearbeiten', edit_adminproject_path(project) %> 
       <%= link_to 'Löschen', project, :confirm => 'Bist du sicher?', :method => :delete %>
     </div>
+    <h3>Tasks</h3>
+    <% project.tasks.each { |task| %>
+      <%= render :partial => 'tasks/task', :locals => {:task => task} %>    
+    <% } %>
   <% end %>
 </div>
 
