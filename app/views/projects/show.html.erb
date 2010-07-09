@@ -9,10 +9,12 @@
 
     <p><br /><fb:like></fb:like></p>
            
-    <div id="tasks">
-      <h4>Hilf mit!</h4>
-      <%= render(:partial => 'shared/tasks', :locals => { :project => @project }) if @project.active_tasks %>
-    </div>
+    <% if @project.active_tasks %>
+      <div id="tasks">
+        <h4>Hilf mit!</h4>
+        <%= render(:partial => 'shared/tasks', :locals => { :project => @project }) %>
+      </div>
+    <% end %>
     
     <%= render(:partial => 'shared/comments', :locals => { :object => @project }) if @project.comments %>
 
