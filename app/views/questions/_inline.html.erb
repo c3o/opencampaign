@@ -6,6 +6,7 @@
       </div>
       <div class="byline">
         von <%= userinfo(question.author) %> am <%= question.created_at.strftime('%d.%m.') %>
+        (<%= link_to "Permalink", url_for(question), :class => "permalink" %>)
       </div>
     
       <div class="reply">
