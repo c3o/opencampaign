@@ -55,8 +55,8 @@
                 <li<%= " class=\"active\"" if @controller.controller_name == 'static' && params[:path].to_s == 'ziel' %>>
                   <%= link_to "Das Ziel", '/ziel' %>
                 </li>
-                <li<%= " class=\"active\"" if @controller.action_name == 'about' %>>
-                  <%= link_to "Armin Soyka", about_path %>
+                <li<%= " class=\"active\"" if request.path == '/' %>>
+                  <%= link_to "Armin Soyka", root_path %>
                 </li>
                 <li<%= " class=\"active\"" if @controller.controller_name == 'static' && params[:path].to_s == 'team' %>>
                   <%= link_to "Team Armin Soyka", '/team' %>

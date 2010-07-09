@@ -54,7 +54,7 @@ ActionController::Routing::Routes.draw do |map|
   map.participate '/mitmachen', :controller => 'geo', :action => 'index'
   
   map.root :controller => 'static' #, :action => 'about'
-  map.about '/armin', :controller => 'static' #, :action => 'about'
+  #map.about '/armin', :controller => 'static' #, :action => 'about'
 
   map.elsewhere '/web', :controller => 'elsewhere', :action => 'index'
   
