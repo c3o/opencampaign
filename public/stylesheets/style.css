@@ -792,6 +792,10 @@ ol {
   margin-top: 1em;
 }
 
+.question .reply .body {
+  font-style: italic;
+}
+
 .question {
   border-bottom: 1px solid #ccc;
 }

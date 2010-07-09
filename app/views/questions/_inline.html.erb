@@ -5,7 +5,7 @@
         <%= simple_format '&raquo;'+auto_link(h(question.body))+'&laquo;' %>
       </div>
       <div class="byline">
-        von <strong><%= userinfo(question.author) %></strong> am <%= question.created_at.strftime('%d.%m.') %>
+        von <%= userinfo(question.author) %> am <%= question.created_at.strftime('%d.%m.') %>
       </div>
     
       <div class="reply">
