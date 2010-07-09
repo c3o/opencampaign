@@ -13,12 +13,12 @@ set :deploy_via, :copy
 
 role :app, "test.arminsoyka.at"
 role :web, "test.arminsoyka.at"
-role :db, "db.arminsoyka.c3o.org"
+role :db, "test.arminsoyka.at"
 
 #after  "deploy:finalize_update" do
 ##  run "ln -nfs #{shared_path}/portraits #{current_path}/public/portraits"
 #end
-after "deploy:finalize_update", "deploy:symlinks" #deploy:set_rails_env"
+after "deploy:finalize_update", "symlinks" #deploy:set_rails_env"
 
 # mod_rails (phusion_passenger) stuff
 namespace :deploy do
@@ -33,17 +33,6 @@ namespace :deploy do
       # nothing
     end
   end
-
-  desc "Symlink everything from shared/config to release/config"
-  task :symlinks, :except => { :no_release => true }  do
-    run <<-CMD 
-      cd #{shared_path}/config ;
-      for i in $( ls *.yml); do 
-        ln -fs #{shared_path}/config/$i #{current_path}/config/$i;
-      done
-    CMD
-    ##run "ln -nfs #{current_path}/public/images/presse #{shared_path}/presse"
-  end
   
   desc "set ENV['RAILS_ENV'] for mod_rails (phusion passenger)"
   task :set_rails_env do
@@ -55,4 +44,15 @@ namespace :deploy do
     CMD
   end
 
+end
+
+desc "Symlink everything from shared/config to release/config"
+task :symlinks, :except => { :no_release => true }  do
+  run <<-CMD 
+    cd #{shared_path}/config ;
+    for i in $( ls *.yml); do 
+      ln -fs #{shared_path}/config/$i #{current_path}/config/$i;
+    done
+  CMD
+  ##run "ln -nfs #{current_path}/public/images/presse #{shared_path}/presse"
 end
