@@ -51,13 +51,13 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/in/:name', :controller => 'geo', :action => 'local'
   map.participate '/mitmachen', :controller => 'geo', :action => 'index'
   
-  map.root :controller => 'static', :action => 'about'
+  map.root :controller => 'static' #, :action => 'about'
+  map.about '/armin', :controller => 'static' #, :action => 'about'
 
   map.elsewhere '/web', :controller => 'elsewhere', :action => 'index'
   
   map.deleteme '/deleteme', :controller => 'users', :action => 'deleteme'
   
-  map.about '/armin', :controller => 'static', :action => 'about'
   
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'
