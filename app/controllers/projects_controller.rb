@@ -5,13 +5,13 @@ class ProjectsController < ApplicationController
   # GET /tasks.xml
   def index
     is_active = (params[:is_active] == false) ? false : true
-    @projects = Project.find(:all, :order => 'created_at ASC', :conditions => ['is_active = ?', is_active])
+    @projects = Project.find(:all, :order => 'created_at ASC', :conditions => ['is_active = ?', is_active], :include => :tasks)
     render :template => "projects/index_#{ is_active ? 'active' : 'inactive' }"
   end
 
   def show
     (redirect_to :controller => 'ideas' and return) if params[:id] == 'ideen'  #HACK!
-    @project = Project.find_by_slug(params[:slug])
+    @project = Project.find_by_slug(params[:slug], :include => :tasks)
   end
 
   # GET /tasks/new

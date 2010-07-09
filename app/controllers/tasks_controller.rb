@@ -7,12 +7,12 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.xml
   def index
-    @tasks = Task.find(:all, :order => 'created_at DESC')
+    @tasks = Task.find(:all, :order => 'created_at DESC', :include => :participants)
   end
 
   # GET /tasks/1
   def show
-    @task = Task.find(params[:id])
+    @task = Task.find(params[:id], :include => :participants)
   end
 
   # GET /tasks/new
