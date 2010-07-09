@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
 
   def show
     (redirect_to :controller => 'ideas' and return) if params[:id] == 'ideen'  #HACK!
-    @project = Project.find_by_slug(params[:slug], :include => :tasks)
+    @project = params[:slug] ? Project.find_by_slug(params[:slug], :include => :tasks) : Project.find(params[:id], :include => :tasks)
   end
 
   # GET /tasks/new
