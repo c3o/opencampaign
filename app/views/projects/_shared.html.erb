@@ -1,11 +1,5 @@
   <script type="text/javascript">
     Event.observe(window, 'load', function() {
-      if(document.location.hash) {
-        var pid = 'project_'+document.location.hash.substring(1);
-        console.log(pid);
-        if ($(pid)) {
-          $(pid).addClassName('open');
-        }
-      }
+      if(document.location.hash != '') document.location.replace('/projekte/'+document.location.hash.substring(1));
     });
   </script>
