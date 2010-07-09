@@ -9,7 +9,7 @@
 
     <p><br /><fb:like></fb:like></p>
            
-    <% if @project.active_tasks %>
+    <% if @project.active_tasks && @project.active_tasks.count > 0 %>
       <div id="tasks">
         <h4>Hilf mit!</h4>
         <%= render(:partial => 'shared/tasks', :locals => { :project => @project }) %>
