@@ -43,6 +43,7 @@ class ApplicationController < ActionController::Base
       return true if current_user.is_admin
       return true if obj.user == current_user rescue nil
       return true if obj.creator == current_user rescue nil
+      return true if obj.author == current_user rescue nil
     end
     return false
   end

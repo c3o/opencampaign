@@ -10,6 +10,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.xml
   def index
+    render :text => '' and return ## TODO
     @tasks = Task.find(:all, :order => 'created_at DESC', :include => :participants)
   end
 
@@ -38,12 +39,13 @@ class TasksController < ApplicationController
   # POST /ideas.xml
   def create
     # TODO: sanitize params (safe attr)
-    @task = Task.new(params[:task].merge(:author => current_user))
+    @task = Task.new(params[:task].merge(:creator => current_user))
+    @task.project = Project.find(params[:project_id])
     @task.save
-    render :update do |page|
-      if @task.errors.empty?
-        page.redirect_to tasks_path
-      else
+    if @task.errors.empty?
+      redirect_to [@task.project, @task]
+    else
+      render :update do |page|
         page << "handle_form_errors('idea',['title','body'],#{@task.errors.to_hash.to_json})"
       end
     end
@@ -53,11 +55,11 @@ class TasksController < ApplicationController
   # PUT /tasks/1.xml
   def update
     @task = Task.find(params[:id])
-    # check authorization
+    check_authorization @task
     respond_to do |format|
       if @task.update_attributes(params[:task])
         flash[:notice] = 'Task was successfully updated.'
-        format.html { redirect_to(@task) }
+        format.html { redirect_to [@task.project, @task] }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -74,7 +76,7 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to(tasks_url) }
+      format.html { redirect_to @task.project }
       format.xml  { head :ok }
     end
   end

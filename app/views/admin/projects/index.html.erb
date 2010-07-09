@@ -5,17 +5,29 @@
   </div>
 </div>
 
-<div id="projects">
+<ul id="projects">
   <% @projects.each do |project| %>
-    <%= render :partial => 'shared/project', :locals => {:project => project} %>
+    <br style="clear:both" />
+
+    <%= render :partial => 'shared/project', :locals => {:project => project} %></ul>
+
     <div class="admin-menu">
       <%= link_to 'Bearbeiten', edit_adminproject_path(project) %> 
       <%= link_to 'Löschen', project, :confirm => 'Bist du sicher?', :method => :delete %>
     </div>
-    <h3>Tasks</h3>
-    <% project.tasks.each { |task| %>
-      <%= render :partial => 'tasks/task', :locals => {:task => task} %>    
-    <% } %>
+
+    <blockquote style="padding-left: 1em; font-size: .8em">
+
+      <%= render(:partial => 'shared/tasks', :locals => { :project => project }) if project.active_tasks %>
+
+      <a href="#" class="toggle trigger-new_task button">Task hinzufügen</a>
+      <div id="new-task" class="toggle target-new_task hidden">
+        <%= render :partial => 'taskform', :locals => { :project => project }  %>
+      </div>
+
+    </blockquote>
+    <br /><br />
+    <hr />
   <% end %>
-</div>
+</ul>
 

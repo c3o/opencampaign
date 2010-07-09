@@ -1,5 +1,12 @@
 <li id="task_<%= task.id %>">
   <h3><%=link_to h(task.title || '#'), url_for([task.project, task]) %></h3>
-  <div class="comments"><%= comment_indicator(task, [task.project, task]) %></div>
-  <div class="participants"><%= task.participants.collect { |u| avatar(u, 24) } %></div>
+  <div class="task_comments"><%= comment_indicator(task, [task.project, task]) %></div>
+  <div class="task_participants"><%= task.participants.collect { |u| avatar(u, 24) } %></div>
+
+  <% if logged_in? && current_user.is_admin %>
+    <div class="admin-menu">
+      <%= link_to 'Bearbeiten', edit_task_path(task) %> 
+      <%= link_to 'Löschen', task, :confirm => 'Bist du sicher?', :method => :delete %>
+    </div>
+  <% end %>
 </li>

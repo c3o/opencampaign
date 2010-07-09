@@ -13,6 +13,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :questions, :as => 'fragen', :member => {:contribute => :post} do |questions|
     questions.resources :comments
   end
+
+  map.resources :tasks
   
   map.resources :comments
 

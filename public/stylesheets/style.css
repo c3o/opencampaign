@@ -925,8 +925,8 @@ ul.tasks li {
   clear: left;
 }
 ul.tasks li h3,
-ul.tasks li .participants,
-ul.tasks li .comments {
+ul.tasks li .task_participants,
+ul.tasks li .task_comments {
   float: left;
   margin-right: .5em;
 }

@@ -66,7 +66,8 @@ class IdeasController < ApplicationController
   # PUT /ideas/1.xml
   def update
     @idea = Idea.find(params[:id])
-    @idea.update_attributes(params[:idea]) if @idea.author == current_user
+    check_authorization @idea
+    @idea.update_attributes(params[:idea])
     redirect_to(@idea)
   end
 
