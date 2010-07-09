@@ -29,8 +29,10 @@ module ApplicationHelper
   end
   
   def comment_indicator(o, url_for_param=nil)
-    if cs = o.comments.count
-      link_to(cs.to_s, url_for(url_for_param || o), :class=>'comment-count')
+    if cs = o.comments
+      if cs.count > 0
+        link_to(cs.count.to_s, url_for(url_for_param || o), :class=>'comment-count')
+      end
     else
       return o.comments.count
     end

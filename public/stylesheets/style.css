@@ -911,10 +911,12 @@ ul.buttonbar {
 
 a.comment-count {
   text-decoration: none;
-  background: #ddd url(/images/speechbubble.gif) 3px center no-repeat;
-  padding: 3px 10px;
-  padding-left: 22px;
-  border-radius: 3px;
+  background: url(/images/speechbubble.gif) 5px center no-repeat;
+  padding: 3px 8px;
+  padding-left: 25px;
+  border: 0;
+  border-left: 1px dotted #ccc;
+  border-right: 1px dotted #ccc;
   color: #000;
 }
 
