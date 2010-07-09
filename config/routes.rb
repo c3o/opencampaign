@@ -18,7 +18,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :comments
 
-  map.projectpage '/projekte/:slug', :controller => 'projects', :action => 'show', :requirements => { :slug => /[a-z]+/ }
+  map.projectpage '/projekte/:slug', :controller => 'projects', :action => 'show', :requirements => { :slug => /[a-z_-]+/ }
   map.resources :projects, :as => 'projekte', :member => {:contribute => :post} do |projects|
     projects.resources :comments
     projects.resources :tasks
