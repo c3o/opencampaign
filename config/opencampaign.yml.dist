@@ -32,3 +32,8 @@ email_notification_subject: Your question was answered!
 video_tokbox_user_id: 0
 video_max_seconds: 30
 
+event_attendees_secret_if_less_than: 3
+
+date: %d.%m.%Y
+date_short: %d.%m. %H:%M
+
