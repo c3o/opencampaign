@@ -6,7 +6,7 @@ module ApplicationHelper
 
   def userinfo(user)
     if user
-      out = h(user.name)
+      out =  user.avatar_url ? avatar(user, 24, true) : h(user.name)
       if user.is_official
         out << '<span class="user_official">Team Armin Soyka</span>'
       end
@@ -16,9 +16,16 @@ module ApplicationHelper
     out
   end
   
-  def avatar(user, size=nil)
+  def avatar(user, size=nil, show_username=false)
     sizeparam = size ? "#{size}x#{size}" : nil
-    link_to(image_tag(user.avatar_url, :size => sizeparam, :title => user.name), user.facebook_url) if user.avatar_url
+    username = show_username ? h(user.name) : ""
+    if user.avatar_url
+      link_to(
+        image_tag(user.avatar_url, :size => sizeparam, :title => user.name) + username,
+        user.facebook_url,
+        :class => 'userinfo'
+      )
+    end
   end
   
   def comment_indicator(o, url_for_param=nil)

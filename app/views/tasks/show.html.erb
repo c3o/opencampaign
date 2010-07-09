@@ -1,6 +1,6 @@
 <div class="page" id="task">
   <div class="header">
-    <%= link_to "Zurück zu Projekt #{@task.project.title}", projectpage_url(:slug => @task.project.slug), :class => "backbutton" %>
+    <%= link_to "Zurück zu Projekt #{h @task.project.title}", projectpage_url(:slug => @task.project.slug), :class => "backbutton" %>
     <h2><%= h @task.title %></h2>
   </div>
   <div class="content">
@@ -24,7 +24,9 @@
     
     <div id="users">
       <h4>Beteiligte Personen</h4>
-      <%= render(:partial => 'shared/user', :collection => @task.participants) if @task.participants %>
+      <ul>
+        <%= render(:partial => 'shared/user', :collection => @task.participants) if @task.participants %>
+      </ul>
     </div>
     
     <%= render(:partial => 'shared/comments', :locals => { :object => @task }) if @task.comments %>
