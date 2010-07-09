@@ -23,12 +23,14 @@ class IdeasController < ApplicationController
   def index
     @render_signup_overlay = true
     @ideas = Idea.find(:all,:order => 'score DESC', :include => :author)
+    @title = "Ideen"
   end
 
   # GET /ideas/1
   def show
     @render_signup_overlay = true
     @idea = Idea.find(params[:id])
+    @title = h(@idea.title)
   end
 
   # GET /ideas/new

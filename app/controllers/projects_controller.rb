@@ -7,11 +7,13 @@ class ProjectsController < ApplicationController
     is_active = (params[:is_active] == false) ? false : true
     @projects = Project.find(:all, :order => 'created_at ASC', :conditions => ['is_active = ?', is_active], :include => :tasks)
     render :template => "projects/index_#{ is_active ? 'active' : 'inactive' }"
+    @title = "Projekte"
   end
 
   def show
     (redirect_to :controller => 'ideas' and return) if params[:id] == 'ideen'  #HACK!
     @project = params[:slug] ? Project.find_by_slug(params[:slug], :include => :tasks) : Project.find(params[:id], :include => :tasks)
+    @title = h(@project.title)
   end
 
   # GET /tasks/new

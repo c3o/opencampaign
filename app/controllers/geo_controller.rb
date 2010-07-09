@@ -12,6 +12,7 @@ class GeoController < ApplicationController
     unless @events && !@events.empty?
       @events = Event.find(:all, :conditions => ['time > ?', date], :order => 'time ASC', :limit => 1)
     end
+    @title = "Mitmachen"
   end
   
   def local

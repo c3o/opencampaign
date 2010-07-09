@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
   def index
     @render_signup_overlay = true
     @questions = Question.find(:all, :conditions => 'reply IS NOT NULL', :order => 'created_at DESC', :include => :author)
+    @title = "Fragen & Antworten"
   end
   
   def reply
