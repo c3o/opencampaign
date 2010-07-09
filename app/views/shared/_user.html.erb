@@ -1,5 +1,5 @@
 <li class="user" id="user_<%= user.id %>">
-  <%= link_to(image_tag("http://graph.facebook.com/#{user.facebook_id}/picture"), user.facebook_url) if user.facebook_id %>
+  <%= avatar(user) %>
   <strong><%= user.name %></strong>
   <%= link_to user.email, "mailto:#{ user.email }" %>
 </li>

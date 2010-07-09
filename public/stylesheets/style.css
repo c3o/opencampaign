@@ -37,6 +37,7 @@ a.button {
   border-radius: 1.2em; 
 }
 
+
 a.backbutton {
   float: right;
   margin: .6em;
@@ -178,15 +179,17 @@ ul#topmenu li.active a {
   float: right;
 }
 
+.page .header {
+  -moz-border-radius-topleft: .5em;
+  -webkit-border-top-left-radius: .5em;
+  -moz-border-radius-topright: .5em;
+  -webkit-border-top-right-radius: .5em;  
+}
 .page h2 {
   font-weight: normal;
   font-size: 2em;
   margin: 0;
   padding: 25px 20px 10px 20px;
-  -moz-border-radius-topleft: .5em;
-  -webkit-border-top-left-radius: .5em;
-  -moz-border-radius-topright: .5em;
-  -webkit-border-top-right-radius: .5em;
 }
 .page h2 .code {
   letter-spacing: 0;
@@ -249,26 +252,26 @@ p.body {
   margin-top: 1em
 }
 
-#tasks {
+#tasks.box {
   width: 260px;
   height: 300px;
 }
-#tasks h2 {
+#tasks.box h2 {
   font-weight: normal;
   font-size: 1.8em;
   padding: 10px 0 10px 10px;
 }
-#tasks ul {
+#tasks.box ul {
   list-style-type: disc;
   padding-left: 1em;
 }
-#tasks li {
+#tasks.box li {
   margin-bottom: .3em;
 }
-#tasks li a {
+#tasks.box li a {
   text-decoration: none;  
 }
-#tasks li a:hover {
+#tasks.box li a:hover {
   text-decoration: underline;
 }
 
@@ -278,7 +281,7 @@ p.body {
 }
 
 
-#tasks .content {
+#tasks.box .content {
   height: 283px;
   overflow-y: scroll;
 }
@@ -288,23 +291,20 @@ p.body {
   font-weight: bold;
 }
 
-#tasks ul { 
+#tasks.box ul { 
   list-style: none;
   margin: 0 0 1em 0; padding: 0;
 }
-#tasks ul li {
+#tasks.box ul li {
   margin: 0; padding: 0;
 }
 
-#tasks ul h3 {
+#tasks.box ul h3 {
   font-size: 1.2em;
   font-weight: normal;  
 }
-#tasks ul .byline {
+#tasks.box ul .byline {
   font-size: .9em;
-}
-
-#tasks .more {
 }
 
 
@@ -343,10 +343,12 @@ ul#topmenu li.active a, .menu li.active a, ul.buttonbar li a {
   background-color: #fff;
   opacity: .9;
 }
-.page h2 {
+.page .header {
   background-color: #fff;
-  color: #260; /* beige green ccbe39 */
   opacity: .9;
+}
+.page .header h2 {
+  color: #000; /* 260 beige green ccbe39 */
 }
 
 a {
@@ -366,10 +368,6 @@ a {
   width: 800px;
 }
 
-.page h2, .menu {
-  /* background-color: #fff; */
-}
-
 .page h5 {
   margin: .5em 0;
 }
@@ -378,6 +376,10 @@ a {
 .calendar .m {
   background-color: #260; /*ccbe39;*/
 }
+a.button:hover {
+  background-color: #482;
+}
+
 .box h2 {
   background-color: #260;
 }
@@ -781,7 +783,7 @@ ol {
   margin-bottom: .5em;
 }
 
-.question .byline {
+.byline {
   color: #999;
 }
 
@@ -880,4 +882,51 @@ ul.buttonbar {
   font-size: .9em;
   list-style: none !important;
   margin: 0 !important; padding: 0 !important;
+}
+
+#participate {
+  border: 1px solid #ccc;
+  padding: 1em;
+  margin: 1em 0;
+  overflow: hidden;
+}  
+#participate a {
+  display: block;
+  float: left;
+  margin-right: 1em;
+}
+#participate p {
+  font-size: .9em;
+  line-height: 1.3em;
+}
+
+#project #tasks {
+  border: 1px solid #ccc;
+  padding: 1em;
+  margin: 1em 0;
+}
+#project #tasks h4 {
+  margin: 0 0 .5em 0;
+}
+
+a.comment-count {
+  text-decoration: none;
+  background: #ddd url(/images/speechbubble.gif) 3px center no-repeat;
+  padding: 3px 10px;
+  padding-left: 22px;
+  border-radius: 3px;
+  color: #000;
+}
+
+ul.tasks {
+  overflow: hidden;
+}
+ul.tasks li {
+  clear: left;
+}
+ul.tasks li h3,
+ul.tasks li .participants,
+ul.tasks li .comments {
+  float: left;
+  margin-right: .5em;
 }

@@ -1,4 +1,4 @@
-<div class="page">
+<div class="page" id="project">
   <h2><%= h @project.title %></h2>
   <div class="content">
 
@@ -6,7 +6,10 @@
 
     <p><br /><fb:like></fb:like></p>
            
-    <%= render(:partial => 'shared/tasks', :locals => { :project => @project }) if @project.tasks %>
+    <div id="tasks">
+      <h4>Hilf mit!</h4>
+      <%= render(:partial => 'shared/tasks', :locals => { :project => @project }) if @project.active_tasks %>
+    </div>
     
     <%= render(:partial => 'shared/comments', :locals => { :object => @project }) if @project.comments %>
 

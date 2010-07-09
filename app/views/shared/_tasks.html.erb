@@ -1,4 +1,3 @@
-   <h4>Tasks</h4>
-   <ul>
-     <%= render :partial => 'tasks/task', :collection => project.tasks %>
+   <ul class="tasks">
+     <%= render :partial => 'tasks/task', :collection => project.active_tasks %>
    </ul>

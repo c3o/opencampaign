@@ -1,0 +1,33 @@
+<div class="page" id="task">
+  <div class="header">
+    <%= link_to "Zurück zu Projekt #{@task.project.title}", projectpage_url(:slug => @task.project.slug), :class => "backbutton" %>
+    <h2><%= h @task.title %></h2>
+  </div>
+  <div class="content">
+
+    <p class="body">
+      <%=h @task.body %>
+    </p>
+    
+    <div class="byline">Angelegt von <%= @task.creator.name %> am <%= @task.created_at.strftime(CONFIG["date"]) %></div>
+           
+    <% unless logged_in? && current_user.participating_tasks.include?(@task) %>
+      <div id="participate">
+        <%= link_to "Ich mache mit!", url_for(:action => :participate, :id => @task.id), :class => "button" %>
+        <p>
+          <strong>Kannst du etwas Zeit in diesen Task investieren?</strong> Dann melde dich bitte hier.
+          Jemand, der für dieses Projekt verantwortlich ist, wird sich
+          bald bei dir melden!
+        </p>
+      </div>
+    <% end %>
+    
+    <div id="users">
+      <h4>Beteiligte Personen</h4>
+      <%= render(:partial => 'shared/user', :collection => @task.participants) if @task.participants %>
+    </div>
+    
+    <%= render(:partial => 'shared/comments', :locals => { :object => @task }) if @task.comments %>
+
+  </div>
+</div>

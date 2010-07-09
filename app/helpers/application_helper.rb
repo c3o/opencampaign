@@ -15,4 +15,18 @@ module ApplicationHelper
     end
     out
   end
+  
+  def avatar(user, size=nil)
+    sizeparam = size ? "#{size}x#{size}" : nil
+    link_to(image_tag(user.avatar_url, :size => sizeparam, :title => user.name), user.facebook_url) if user.avatar_url
+  end
+  
+  def comment_indicator(o, url_for_param=nil)
+    if cs = o.comments.count
+      link_to(cs.to_s, url_for(url_for_param || o), :class=>'comment-count')
+    else
+      return o.comments.count
+    end
+  end
+  
 end

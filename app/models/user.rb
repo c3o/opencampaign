@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   has_one :video, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   has_many :projects
-  has_and_belongs_to_many :task
+  has_many :created_tasks, :class_name => 'Task'
+  has_and_belongs_to_many :participating_tasks, :class_name => 'Task' #, :foreign_key => 'user_id'
 
   #validates_presence_of     :town, :message => 'ist nicht in der Datenbank'
   validates_presence_of      :email, :message => 'darf nicht leer sein'
@@ -23,6 +24,10 @@ class User < ActiveRecord::Base
   
   def facebook_url
     "http://www.facebook.com/profile.php?id=#{facebook_id}" if facebook_id
+  end
+  
+  def avatar_url
+    "http://graph.facebook.com/#{facebook_id}/picture" if facebook_id
   end
   
   def town=(name)

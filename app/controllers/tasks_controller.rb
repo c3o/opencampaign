@@ -1,7 +1,10 @@
 class TasksController < ApplicationController
   before_filter :login_required, :only => [:new, :vote_up, :vote_down, :create, :edit, :destroy, :create]
 
-  def contribute
+  def participate
+    task = Task.find(params[:id])
+    task.participants << current_user if task
+    redirect_to url_for([task.project, task])
   end
   
   # GET /tasks
