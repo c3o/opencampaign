@@ -1,6 +1,8 @@
 <div class="page">
-  <%= link_to "&larr; Zurück zur Video-Übersicht", video_path, :class => 'backbutton' %>
-  <h2>Warum ich <%= CONFIG["org_title"] %> unterstütze</h2>
+  <div class="header">
+    <%= link_to "&larr; Zurück zur Video-Übersicht", video_path, :class => 'backbutton' %>
+    <h2>Warum ich <%= CONFIG["org_title"] %> unterstütze</h2>
+  </div>
   <div class="content">
   
   <% if logged_in? %>

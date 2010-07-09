@@ -1,9 +1,11 @@
 <div class="page">
-  <%= link_to "&larr; Zurück zur Startseite", root_path, :class => 'backbutton' %>
-  <h2>Buttons für Blog, Profil & Website</h2>
+  <div class="header">
+    <%= link_to "&larr; Zurück zur Startseite", root_path, :class => 'backbutton' %>
+    <h2>Buttons für Blog, Profil & Website</h2>
+  </div>
   <div class="content">
 
-    <h4>Den "Diesmal LIF"-Button in dein Profilbild einfügen</h4>
+    <h4>Den <%= CONFIG["org_title"] %>-Button in dein Profilbild einfügen</h4>
     
     <div style="overflow:hidden">
       <img src="/images/portrait-with-button.png" style="display: block; float: left; margin-right: 1em" />
@@ -22,71 +24,8 @@
           <img src="/images/buttons/diesmal-lif-transparent.png" />
         </div>
         <div class="button_code">
-          <h4>Diesmal LIF (Transparenter Hintergrund, für moderne Browser)</h4>
-          <textarea onclick="this.select()"><a href="http://www.diesmal-lif.at" title="Diesmal LIF wählen!"><img src="http://www.diesmal-lif.at/images/buttons/diesmal-lif-transparent.png" style="border:0" /></a></textarea>
-        </div>
-      </li>
-      <li>
-        <div class="button_image">
-          <img src="/images/buttons/diesmal-lif-weiss.png" />
-        </div>
-        <div class="button_code">
-          <h4>Diesmal LIF (Weißer Hintergrund)</h4>
-          <textarea onclick="this.select()"><a href="http://www.diesmal-lif.at" title="Diesmal LIF wählen!"><img src="http://www.diesmal-lif.at/images/buttons/diesmal-lif-weiss.png" style="border:0" /></a></textarea>
-        </div>
-      </li>
-      <li>
-        <div class="button_image">
-          <img src="/images/buttons/diesmal-lif-schwarz.png" />
-        </div>
-        <div class="button_code">
-          <h4>Diesmal LIF (Schwarzer Hintergrund)</h4>
-          <textarea onclick="this.select()"><a href="http://www.diesmal-lif.at" title="Diesmal LIF wählen!"><img src="http://www.diesmal-lif.at/images/buttons/diesmal-lif-schwarz.png" style="border:0" /></a></textarea>
-        </div>
-      </li>
-      <li>
-        <div class="button_image">
-          <img src="/images/buttons/diesmal-ampel.png" />
-        </div>
-        <div class="button_code">
-          <h4>Diesmal Ampel (Transparenter Hintergrund)</h4>
-          <textarea onclick="this.select()"><a href="http://www.diesmal-lif.at" title="Diesmal LIF wählen!"><img src="http://www.diesmal-lif.at/images/buttons/diesmal-ampel.png" style="border:0" /></a></textarea>
-        </div>
-      </li>
-      <li>
-        <div class="button_image">
-          <img src="/images/buttons/diesmal-jamaica.png" />
-        </div>
-        <div class="button_code">
-          <h4>Diesmal Jamaica (Transparenter Hintergrund)</h4>
-          <textarea onclick="this.select()"><a href="http://www.diesmal-lif.at" title="Diesmal LIF wählen!"><img src="http://www.diesmal-lif.at/images/buttons/diesmal-jamaica.png" style="border:0" /></a></textarea>
-        </div>
-      </li>
-      <li>
-        <div class="button_image"" style="padding-top:20px">
-          <img src="/images/buttons/diesmal-lif-klein-transparent.png" />
-        </div>
-        <div class="button_code">
-          <h4>LIF-Button (Transparenter Hintergrund)</h4>
-          <textarea onclick="this.select()"><a href="http://www.diesmal-lif.at" title="Diesmal LIF wählen!"><img src="http://www.diesmal-lif.at/images/buttons/diesmal-lif-klein-transparent.png" style="border:0" /></a></textarea>
-        </div>
-      </li>
-      <li>
-        <div class="button_image" style="padding-top:50px">
-          <img src="/images/buttons/mini-diesmal.gif" />
-        </div>
-        <div class="button_code">
-          <h4>Diesmal LIF Mini</h4>
-          <textarea onclick="this.select()"><a href="http://www.diesmal-lif.at" title="Diesmal LIF wählen!"><img src="http://www.diesmal-lif.at/images/buttons/mini-diesmal.gif" style="border:0" /></a></textarea>
-        </div>
-      </li>
-      <li>
-        <div class="button_image" style="width:220px">
-          <img src="/images/buttons/diesmal-lif-gross-transparent.png" />
-        </div>
-        <div class="button_code" style="width:430px;">
-          <h4>Diesmal LIF riesig (Transparenter Hintergrund)</h4>
-          <textarea style="width:430px;" onclick="this.select()"><a href="http://www.diesmal-lif.at" title="Diesmal LIF wählen!"><img src="http://www.diesmal-lif.at/images/buttons/diesmal-lif-gross-transparent.png" style="border:0" /></a></textarea>
+          <h4>.... (Transparenter Hintergrund, für moderne Browser)</h4>
+          <textarea onclick="this.select()"><a href="<%= CONFIG["url"] %>" title="<%= CONFIG["sharing_title"] %>"><img src="<%= CONFIG["url"] %>/images/buttons/....png" style="border:0" /></a></textarea>
         </div>
       </li>
     </ul>

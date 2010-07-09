@@ -1,7 +1,9 @@
 <div class="page">
-  <%= link_to "&larr; Zurück zur Video-Übersicht", video_path, :class => 'backbutton' %>
-  <h2>Warum ich <%= CONFIG["org_name"] %> unterstütze: <%= @video.user.name || '' %></h2>
-org_title  <div class="content">
+  <div class="header">
+    <%= link_to "&larr; Zurück zur Video-Übersicht", video_path, :class => 'backbutton' %>
+    <h2>Warum ich <%= CONFIG["org_title"] %> unterstütze: <%= @video.user.name || '' %></h2>
+  </div>
+  <div class="content">
   
   <% if @video && ((logged_in? && current_user.is_admin) || @video.is_approved) %>
      <%= render :partial=>'embed', :locals => { :video => video } %>
