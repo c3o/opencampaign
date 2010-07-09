@@ -4,7 +4,7 @@
       <strong><%= userinfo comment.author %></strong>
     <% end %>
     <% if comment.created_at %>
-      &ndash; <%= comment.created_at.strftime('%d.%m.') %> 
+      &ndash; <%= comment.created_at.strftime(CONFIG["date_short"]) %> 
     <% end %>
     <% if comment.author == current_user %>
       <a href="#" class="toggle trigger-comment_<%= comment.id %>">bearbeiten</a>
