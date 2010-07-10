@@ -11,19 +11,21 @@
     
     <div class="byline">Angelegt von <%= @task.creator.name %> am <%= @task.created_at.strftime(CONFIG["date"]) %></div>
            
-    <% unless logged_in? && current_user.participating_tasks.include?(@task) %>
-      <div id="participate">
+    <div id="participate">
+      <% unless logged_in? && current_user.participating_tasks.include?(@task) %>
         <%= link_to "Ich mache mit!", url_for(:action => :participate, :id => @task.id), :class => "button signup_required" %>
         <p>
           <strong>Kannst du etwas Zeit in diesen Task investieren?</strong> Dann melde dich bitte hier.
           Jemand, der für dieses Projekt verantwortlich ist, wird sich
           bald bei dir melden!
         </p>
-      </div>
-    <% end %>
+      <% else %>
+        <strong>Du bist als Mithelfer eingetragen.</strong>
+      <% end %>
+    </div>
     
     <div id="users">
-      <h4>Beteiligte Personen</h4>
+      <h4>Mithelfer</h4>
       <ul>
         <%= render(:partial => 'shared/user', :collection => @task.participants) if @task.participants %>
       </ul>

@@ -1,6 +1,7 @@
 <li id="task_<%= task.id %>">
-  <h3><%=link_to h(task.title || '#'), url_for([task.project, task]) %></h3>
+  <h3><%=link_to h(task.title || '#'), taskpage_url(:id => task.id, :slug => task.project.slug) %></h3>
   <div class="task_comments"><%= comment_indicator(task, [task.project, task]) %></div>
+    
   <div class="task_participants"><%= task.participants.collect { |u| avatar(u, 24) } %></div>
 
   <% if logged_in? && current_user.is_admin %>
