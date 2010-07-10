@@ -1,4 +1,39 @@
+== OpenCampaign
+
+Software for political campaigns to reach, interact with and harness supporters.
+
+by Christopher Clay (opencampaign@c3o.org)
+with initial contributions by Esad Hajdarevic & Andreas Fuchs
+
+The code's a mess but that’s okay for now.
+
+
+== Featureset
+
+Existing modules:
+
+* Facebook Connect or simple email registration
+* Progress bar & map highlighting for # of supporters (by constituency)
+* Public project & task management
+* Local events (by constituency)
+* Local candidate listing (by constituency)
+* Anonymous Q&A (think Formspring)
+* Idea submission & voting (think Digg)
+* Comment threads with official representative highlighting
+* Avatar-with-support-logo generation (think Twibbon)
+* Video message recording for supporters (using Tokbox)
+
+Future plans:
+
+* Automatically organized local events with RSVP (think Meetup)
+* Email and Facebook message campaigns
+* Facebook app & widgets for progress bar/highlighted map
+* ...
+
+
 == INSTALL
+
+Don't, for now...
 
 Pull fresh copy via git, then fetch some plugins:
 
@@ -10,3 +45,4 @@ Create database and fill with data
 $ rake db:migrate
 $ ruby db/data/load.rb
 
+Set up opencampaign.yml
