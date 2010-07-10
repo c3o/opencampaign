@@ -28,7 +28,7 @@ class IdeasController < ApplicationController
   # GET /ideas/1
   def show
     @idea = Idea.find(params[:id])
-    @title = h(@idea.title)
+    @title = @idea.title
   end
 
   # GET /ideas/new
