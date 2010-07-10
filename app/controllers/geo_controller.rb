@@ -16,7 +16,6 @@ class GeoController < ApplicationController
   end
   
   def local
-    @render_signup_overlay = true
     @constituency = Constituency.find(:all).detect {|c| c.url_friendly_name == params[:name].downcase}
     @events = Event.find(:all, :conditions => ['time > ? AND constituency_id = ?', Time.now, @constituency.id], :order => 'time ASC').each {|e| e.constituency = nil }
     redirect_to root_path unless @constituency

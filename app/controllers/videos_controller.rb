@@ -2,7 +2,6 @@ class VideosController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => 'recorded'
 
   def index
-    @render_signup_overlay = true
     @videos = Video.find(:all, :conditions => ['is_approved = ?', true], :order => 'updated_at DESC')
   end
   
@@ -15,7 +14,6 @@ class VideosController < ApplicationController
   end
   
   def record
-    @render_signup_overlay = true
   end
   
   def recorded

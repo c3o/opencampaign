@@ -51,8 +51,6 @@ class UsersController < ApplicationController
       @deleted = true
       current_user.destroy
       reset_session
-    else
-      @render_signup_overlay = true
     end
   end
   

@@ -116,7 +116,7 @@
       </div><!-- container -->
     <% end %>    
 
-    <% if !logged_in? && @render_signup_overlay %>
+    <% if !logged_in? %>
       <%= render :partial => 'shared/signup' %>
     <% end %>
 

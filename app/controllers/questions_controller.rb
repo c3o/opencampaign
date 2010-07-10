@@ -3,7 +3,6 @@ class QuestionsController < ApplicationController
   protect_from_forgery :only => [:create, :update, :destroy] 
 
   def index
-    @render_signup_overlay = true
     @questions = Question.find(:all, :conditions => 'reply IS NOT NULL', :order => 'created_at DESC', :include => :author)
     @title = "Fragen & Antworten"
   end
@@ -20,7 +19,6 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @render_signup_overlay = true
     @question = Question.find(params[:id])
   end
 

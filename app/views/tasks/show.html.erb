@@ -13,7 +13,7 @@
            
     <% unless logged_in? && current_user.participating_tasks.include?(@task) %>
       <div id="participate">
-        <%= link_to "Ich mache mit!", url_for(:action => :participate, :id => @task.id), :class => "button" %>
+        <%= link_to "Ich mache mit!", url_for(:action => :participate, :id => @task.id), :class => "button signup_required" %>
         <p>
           <strong>Kannst du etwas Zeit in diesen Task investieren?</strong> Dann melde dich bitte hier.
           Jemand, der für dieses Projekt verantwortlich ist, wird sich
