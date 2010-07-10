@@ -4,11 +4,6 @@ module Admin
     before_filter :login_required
     
     def adminindex
-      if request.post? && params[:username]
-        u = User.find_by_name(params[:username])
-        u.is_official = true
-        u.save
-      end
       @usercount = User.count
       @ideacount = Idea.count
       @videocount = Video.count

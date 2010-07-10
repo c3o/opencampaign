@@ -8,13 +8,6 @@
 
 <hr />
 
-<strong>User "offiziell machen"</strong> - Zeige Team-Logo neben seinem Namen
-<% form_tag '/admin', :method => "POST" do %>
-  Username: <input name="username" /><input type="submit" value="Offiziell machen" />
-<% end %>
-
-<hr />
-
 <h3><%=@openquestions.size %> unbeantwortete Fragen</h3>
 <br />
 <%= render :partial => 'shared/question', :collection => @openquestions %>

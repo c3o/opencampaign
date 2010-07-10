@@ -1,5 +1,7 @@
 <li class="user" id="user_<%= user.id %>">
-  <%= avatar(user) %>
-  <strong><%= user.name %></strong>
+  <% form_tag url_for(:controller => 'admin/users', :id => user.id, :action => 'make_official'), :style => "float:right" do %>
+    <input type="submit" value="Offiziell an/aus" />
+  <% end %>
+  <%= userinfo(user) %>
   <%= link_to user.email, "mailto:#{ user.email }" %>
 </li>
