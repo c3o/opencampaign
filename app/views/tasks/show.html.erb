@@ -9,7 +9,13 @@
       <%=h @task.body %>
     </p>
     
-    <div class="byline">Angelegt von <%= @task.creator.name %> am <%= @task.created_at.strftime(CONFIG["date"]) %></div>
+    <div class="byline">
+      Angelegt
+      <% if @task.creator %>
+        von <%= @task.creator.name %>
+      <% end %>
+      am <%= @task.created_at.strftime(CONFIG["date"]) %>
+    </div>
            
     <div id="participate">
       <% unless logged_in? && current_user.participating_tasks.include?(@task) %>

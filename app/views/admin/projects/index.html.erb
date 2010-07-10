@@ -20,8 +20,8 @@
 
       <%= render(:partial => 'shared/tasks', :locals => { :project => project }) if project.active_tasks %>
 
-      <a href="#" class="toggle trigger-new_task button">Task hinzufügen</a>
-      <div id="new-task" class="toggle target-new_task hidden">
+      <a href="#" class="toggle trigger-new_task_<%= project.id %> button">Task hinzufügen</a>
+      <div id="new-task" class="toggle target-new_task_<%= project.id %> hidden">
         <%= render :partial => 'taskform', :locals => { :project => project }  %>
       </div>
 
