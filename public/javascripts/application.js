@@ -190,7 +190,11 @@ Signup = {
         el.old_onclick = el.onclick;
         el.onclick = null;
         el.stopObserving('click');
-        el.observe('click',function(e) {Signup.show();  e.stop(); return false; });
+        el.observe('click',function(e) {
+          Signup.show();
+          e.stop();
+          return false;
+        });
     });
   },
   hide: function() {
@@ -198,7 +202,7 @@ Signup = {
   },
   restore: function() {
     if($('signup')) {
-      // embedded
+     // embedded
       $$('.signup_required').each(function(el) {
           el.stopObserving('click');
           el.onclick = el.old_onclick;
@@ -206,6 +210,7 @@ Signup = {
       });
       init_toggling(); //re-init toggling
       Signup.hide();
+      document.location.reload();
     } else {
       var target = parent ? parent : window;
       target.location.reload();

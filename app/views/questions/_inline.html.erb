@@ -32,6 +32,7 @@
           comment_header = "#{cs} Kommentar#{"e" unless cs == 1}"
           comment_link = cs > 0 ? comment_header : "Kommentieren"
           comment_hash = cs > 0 ? '#comments' : '#comment'
+          comment_class = cs> 0 ? '' : 'signup_required'
 
           if @show_comments
         %>
@@ -44,7 +45,7 @@
           </div>
         <% else %>
         
-          <div class="comment"><%= link_to comment_link, question_path(:id => question.id)+comment_hash %></div>
+          <div class="comment"><%= link_to comment_link, question_path(:id => question.id)+comment_hash, :class => comment_class %></div>
 
         <% end %>
 
