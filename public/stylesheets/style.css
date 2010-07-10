@@ -275,11 +275,16 @@ p.body {
   text-decoration: underline;
 }
 
+#tasks.box .admin-menu { display: none }
+
 #map-container .content, #tasks .content {
   margin-bottom: 0;
   padding-bottom: 0;
 }
 
+span.rating-button {
+  font-weight: bold;
+}
 
 #tasks.box .content {
   height: 283px;
@@ -318,7 +323,7 @@ body {
 .rating, .rating .vote a {
   color: #fff;
 }
-.rating .vote a {
+.rating .vote a, .rating-button {
   color: rgba(255, 255, 255, .4);
 }
 .rating .vote a:hover {
@@ -426,11 +431,6 @@ a.button {
   padding-bottom: 9999px;
   margin-bottom: -9999px;
 }
-
-.rating a {
-  color: #736200;  
-}
-
 
 #refer label {
   font-weight: bold;
@@ -792,7 +792,7 @@ ol {
   margin-top: 1em;
 }
 
-.question .reply .body {
+.question .reply > .body {
   font-style: italic;
 }
 

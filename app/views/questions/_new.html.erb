@@ -1,16 +1,18 @@
 <% remote_form_for(Question.new) do |f| %>
   <%= f.error_messages %>
-  <% if logged_in? %>
     <p id="question_author">
       <label><span>Dein Name</span></label>
       <div style="float: left;">
+      <% if logged_in? %>
         <label><input type="radio" name="author" value="true" checked="checked" /> <%= current_user.name %> (Benachrichtigung bei Antwort)</label><br />
         <label><input type="radio" name="author" value="false" /> Anonym</label>
+      <% else %>
+        Anonym. <a href="#" class="signup_required">Ich möchte mich anmelden</a>
+      <% end %>
       </div>
     </p>
-  <% end %>
   <p id="question_body" style="clear:both">
-    <label><span>Frage</span></label><%= f.text_area :body, :cols => 45, :rows => 7 %>
+    <label><span>Deine Frage</span></label><%= f.text_area :body, :cols => 45, :rows => 7 %>
   </p>
   <p>
     <label>

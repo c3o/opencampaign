@@ -181,7 +181,7 @@ function handle_form_errors(prefix,fields_to_restore,errs) {
 };
 
 Signup = {
-  fields: ['name','email','town','password'],
+  fields: ['email'], //,'name','town','password'],
   handle_form_errors: function(errs) {
     handle_form_errors('signup',Signup.fields,errs);
   },

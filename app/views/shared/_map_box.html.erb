@@ -3,7 +3,7 @@
     <h2>
       <div class="right">
       <% if !logged_in?  %>
-        <a href="#" onclick="OC.login();">Login</a>
+        <span style="font-weight:normal">Bereits eingetragen? <a href="#" onclick="OC.login();">Login</a></span>
       <% else %>
         <%= link_to "Logout", logout_path %>
       <% end %>
