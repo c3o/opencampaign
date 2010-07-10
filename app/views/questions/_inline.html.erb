@@ -39,24 +39,9 @@
             <h3><%= comment_header %></h3>
     
             <%= render :partial => 'shared/comment', :collection => @question.comments %>
+            <%= render :partial => 'shared/newcomment', :locals => { :object => @question } %>
             
-            <div id="comment" class="navbar">
-              <a href="#" class="toggle trigger-comment signup_required button">Kommentar abgeben</a>
-              <div class="hidden toggle target-comment">
-                <% form_for(Comment.new) do |f| %>
-                  <%= hidden_field_tag :question_id, @question.id %>
-                  <%= f.text_area :body, :cols => 45, :rows => 7 %><br/>
-                  <%= f.submit 'Kommentar abschicken' %>
-                <% end %>
-              </div>
-            </div>
           </div>
-          <script type="text/javascript">
-            if (document.location.hash.substring(1) == 'comment') {
-              $('comment').down('.trigger-comment').style.display = 'none';
-              $('comment').down('.target-comment').removeClassName('hidden');
-            }
-          </script>
         <% else %>
         
           <div class="comment"><%= link_to comment_link, question_path(:id => question.id)+comment_hash %></div>

@@ -1,0 +1,16 @@
+   <div id="newcomment" class="navbar">
+     <a href="#" class="toggle trigger-comment signup_required button">Kommentar abgeben</a>
+     <div class="hidden toggle target-comment">
+       <% form_for(Comment.new) do |f| %>
+         <%= hidden_field_tag (object.class.to_s.downcase+'_id').to_sym, object.id %>
+         <%= f.text_area :body, :cols => 45, :rows => 7 %><br/>
+         <%= f.submit 'Kommentar abschicken', :class => "signup_required" %>
+       <% end %>
+     </div>
+   </div>
+   <script type="text/javascript">
+     if (document.location.hash.substring(1) == 'comment') {
+       $('newcomment').down('.trigger-comment').style.display = 'none';
+       $('newcomment').down('.target-comment').removeClassName('hidden');
+     }
+   </script>

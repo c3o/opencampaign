@@ -42,17 +42,7 @@
 <div class="page" id="comments">
   <h2>Diskussion</h2>
   <div class="content">
-    <p class="navbar">
-      <a href="#" class="toggle trigger-comment signup_required button">Kommentar abgeben</a>
-      <div class="hidden toggle target-comment">
-        <%  form_for(Comment.new) do |f| %>
-          <%= hidden_field_tag :constituency_id, @constituency.id %>
-          <%= f.text_area :body, :cols => 60, :rows => 4 %><br/>
-          <%= f.submit 'Kommentar abschicken' %>
-        <% end %>
-        <br /><br />
-      </div>
-    </p>
+    <%= render :partial => 'shared/newcomment', :locals => { :object => @constituency } %>
     <%= render :partial => 'shared/comment', :collection => @constituency.comments %>
   </div>
 </div>
